@@ -1,7 +1,8 @@
 # Guide to Contributing
 
-
-
+## Rules of Contributing
+- Every pull request should be related to an assigned task or bug
+- Always do pull requests instead of merging directly
 
 ## How Disagreements or Conflicts Should Be Resolved
 - Transparency between contributors to prevent conflicts & misunderstandings as much as possible.
