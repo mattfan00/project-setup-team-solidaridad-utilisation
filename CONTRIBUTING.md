@@ -11,4 +11,14 @@
 - All other team members can either react or start a thread off of that comment and we can decide from there.
 - If we can’t decide something by ourselves, the scrum master should go to the Professor for more insight.
 
-
+## Project Values / Team Norms
+- Come to the meetings on time 
+    - Discuss meaningful content
+    - 1 hour cap on team discussion meetings
+- Support those who are learning 
+- Standups (3 days/week)
+- Post link to meeting in general chat
+    - Take notes for each meeting and post after it's done in Slack
+- Transparency
+    - As soon as a problem arises, report in Slack
+- No shame in having a problem, we are here to help each other out
