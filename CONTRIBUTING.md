@@ -22,3 +22,8 @@
 - Transparency
     - As soon as a problem arises, report in Slack
 - No shame in having a problem, we are here to help each other out
+
+## Git Workflow
+1. Commit your changes locally
+2. Before pushing and making a pull request to the main branch, pull all of the recent changes to your branch so that you deal with merge conflicts on the local end instead of GitHub
+3. Pull requests should contain a description indicating the task or issue it solves
