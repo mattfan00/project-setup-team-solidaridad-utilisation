@@ -3,12 +3,13 @@
 ## Rules of Contributing
 - Every pull request should be related to an assigned task or bug
 - Always do pull requests instead of merging directly
+- Every feature has its own branch, and branches are merged at standups after discussing changes and deciding what features to add.
 
 ## Project Values / Team Norms
-- Come to the meetings on time 
+- Come to the meetings on time
     - Discuss meaningful content
     - 1 hour cap on team discussion meetings
-- Support those who are learning 
+- Support those who are learning
 - Standups (3 days/week)
 - Post link to meeting in general chat
     - Take notes for each meeting and post after it's done in Slack
