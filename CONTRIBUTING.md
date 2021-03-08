@@ -3,6 +3,7 @@
 ## Rules of Contributing
 - Every pull request should be related to an assigned task or bug
 - Always do pull requests instead of merging directly
+- Every feature has its own branch, and branches are merged at standups after discussing changes and deciding what features to add.
 
 ## How Disagreements or Conflicts Should Be Resolved
 - Transparency between contributors to prevent conflicts & misunderstandings as much as possible.
