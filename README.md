@@ -22,6 +22,11 @@ Applicant
 - Want to make this a very seamless process to show how effective it can be
 (measure time it takes for someone manually filling out the form vs someone filling out with Copply)
 
+## Setup Instructions
+Frontend:
+1. Navigate to the `front-end` directory and type in `npm install` to install the dependencies
+1. Use `npm run start` to start the front-end React server
+
 ## How to Contribute
 Refer to: [CONTRIBUTING.md](./CONTRIBUTING.md)
 
