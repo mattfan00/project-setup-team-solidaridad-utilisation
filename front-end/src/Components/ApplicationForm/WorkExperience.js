@@ -5,67 +5,53 @@ import {
   Form,
   Input,
   DatePicker,
-  Button
+  Button,
+  Card
 } from "antd"
 
+import NewJobForm from "./NewJobForm"
+
 const WorkExperience = () => {
-  const [jobs, setJobs] = useState([])
+  const [jobs, setJobs] = useState([
+    {
+      title: "Software Engineer",
+      employer: "Amazon",
+      description: "i did a lot at this job"
+    }
+  ])
   const [showForm, setShowForm] = useState(false)
-  const addNewJob = () => {
+
+  const showJobForm = () => setShowForm(true)
+  const cancelJob = () => {
+    console.log("cancel the form")
+    setShowForm(false)
+  }
+
+  const addJob = () => {
+    console.log("add a new form")
+    setShowForm(false)
   }
 
   return (
     <>
-
-      <Button type="primary" onClick={addNewJob}>Add Work Experience</Button>
-    </>
-  )
-}
-
-const Job = () => {
-  return (
-    <>
+      {jobs && jobs.map(job => (
+        <Col span={24}>
+          <Card size="small">
+            <h4>{job.title} - {job.employer}</h4>
+            <div>{job.description}</div>
+          </Card>
+        </Col>
+      ))}
+      {showForm && (
+        <NewJobForm
+          cancelJob={cancelJob}
+          addJob={addJob}
+        />
+      )}
       <Col span={24}>
-        <Form.Item
-          label="Job Title"
-          name="title"
-        >
-          <Input />
-        </Form.Item>
-      </Col>
-      <Col span={24}>
-        <Form.Item
-          label="Employer"
-          name="employer"
-        >
-          <Input />
-        </Form.Item>
-      </Col>
-
-      <Col span={12}>
-        <Form.Item
-          label="Start Date"
-          name="startDate"
-        >
-          <DatePicker />
-        </Form.Item>
-      </Col>
-      <Col span={12}>
-        <Form.Item
-          label="End Date"
-          name="endDate"
-        >
-          <DatePicker />
-        </Form.Item>
-      </Col>
-
-      <Col span={24}>
-        <Form.Item
-          label="Description"
-          name="description"
-        >
-          <Input.TextArea />
-        </Form.Item>
+        {!showForm && (
+          <Button type="primary" onClick={showJobForm}>Add Work Experience</Button>
+        )}
       </Col>
     </>
   )
