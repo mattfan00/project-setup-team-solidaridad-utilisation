@@ -11,7 +11,7 @@
     - 1 hour cap on team discussion meetings
 - Support those who are learning
 - Standups (3 days/week)
-  - Monday 11:00 PM / Thursday 11:00 PM / Saturday 10:00 AM (EST)
+  - Monday 10:00 PM / Thursday 10:00 PM / Saturday 10:00 AM (EST)
   - Link [here](https://nyu.zoom.us/j/94685988260).
 - Take notes for each meeting and post after it's done in Slack
 - Transparency
