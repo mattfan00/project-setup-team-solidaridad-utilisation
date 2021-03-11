@@ -1,10 +1,10 @@
 import React, {useState} from "react"
 import {Button} from "antd";
 
-const ActiveJob = () => {
+const ActiveJob = (props) => {
     return (
-        <div 
-            key={item.title}
+        <div
+            key={props.title}
             actions={[
                 <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
                 <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
@@ -12,11 +12,12 @@ const ActiveJob = () => {
             ]}
         >
             <List.Item.Meta
-                avatar={<Avatar src={item.avatar} />}
                 title={<a href={item.href}>{item.title}</a>}
                 description={item.description}
             />
             {item.content}
+            
+            <Button type="primary">View</Button>
         </div>
     );
 };
