@@ -1,0 +1,15 @@
+.info-card {
+  cursor: pointer;
+}
+
+.info-card:hover .edit {
+  display: block;
+}
+
+.edit {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  transition: display 1s;
+  display: none
+}

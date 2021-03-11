@@ -7,14 +7,15 @@ import {
   Col,
   Divider,
   Card,
-  Space
+  Space,
+  message,
 } from "antd"
 
 import Name from "./Name"
 import Email from "./Email"
 import Address from "./Address"
 import WorkExperience from "./WorkExperience"
-
+import Education from "./Education"
 
 
 const ApplicationForm = () => {
@@ -38,6 +39,7 @@ const ApplicationForm = () => {
       console.log("Extra Questions: ", results[1])
     } catch (errorInfo) {
       console.log('Failed:', errorInfo)
+      message.error("Please fill out all of the required fields")
     }
   }
 
@@ -54,8 +56,11 @@ const ApplicationForm = () => {
             </Row>
           </Form>
 
-          <Divider>Work Experience</Divider>
+          <Divider orientation="left">Work Experience</Divider>
           <WorkExperience addJob={addJob} />
+
+          <Divider orientation="left">Education</Divider>
+          <Education />
         </Card>
         <Card>
           <h2>Extra Questions</h2>

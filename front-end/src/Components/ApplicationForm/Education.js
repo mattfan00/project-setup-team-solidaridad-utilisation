@@ -15,35 +15,35 @@ import {
 
 import "./card.css"
 
-import NewJobForm from "./NewJobForm"
+import NewEducationForm from "./NewEducationForm"
 
-const WorkExperience = (props) => {
-  const [jobs, setJobs] = useState([])
+const Education = (props) => {
+  const [education, setEducation] = useState([])
   const [showForm, setShowForm] = useState(false)
 
-  const showJobForm = () => setShowForm(true)
+  const showEducationForm = () => setShowForm(true)
 
-  const cancelJob = () => {
+  const cancelEducation = () => {
     setShowForm(false)
   }
 
-  const addJob = (details) => {
-    setJobs([...jobs, details])
+  const addEducation = (details) => {
+    setEducation([...education, details])
     setShowForm(false)
-    props.addJob(details)
+    // props.addJob(details)
   }
 
   return (
     <Row gutter={[16, 16]}>
-      {jobs.length > 0 && (
+      {education.length > 0 && (
         <Col span={24}>
           <Row gutter={[16, 16]}>
-            {jobs && jobs.map(job => (
+            {education && education.map(edu => (
               <Col span={24}>
                 <Card className="info-card" size="small">
-                  <div><strong>{job.title} - {job.employer}</strong></div>
-                  <div>{job.startDate} - {job.currentJob ? job.endDate : "Present"}</div>
-                  <div>{job.description}</div>
+                  <div><strong>{edu.school}</strong></div>
+                  <div>{edu.startDate} - {edu.endDate}</div>
+                  <div>Major in {edu.major}</div>
                   <div class="edit"><EditTwoTone /></div>
                 </Card>
               </Col>
@@ -51,9 +51,9 @@ const WorkExperience = (props) => {
           </Row>
         </Col>
       )}
-      {jobs.length == 0 && (
+      {education.length == 0 && (
         <Col span={24}>
-          <Alert message="No work experiences added" type="warning" showIcon />
+          <Alert message="No education added" type="warning" showIcon />
         </Col>
       )}
       {/* {showForm && (
@@ -65,16 +65,17 @@ const WorkExperience = (props) => {
         </Col>
       )} */}
       <Col span={24}>
-        <Button block type="text" onClick={showJobForm}><PlusOutlined />Add Work</Button>
+        <Button block type="text" onClick={showEducationForm}><PlusOutlined />Add Education</Button>
       </Col>
 
-      <NewJobForm
+      <NewEducationForm
         showForm={showForm}
-        cancelJob={cancelJob}
-        addJob={addJob}
+        cancelEducation={cancelEducation}
+        addEducation={addEducation}
       />
     </Row>
   )
 }
 
-export default WorkExperience
+export default Education
+

@@ -10,7 +10,7 @@ import {
 } from "antd"
 import moment from "moment"
 
-const NewJobForm = (props) => {
+const NewEducationForm = (props) => {
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
   const [currentJob, setCurrentJob] = useState(false)
@@ -19,13 +19,9 @@ const NewJobForm = (props) => {
   const handleStartDate = (date, dateString) => setStartDate(dateString)
   const handleEndDate = (date, dateString) => setEndDate(dateString)
 
-  const toggleCurrentJob = () => {
-    setCurrentJob(!currentJob)
-  }
-
   const cancel = async (e) => {
     e.stopPropagation()
-    props.cancelJob()
+    props.cancelEducation()
     form.resetFields()
     setStartDate("")
     setEndDate("")
@@ -38,13 +34,12 @@ const NewJobForm = (props) => {
       const values = await form.validateFields()
       console.log('Success:', values)
 
-      props.addJob({
-        title: form.getFieldValue("title"),
-        employer: form.getFieldValue("employer"),
-        currentJob,
+      props.addEducation({
+        school: form.getFieldValue("school"),
+        level: form.getFieldValue("level"),
         startDate,
         endDate,
-        description: form.getFieldValue("description")
+        major: form.getFieldValue("major")
       })
 
       form.resetFields()
@@ -57,7 +52,7 @@ const NewJobForm = (props) => {
 
   return (
     <Modal
-      title="Add Work Experience"
+      title="Add Education"
       okText="Add"
       visible={props.showForm}
       onOk={add}
@@ -67,26 +62,20 @@ const NewJobForm = (props) => {
         <Row gutter={16}>
           <Col span={24}>
             <Form.Item
-              label="Job Title"
-              name="title"
-              rules={[{ required: true, message: 'Please input the title' }]}
-            >
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={24}>
-            <Form.Item
-              label="Employer"
-              name="employer"
-              rules={[{ required: true, message: 'Please input the employer' }]}
+              label="School name"
+              name="school"
+              rules={[{ required: true, message: 'Please input a school title' }]}
             >
               <Input />
             </Form.Item>
           </Col>
 
           <Col span={24}>
-            <Form.Item name="currentJob">
-              <Checkbox checked={currentJob} onChange={toggleCurrentJob}>This is my current job</Checkbox>
+            <Form.Item
+              label="Education Level"
+              name="level"
+            >
+              <Input />
             </Form.Item>
           </Col>
 
@@ -103,31 +92,25 @@ const NewJobForm = (props) => {
             <Form.Item
               label="End Date"
               name="endDate"
-              // rules={[{ required: !currentJob, message: 'Please input a date' }]}
+              rules={[{ required: true, message: 'Please input a date' }]}
             >
-              <DatePicker disabled={currentJob} picker="month" format="MMM YYYY" onChange={handleEndDate} />
+              <DatePicker picker="month" format="MMM YYYY" onChange={handleEndDate} />
             </Form.Item>
           </Col>
 
           <Col span={24}>
             <Form.Item
-              label="Description"
-              name="description"
+              label="Major"
+              name="major"
             >
-              <Input.TextArea />
+              <Input />
             </Form.Item>
           </Col>
 
-          {/* <Col span={24}>
-            <Space>
-              <Button danger onClick={cancel}>Cancel</Button>
-              <Button type="primary" onClick={add}>Add</Button>
-            </Space>
-          </Col> */}
         </Row>
       </Form>
     </Modal>
   )
 }
 
-export default NewJobForm
+export default NewEducationForm
