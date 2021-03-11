@@ -22,10 +22,14 @@ const ApplicationForm = () => {
   const [detailsForm] = Form.useForm()
   const [extraForm] = Form.useForm()
   const [jobs, setJobs] = useState([])
+  const [education, setEducation] = useState([])
 
-  const addJob = (details) => {
-    console.log("added new job")
-    setJobs([...jobs, details])
+  const updateJobs = (newJobs) => {
+    setJobs(newJobs)
+  }
+
+  const updateEducation = (newEducation) => {
+    setEducation(newEducation)
   }
 
   const check = async () => {
@@ -36,6 +40,7 @@ const ApplicationForm = () => {
       ])
       console.log("Applicant Details: ", results[0])
       console.log("Jobs: ", jobs)
+      console.log("Education: ", education)
       console.log("Extra Questions: ", results[1])
     } catch (errorInfo) {
       console.log('Failed:', errorInfo)
@@ -57,10 +62,10 @@ const ApplicationForm = () => {
           </Form>
 
           <Divider orientation="left">Work Experience</Divider>
-          <WorkExperience addJob={addJob} />
+          <WorkExperience updateJobs={updateJobs} />
 
           <Divider orientation="left">Education</Divider>
-          <Education />
+          <Education updateEducation={updateEducation} />
         </Card>
         <Card>
           <h2>Extra Questions</h2>

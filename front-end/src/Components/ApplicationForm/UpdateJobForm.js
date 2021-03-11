@@ -9,7 +9,7 @@ import {
   Checkbox
 } from "antd"
 
-const NewJobForm = (props) => {
+const UpdateJobForm = (props) => {
   const [currentJob, setCurrentJob] = useState(false)
   const [form] = Form.useForm()
 
@@ -17,6 +17,12 @@ const NewJobForm = (props) => {
     form.setFieldsValue({"endDate": undefined})
     setCurrentJob(!currentJob)
   }
+
+  useEffect(() => {
+    if (props.initialValues) {
+      setCurrentJob(props.initialValues.currentJob)
+    }
+  }, [props.initialValues])
 
   useEffect(() => {
     if (props.showForm) {
@@ -27,18 +33,16 @@ const NewJobForm = (props) => {
   const cancel = (e) => {
     e.preventDefault()
     props.cancelJob()
-    setCurrentJob(false)
   }
 
-  const add = async (e) => {
+  const update = async (e) => {
     e.preventDefault()
 
     try {
       const values = await form.validateFields()
       console.log('Success:', values)
 
-      props.addJob(values)
-      setCurrentJob(false)
+      props.updateJob(props.initialValues.index, values)
     } catch (errorInfo) {
       console.log('Failed:', errorInfo)
     }
@@ -47,14 +51,14 @@ const NewJobForm = (props) => {
 
   return (
     <Modal
-      title="Add Work Experience"
-      okText="Add"
+      title="Update Work Experience"
+      okText="Update"
       visible={props.showForm}
-      onOk={add}
+      onOk={update}
       onCancel={cancel}
       closable={false}
     >
-      <Form form={form} layout="vertical">
+      <Form form={form} layout="vertical" initialValues={props.initialValues}>
         <Row gutter={16}>
           <Col span={24}>
             <Form.Item
@@ -77,6 +81,7 @@ const NewJobForm = (props) => {
 
           <Col span={24}>
             <Form.Item name="currentJob" valuePropName="checked">
+              {/* <Checkbox checked={currentJob} onChange={toggleCurrentJob}>This is my current job</Checkbox> */}
               <Checkbox onChange={toggleCurrentJob}>This is my current job</Checkbox>
             </Form.Item>
           </Col>
@@ -115,4 +120,4 @@ const NewJobForm = (props) => {
   )
 }
 
-export default NewJobForm
+export default UpdateJobForm

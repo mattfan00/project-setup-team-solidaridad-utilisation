@@ -9,7 +9,7 @@ import {
   Checkbox
 } from "antd"
 
-const NewEducationForm = (props) => {
+const UpdateEducationForm = (props) => {
   const [form] = Form.useForm()
 
   useEffect(() => {
@@ -18,34 +18,35 @@ const NewEducationForm = (props) => {
     }
   }, [props.showForm])
 
-  const cancel = async (e) => {
+  const cancel = (e) => {
     e.preventDefault()
     props.cancelEducation()
   }
 
-  const add = async (e) => {
+  const update = async (e) => {
     e.preventDefault()
 
     try {
       const values = await form.validateFields()
       console.log('Success:', values)
 
-      props.addEducation(values)
+      props.updateEducation(props.initialValues.index, values)
     } catch (errorInfo) {
       console.log('Failed:', errorInfo)
     }
   }
 
+
   return (
     <Modal
-      title="Add Education"
-      okText="Add"
+      title="Update Education"
+      okText="Update"
       visible={props.showForm}
-      onOk={add}
+      onOk={update}
       onCancel={cancel}
       closable={false}
     >
-      <Form form={form} layout="vertical">
+      <Form form={form} layout="vertical" initialValues={props.initialValues}>
         <Row gutter={16}>
           <Col span={24}>
             <Form.Item
@@ -100,4 +101,4 @@ const NewEducationForm = (props) => {
   )
 }
 
-export default NewEducationForm
+export default UpdateEducationForm
