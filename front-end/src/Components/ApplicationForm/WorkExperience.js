@@ -15,25 +15,20 @@ import {
 
 import NewJobForm from "./NewJobForm"
 
-const WorkExperience = () => {
+const WorkExperience = (props) => {
   const [jobs, setJobs] = useState([])
   const [showForm, setShowForm] = useState(false)
 
   const showJobForm = () => setShowForm(true)
 
-  const handleOk = () => {
-    setShowForm(false)
-  }
-
   const cancelJob = () => {
-    console.log("cancel the form")
     setShowForm(false)
   }
 
   const addJob = (details) => {
-    console.log("add a new form")
     setJobs([...jobs, details])
     setShowForm(false)
+    props.addJob(details)
   }
 
   return (

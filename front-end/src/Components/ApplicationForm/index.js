@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import {
   Button,
   Form,
@@ -20,6 +20,12 @@ import WorkExperience from "./WorkExperience"
 const ApplicationForm = () => {
   const [detailsForm] = Form.useForm()
   const [extraForm] = Form.useForm()
+  const [jobs, setJobs] = useState([])
+
+  const addJob = (details) => {
+    console.log("added new job")
+    setJobs([...jobs, details])
+  }
 
   const check = async () => {
     try {
@@ -27,7 +33,9 @@ const ApplicationForm = () => {
         detailsForm.validateFields(),
         extraForm.validateFields()
       ])
-      console.log('Success:', results)
+      console.log("Applicant Details: ", results[0])
+      console.log("Jobs: ", jobs)
+      console.log("Extra Questions: ", results[1])
     } catch (errorInfo) {
       console.log('Failed:', errorInfo)
     }
@@ -47,7 +55,7 @@ const ApplicationForm = () => {
           </Form>
 
           <Divider>Work Experience</Divider>
-          <WorkExperience />
+          <WorkExperience addJob={addJob} />
         </Card>
         <Card>
           <h2>Extra Questions</h2>
