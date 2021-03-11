@@ -1,3 +1,4 @@
+import React from "react"
 import {
   Collapse,
   Button,
@@ -27,17 +28,15 @@ const ApplicationForm = () => {
       >
         <Panel header="Applicant Details" key="1">
           <Form layout="vertical">
-            <Row gutter={[16]}>
+          <Row gutter={[16]}>
               <Name />
               <Email />
               <Address />
-            </Row>
-
-            <Divider>Work Experience</Divider>
-            <Row gutter={[16]}>
-              <WorkExperience />
-            </Row>
+          </Row>
           </Form>
+
+          <Divider>Work Experience</Divider>
+          <WorkExperience />
         </Panel>
         <Panel header="Extra Questions" key="2">
           <Form layout="vertical">
@@ -55,7 +54,7 @@ const ApplicationForm = () => {
         </Panel>
       </Collapse>
 
-      {/* <Button type="primary">Preview</Button> */}
+      <Button type="primary">Preview</Button>
     </>
   )
 }

@@ -1,59 +1,72 @@
-import { useState } from "react"
+import React, { useState } from "react"
 
 import {
+  Row,
   Col,
-  Form,
-  Input,
-  DatePicker,
   Button,
-  Card
+  Card,
+  Alert
 } from "antd"
+
+import {
+  PlusOutlined
+} from "@ant-design/icons"
 
 import NewJobForm from "./NewJobForm"
 
 const WorkExperience = () => {
-  const [jobs, setJobs] = useState([
-    {
-      title: "Software Engineer",
-      employer: "Amazon",
-      description: "i did a lot at this job"
-    }
-  ])
+  const [jobs, setJobs] = useState([])
   const [showForm, setShowForm] = useState(false)
 
   const showJobForm = () => setShowForm(true)
+
   const cancelJob = () => {
     console.log("cancel the form")
     setShowForm(false)
   }
 
-  const addJob = () => {
+  const addJob = (details) => {
     console.log("add a new form")
+    setJobs([...jobs, details])
     setShowForm(false)
   }
 
   return (
-    <>
-      {jobs && jobs.map(job => (
+    <Row gutter={[16, 16]}>
+      {jobs.length > 0 && (
         <Col span={24}>
-          <Card size="small">
-            <h4>{job.title} - {job.employer}</h4>
-            <div>{job.description}</div>
-          </Card>
+          <Row gutter={[16, 16]}>
+            {jobs && jobs.map(job => (
+              <Col span={24}>
+                <Card size="small">
+                  <div><strong>{job.title} - {job.employer}</strong></div>
+                  <div>{job.startDate} - {job.endDate}</div>
+                  <div>{job.description}</div>
+                </Card>
+              </Col>
+            ))}
+          </Row>
         </Col>
-      ))}
+      )}
+      {jobs.length == 0 && !showForm && (
+        <Col span={24}>
+          <Alert message="No work experiences added" type="warning" showIcon />
+        </Col>
+      )}
       {showForm && (
-        <NewJobForm
-          cancelJob={cancelJob}
-          addJob={addJob}
-        />
+        <Col span={24}>
+          <NewJobForm
+            cancelJob={cancelJob}
+            addJob={addJob}
+          />
+        </Col>
       )}
       <Col span={24}>
         {!showForm && (
-          <Button type="primary" onClick={showJobForm}>Add Work Experience</Button>
+          <Button type="primary" onClick={showJobForm}><PlusOutlined />Add Work</Button>
         )}
       </Col>
-    </>
+    </Row>
   )
 }
 

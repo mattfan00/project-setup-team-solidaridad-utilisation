@@ -1,3 +1,4 @@
+import React from "react"
 import ApplicationForm from "../../../Components/ApplicationForm"
 import "./index.css"
 
@@ -9,6 +10,7 @@ const Application = () => {
 
         {/* Form for application */}
         <ApplicationForm />
+
       </div>
     </div>
   )
