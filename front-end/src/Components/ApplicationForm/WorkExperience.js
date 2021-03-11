@@ -5,7 +5,8 @@ import {
   Col,
   Button,
   Card,
-  Alert
+  Alert,
+  Modal
 } from "antd"
 
 import {
@@ -19,6 +20,10 @@ const WorkExperience = () => {
   const [showForm, setShowForm] = useState(false)
 
   const showJobForm = () => setShowForm(true)
+
+  const handleOk = () => {
+    setShowForm(false)
+  }
 
   const cancelJob = () => {
     console.log("cancel the form")
@@ -48,24 +53,28 @@ const WorkExperience = () => {
           </Row>
         </Col>
       )}
-      {jobs.length == 0 && !showForm && (
+      {jobs.length == 0 && (
         <Col span={24}>
           <Alert message="No work experiences added" type="warning" showIcon />
         </Col>
       )}
-      {showForm && (
+      {/* {showForm && (
         <Col span={24}>
           <NewJobForm
             cancelJob={cancelJob}
             addJob={addJob}
           />
         </Col>
-      )}
+      )} */}
       <Col span={24}>
-        {!showForm && (
-          <Button type="primary" onClick={showJobForm}><PlusOutlined />Add Work</Button>
-        )}
+        <Button block type="text" onClick={showJobForm}><PlusOutlined />Add Work</Button>
       </Col>
+
+      <NewJobForm
+        showForm={showForm}
+        cancelJob={cancelJob}
+        addJob={addJob}
+      />
     </Row>
   )
 }
