@@ -1,16 +1,18 @@
 import React, {useState} from "react"
-import {Button} from "antd";
+import {Button, List} from "antd";
 
 const ActiveJob = (props) => {
     return (
         <div key={props.title}>
             <List.Item.Meta
-                title={<a href={item.href}>{item.title}</a>}
-                description={item.description}
+                title={<a href={props.href}>{props.title}</a>}
+                description={props.description}
             />
-            {item.content}
+            {props.content}
             
             <Button type="primary">View</Button>
         </div>
     );
 }
+
+export default ActiveJob

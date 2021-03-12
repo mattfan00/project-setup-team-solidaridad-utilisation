@@ -1,6 +1,6 @@
 import React from "react";
 import {List} from "antd";
-import ActiveJob from ActiveJob;
+import ActiveJob from "./ActiveJob";
 
 //pass the list of all data to Joblist to render each job
 const JobList = () => {
@@ -14,13 +14,14 @@ const JobList = () => {
         },
         pageSize: 3,
         }}
-        dataSource={listData}
         footer={
             <div>
-            <b>Page</b> footer part
+                <b>Page</b>
             </div>
         }
         renderItem = {ActiveJob}
     />
     );
 }
+
+export default JobList
