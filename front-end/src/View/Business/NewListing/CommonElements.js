@@ -13,7 +13,7 @@ const CommonElements = () => {
         <div>
         <Space direction="vertical" style={{ width:"55%" }}>
             <Card style={{ borderColor:"orange" }}>
-                <p>Tick all the details you want to require:</p>
+                <h3>Tick all the details you want to require:</h3>
                 <Form
                 name="basic"
                 initialValues={{ remember: true }}
