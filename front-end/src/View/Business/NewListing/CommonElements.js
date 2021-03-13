@@ -11,7 +11,7 @@ const CommonElements = () => {
     };
     return (
         <div>
-        <Space direction="vertical" style={{ width:"55%" }}>
+        <Space direction="vertical" style={{ width:"50%" }}>
             <Card style={{ borderColor:"orange" }}>
                 <h3>Tick all the details you want to require:</h3>
                 <Form
@@ -22,20 +22,15 @@ const CommonElements = () => {
                 >      
                 <Form.Item name="checkbox-group">
                 <Checkbox.Group>
-                <Row gutter={[0,8]}>
+                <Row gutter={[0,16]}>
                     <Col span={12}>
-                    <Checkbox value="firstName" style={{ lineHeight: '32px' }}>
-                        First Name
+                    <Checkbox value="name" style={{ lineHeight: '32px' }}>
+                        Name
                     </Checkbox>
                     </Col>
                     <Col span={12}>
-                    <Checkbox value="lastName" style={{ lineHeight: '32px' }}>
-                        Last Name
-                    </Checkbox>
-                    </Col>
-                    <Col span={12}>
-                    <Checkbox value="email" style={{ lineHeight: '32px' }}>
-                        Email
+                    <Checkbox value="gender" style={{ lineHeight: '32px' }}>
+                        Gender
                     </Checkbox>
                     </Col>
                     <Col span={12}>
@@ -44,28 +39,18 @@ const CommonElements = () => {
                     </Checkbox>
                     </Col>
                     <Col span={12}>
-                    <Checkbox value="city" style={{ lineHeight: '32px' }}>
-                        City
-                    </Checkbox>
-                    </Col>
-                    <Col span={12}>
-                    <Checkbox value="state" style={{ lineHeight: '32px' }}>
-                        State
-                    </Checkbox>
-                    </Col>
-                    <Col span={12}>
-                    <Checkbox value="country" style={{ lineHeight: '32px' }}>
-                        Country
-                    </Checkbox>
-                    </Col>
-                    <Col span={12}>
-                    <Checkbox value="postalCode" style={{ lineHeight: '32px' }}>
-                        Postal Code
+                    <Checkbox value="email" style={{ lineHeight: '32px' }}>
+                        Email
                     </Checkbox>
                     </Col>
                     <Col span={12}>
                     <Checkbox value="primaryPhone" style={{ lineHeight: '32px' }}>
                         Primary Phone
+                    </Checkbox>
+                    </Col>
+                    <Col span={12}>
+                    <Checkbox value="education" style={{ lineHeight: '32px' }}>
+                        Education
                     </Checkbox>
                     </Col>
                     <Col span={12}>
@@ -79,23 +64,13 @@ const CommonElements = () => {
                     </Checkbox>
                     </Col>
                     <Col span={12}>
-                    <Checkbox value="gender" style={{ lineHeight: '32px' }}>
-                        Gender
-                    </Checkbox>
-                    </Col>
-                    <Col span={12}>
-                    <Checkbox value="graduation" style={{ lineHeight: '32px' }}>
-                        Graduation Date
-                    </Checkbox>
-                    </Col>
-                    <Col span={12}>
                     <Checkbox value="hispanicLatino" style={{ lineHeight: '32px' }}>
                         Hispanic/Latino
                     </Checkbox>
                     </Col>
                     <Col span={12}>
                     <Checkbox value="linkedin" style={{ lineHeight: '32px' }}>
-                        Linkedin Profile
+                        Linkedin
                     </Checkbox>
                     </Col>
                     <Col span={12}>
