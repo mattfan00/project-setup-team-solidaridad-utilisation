@@ -1,6 +1,6 @@
 import React from "react"
 import ApplicationForm from "../../../Components/ApplicationForm"
-import "./index.css"
+import "../index.css"
 
 const Application = () => {
   return (

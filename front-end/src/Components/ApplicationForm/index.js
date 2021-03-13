@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useHistory, useParams } from "react-router-dom"
 import {
   Button,
   Form,
@@ -8,7 +9,7 @@ import {
   Divider,
   Card,
   Space,
-  message,
+  message
 } from "antd"
 
 import Name from "./Name"
@@ -17,12 +18,18 @@ import Address from "./Address"
 import WorkExperience from "./WorkExperience"
 import Education from "./Education"
 
+import ConfirmSubmit from "./ConfirmSubmit"
+
 
 const ApplicationForm = () => {
   const [detailsForm] = Form.useForm()
   const [extraForm] = Form.useForm()
   const [jobs, setJobs] = useState([])
   const [education, setEducation] = useState([])
+  const [confirm, setConfirm] = useState(false)
+
+  const history = useHistory()
+  const { company, job } = useParams()
 
   const updateJobs = (newJobs) => {
     setJobs(newJobs)
@@ -30,6 +37,20 @@ const ApplicationForm = () => {
 
   const updateEducation = (newEducation) => {
     setEducation(newEducation)
+  }
+
+  const closeConfirmation = (submit) => {
+    if (submit) {
+      submitApplication()
+    }
+
+    setConfirm(false)
+  }
+
+  const submitApplication = async () => {
+    // Add backend logic for submitting applications
+
+    history.push(`/application/${company}/${job}/success`)
   }
 
   const check = async () => {
@@ -42,6 +63,8 @@ const ApplicationForm = () => {
       console.log("Jobs: ", jobs)
       console.log("Education: ", education)
       console.log("Extra Questions: ", results[1])
+
+      setConfirm(true)
     } catch (errorInfo) {
       console.log('Failed:', errorInfo)
       message.error("Please fill out all of the required fields")
@@ -84,8 +107,10 @@ const ApplicationForm = () => {
           </Form>
         </Card>
 
-        <Button block shape="round" size="large" type="primary" onClick={check}>Preview</Button>
+        <Button block shape="round" size="large" type="primary" onClick={check}>Submit</Button>
       </Space>
+
+      <ConfirmSubmit showForm={confirm} close={closeConfirmation} />
     </>
   )
 }

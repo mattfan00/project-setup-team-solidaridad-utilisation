@@ -12,6 +12,7 @@ import BusinessNewListing from "./View/Business/NewListing"
 import BusinessSignup from "./View/Business/Signup"
 
 import Application from "./View/Applicant/Application"
+import ApplicationSuccess from "./View/Applicant/Success"
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/business/listing/new" component={BusinessNewListing} />
 
           {/* All Applicant routes  */}
+          <Route path="/application/:company/:job/success" component={ApplicationSuccess} />
           <Route path="/application/:company/:job" component={Application} />
 
           {/* Landing route */}
