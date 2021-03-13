@@ -1,24 +1,23 @@
-import React from "react";
-import {List} from "antd";
+import React, {useState} from "react";
+import {Card, Button} from "antd";
 import ActiveJob from "./ActiveJob";
 
-//pass the list of all data to Joblist to render each job
-const JobList = () => {
-    return(
-        <List
-            className="loadmore-list"
-            itemLayout="horizontal"
-            pagination={{
-                onChange: page =>{
-                    console.log(page);
-                },
-                pageSize: 10
-            }}         
-            renderItem={item=> (
-                ActiveJob(item)
-            )}
-        />        
-    );    
-}
+const JobList = (props) => {
+    return (
+        <div>
+            {props.pizza}
+            <Card 
+                title="Active Jobs"
+                extra={
+                    <a href='./JobView'>Sort</a>
+                }
+            >
+                {props.jobs && props.jobs.map(job => (
+                    <ActiveJob job={job}></ActiveJob>
+                ))}
+            </Card>
+        </div>
+    );
+};
 
-export default JobList
+export default JobList;
