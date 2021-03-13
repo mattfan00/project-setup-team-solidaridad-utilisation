@@ -1,8 +1,8 @@
 import React from "react"
-import ApplicationForm from "../../../Components/ApplicationForm"
+
 import "../index.css"
 
-const Application = () => {
+const Signin = () => {
   return (
     <>
       <div className="header">
@@ -11,15 +11,11 @@ const Application = () => {
 
       <div className="main">
         <div className="application">
-          {/* Put job description here */}
-
-          {/* Form for application */}
-          <ApplicationForm />
-
+          this is the sign in page
         </div>
       </div>
     </>
   )
 }
 
-export default Application
+export default Signin
