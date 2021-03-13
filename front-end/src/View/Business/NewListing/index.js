@@ -1,15 +1,14 @@
 import React from "react"
-import CheckBoxes from "../NewListing/CheckBoxes"
-import BackNext from "../NewListing/BackNext"
+import CommonElements from "./CommonElements"
 
 const NewListing = () => {
   return (
-    <div>
+    <div className="checkBoxForm">
       {/* Insert Copply Head Banner Component */}
+      <h3>Insert Copply-Header</h3>
       {/* Insert Progress Bar Component */}
-      <CheckBoxes></CheckBoxes>
-      <br></br>
-      <BackNext></BackNext>
+      <h3>Insert Progress-Tracker (Common Elements)</h3>
+      <CommonElements></CommonElements>
     </div>
   )
 }
