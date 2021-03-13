@@ -4,24 +4,21 @@ import ActiveJob from "./ActiveJob";
 
 //pass the list of all data to Joblist to render each job
 const JobList = () => {
-    return (
+    return(
         <List
-            itemLayout="vertical"
-            size="medium"
+            className="loadmore-list"
+            itemLayout="horizontal"
             pagination={{
-            onChange: page => {
-            console.log(page); //change to some kind of useState
-        },
-        pageSize: 3,
-        }}
-        footer={
-            <div>
-                <b>Page</b>
-            </div>
-        }
-        renderItem = {ActiveJob}
-    />
-    );
+                onChange: page =>{
+                    console.log(page);
+                },
+                pageSize: 10
+            }}         
+            renderItem={item=> (
+                ActiveJob(item)
+            )}
+        />        
+    );    
 }
 
 export default JobList
