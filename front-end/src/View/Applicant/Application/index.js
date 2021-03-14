@@ -1,7 +1,7 @@
 import React from "react"
 import ApplicationForm from "../../../Components/ApplicationForm"
-import ApplicantHeader from "../../../Components/ApplicationForm/ApplicantHeader"
-import JobDescription from "../../../Components/ApplicationForm/JobDescription"
+import ApplicantHeader from "../../../Components/ApplicantHeader/ApplicantHeader"
+import JobDescription from "../../../Components/JobDescription/JobDescription"
 import "../index.css"
 
 const Application = () => {

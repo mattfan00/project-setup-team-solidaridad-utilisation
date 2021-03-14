@@ -20,12 +20,16 @@ const JobDescription = (props) => {
                     </Space>
                     
                     <Descriptions title="Job Description">
+                        <p>This is a job.</p>
                     </Descriptions>
                     <Descriptions title="About Company">
+                        <p>This is a company description.</p>   
                     </Descriptions>
                     <Descriptions title="Job Location">
+                        <p>This is a Job Location</p>       
                     </Descriptions>
                     <Descriptions title="Desired Skills">
+                        <p>This is a Desired Skills</p>
                     </Descriptions> 
                 </div>   
             </Col>
