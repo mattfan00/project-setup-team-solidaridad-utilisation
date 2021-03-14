@@ -1,6 +1,6 @@
 import React from "react"
 import ApplicationForm from "../../../Components/ApplicationForm"
-import ApplicantHeader from "../../../Components/ApplicantHeader/ApplicantHeader"
+import ApplicantHeader from "../../../Components/ApplicantHeader"
 import JobDescription from "../../../Components/JobDescription/JobDescription"
 import "../index.css"
 

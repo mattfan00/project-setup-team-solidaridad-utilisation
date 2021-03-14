@@ -1,5 +1,5 @@
 import React from "react"
-import ApplicantHeader from "../../../Components/ApplicationForm/ApplicantHeader"
+import ApplicantHeader from "../../../Components/ApplicantHeader"
 
 import "../index.css"
 
