@@ -1,4 +1,5 @@
 import React from "react"
+import AppHeader from "../../../Components/ApplicationForm/ApplicantHeader"
 
 import "../index.css"
 
@@ -6,7 +7,7 @@ const Signin = () => {
   return (
     <>
       <div className="header">
-        {/* put header here */}
+        {<AppHeader/>}
       </div>
 
       <div className="main">
