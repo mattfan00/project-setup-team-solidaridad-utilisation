@@ -8,7 +8,7 @@ const ActiveJob = (props) => {
             type="inner"
             title={props.job.title}
             extra={
-                <a href='#'>More</a>
+                <a href='./JobView'>View Applications</a>
             }
         >
             {props.job.desc}

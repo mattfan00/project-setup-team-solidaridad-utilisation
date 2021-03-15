@@ -9,7 +9,7 @@ const JobList = (props) => {
             <Card 
                 title="Active Jobs"
                 extra={
-                    <a href='./JobView'>Sort</a>
+                    <a href='#'>Sort</a>
                 }
             >
                 {props.jobs && props.jobs.map(job => (
