@@ -14,6 +14,10 @@ const JobDescription = (props) => {
         <div>
             <Col span={24}>
                 <div layout="vertical">
+                    <div>
+                        <img src="CompanyLogo.jpg" alt="Company Logo here"> </img>
+                    </div>
+                    
                     <Space direction="vertical" size="small">
                         <Title level={3}>Software Engineer</Title>
                         <div className="company">Amazon</div> 
