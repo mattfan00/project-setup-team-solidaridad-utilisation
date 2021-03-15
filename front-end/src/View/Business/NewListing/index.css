@@ -1,0 +1,15 @@
+.menu {
+    width: 15%;
+}
+
+.grid-container {
+    display:grid;
+    grid-template-columns: 1 fr 5 fr;
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+#template {
+    grid-column-start: 2;
+    
+}

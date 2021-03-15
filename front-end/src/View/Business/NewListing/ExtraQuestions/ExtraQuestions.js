@@ -1,30 +1,51 @@
 import React from "react";
-import {Menu} from "antd";
+import {Menu, Input, DatePicker} from "antd";
+import '../index.css';
+import moment from 'moment';
 
 
+const { SubMenu } = Menu;
+const { TextArea } = Input;
+const dateFormat = 'MM/DD/YYYY';
+
+const options = {
+  singleLine: "<Input placeholder='Input' />",
+  multiline: "<TextArea rows = {4} placeholder='Input' />",
+  date: "<DatePicker defaultValue={moment('03/15/2021', dateFormat)} format={dateFormat} />"
+};
 
 const ExtraQuestions = () => {
+  const handleClick = e => {
+    console.log(options[e.key]);
+    document.getElementById("template").innerHTML += options[e.key];
+    console.log('click ', e.key);
+  };
   return (
-    <Menu>
-      <Menu.ItemGroup title="Layout Elements">
-        <Menu.Item>Sections</Menu.Item>
-      </Menu.ItemGroup>
-      <Menu.ItemGroup title="Text Elements">
-        <Menu.Item>Single line</Menu.Item>
-        <Menu.Item>Multiline</Menu.Item>
-        <Menu.Item>Date</Menu.Item>
-      </Menu.ItemGroup>
-      <Menu.ItemGroup title="Multi Elements">
-        <Menu.Item>Yes/No</Menu.Item>
-        <Menu.Item>Dropdown</Menu.Item>
-        <Menu.Item>Checkbox</Menu.Item>
-        <Menu.Item>Multiple Choice</Menu.Item>
-      </Menu.ItemGroup>
-      <Menu.ItemGroup title="Media Elements">
-        <Menu.Item>Attachments</Menu.Item>
-        <Menu.Item>Image</Menu.Item>
-      </Menu.ItemGroup>
-    </Menu>
+    <div className="grid-container">
+      <Menu mode="inline" onClick={handleClick}>
+        <SubMenu title="Layout Elements">
+          <Menu.Item key="sections">Sections</Menu.Item>
+        </SubMenu>
+        <SubMenu title="Text Elements">
+          <Menu.Item key="singleLine">Single line</Menu.Item>
+          <Menu.Item key="multiline">Multiline</Menu.Item>
+          <Menu.Item key="date">Date</Menu.Item>
+        </SubMenu>
+        <SubMenu title="Multi Elements">
+          <Menu.Item key="yesNo">Yes/No</Menu.Item>
+          <Menu.Item key="dropdown">Dropdown</Menu.Item>
+          <Menu.Item key="checkbox">Checkbox</Menu.Item>
+          <Menu.Item key="multipleChoice">Multiple Choice</Menu.Item>
+        </SubMenu>
+        <SubMenu title="Media Elements">
+          <Menu.Item key="attachments">Attachments</Menu.Item>
+          <Menu.Item key="image">Image</Menu.Item>
+        </SubMenu>
+      </Menu>
+      <div id="template">
+
+      </div>
+    </div>
   );
 };
   
