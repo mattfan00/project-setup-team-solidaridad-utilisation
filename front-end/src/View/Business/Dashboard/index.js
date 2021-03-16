@@ -33,12 +33,14 @@ const Dashboard = () => {
         <Button 
           type="primary"
           onClick={() => history.push("/business/listing/new")}
+          href="#"
         >
           Create New Job
         </Button>
         <Button 
           type="primary"
-          onClick={() => history.push("/business/listing/new")}
+          onClick={() => history.push("/business/profile")}
+          href="#"
         >
           Edit Company Profile
         </Button>
