@@ -25,7 +25,7 @@ const Dashboard = () => {
     <div>
       <div className = 'header'>
         <div className = 'welcomeText'>
-          Company Dashboard
+          Welcome $Company$
         </div> 
       </div>
 
@@ -35,6 +35,12 @@ const Dashboard = () => {
           onClick={() => history.push("/business/listing/new")}
         >
           Create New Job
+        </Button>
+        <Button 
+          type="primary"
+          onClick={() => history.push("/business/listing/new")}
+        >
+          Edit Company Profile
         </Button>
       </div>
       
