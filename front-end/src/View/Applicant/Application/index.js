@@ -14,13 +14,21 @@ const Application = () => {
   const [application, setApplication] = useState(null)
 
   useEffect(() => {
-    console.log("application details")
+    console.log("retrieve application details")
     const application = {
       fields: ["name", "email", "address", "workExperience"],
       extraQuestions: [
         {
-          title: "Why do you want to join",
-          required: true
+          id: "6050cf3b2b1075721d44f214",
+          label: "Why do you want to join?",
+          required: true,
+          type: "textarea"
+        },
+        {
+          id: "6050d3ad8b47286b9091e134",
+          label: "What can you bring to the job?",
+          required: true,
+          type: "textarea"
         }
       ]
     }
@@ -86,6 +94,7 @@ const Application = () => {
           <ApplicationForm
             user={user}
             fields={application ? application.fields : []}
+            extraQuestions={application ? application.extraQuestions : []}
           />
         </div>
       </div>

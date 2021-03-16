@@ -3,9 +3,7 @@ import { useHistory, useParams } from "react-router-dom"
 import {
   Button,
   Form,
-  Input,
   Row,
-  Col,
   Divider,
   Card,
   Space,
@@ -18,6 +16,7 @@ import Email from "./Email"
 import Address from "./Address"
 import WorkExperience from "./WorkExperience"
 import Education from "./Education"
+import ExtraQuestions  from "./ExtraQuestions"
 
 import ConfirmSubmit from "./ConfirmSubmit"
 
@@ -130,22 +129,19 @@ const ApplicationForm = (props) => {
           : ""}
 
         </Card>
+
+        {props.extraQuestions ?
         <Card>
           <Title level={4}>Extra Questions</Title>
           <Form form={extraForm} layout="vertical">
             <Row gutter={16}>
-              <Col span={24}>
-                <Form.Item
-                  label="Why do you want to join?"
-                  name="why"
-                  rules={[{ required: true, message: 'Please fill out' }]}
-                >
-                  <Input.TextArea />
-                </Form.Item>
-              </Col>
+              <ExtraQuestions
+                questions={props.extraQuestions}
+              />
             </Row>
           </Form>
         </Card>
+        : ""}
 
         <Button block shape="round" size="large" type="primary" onClick={check}>Submit</Button>
       </Space>
