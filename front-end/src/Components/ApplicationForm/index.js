@@ -11,12 +11,20 @@ import {
   message
 } from "antd"
 
-import Name from "./Name"
-import Email from "./Email"
-import Address from "./Address"
-import WorkExperience from "./WorkExperience"
-import Education from "./Education"
-import ExtraQuestions  from "./ExtraQuestions"
+import Name from "./FormElements/Name"
+import Email from "./FormElements/Email"
+import Phone from "./FormElements/Phone"
+import Address from "./FormElements/Address"
+import WorkExperience from "./FormElements/WorkExperience"
+import Education from "./FormElements/Education"
+import Gender from "./FormElements/Gender"
+import Disability from "./FormElements/Disability"
+import HispanicLatino from "./FormElements/HispanicLatino"
+import Veteran from "./FormElements/Veteran"
+import WorkAuthorization from "./FormElements/WorkAuthorization"
+import Website from "./FormElements/Website"
+import Linkedin from "./FormElements/Linkedin"
+import ExtraQuestions  from "./FormElements/ExtraQuestions"
 
 import ConfirmSubmit from "./ConfirmSubmit"
 
@@ -103,7 +111,15 @@ const ApplicationForm = (props) => {
             <Row gutter={[16]}>
                 {display("name") ? <Name /> : ""}
                 {display("email") ? <Email /> : ""}
+                {display("phone") ? <Phone /> : ""}
                 {display("address") ? <Address /> : ""}
+                {display("gender") ? <Gender /> : ""}
+                {display("disability") ? <Disability /> : ""}
+                {display("hispanic-latino") ? <HispanicLatino /> : ""}
+                {display("veteran") ? <Veteran /> : ""}
+                {display("workAuthorization") ? <WorkAuthorization /> : ""}
+                {display("website") ? <Website /> : ""}
+                {display("linkedin") ? <Linkedin/> : ""}
             </Row>
           </Form>
 

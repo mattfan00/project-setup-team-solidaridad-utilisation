@@ -14,7 +14,7 @@ import {
   EditTwoTone
 } from "@ant-design/icons"
 
-import "./card.css"
+import "../card.css"
 
 import NewJobForm from "./NewJobForm"
 import UpdateJobForm from "./UpdateJobForm"
