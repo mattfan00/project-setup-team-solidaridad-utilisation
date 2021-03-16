@@ -146,7 +146,7 @@ const ApplicationForm = (props) => {
 
         </Card>
 
-        {props.extraQuestions ?
+        {props.extraQuestions && props.extraQuestions.length > 0 ?
         <Card>
           <Title level={4}>Extra Questions</Title>
           <Form form={extraForm} layout="vertical">
@@ -159,7 +159,7 @@ const ApplicationForm = (props) => {
         </Card>
         : ""}
 
-        <Button block shape="round" size="large" type="primary" onClick={check}>Submit</Button>
+        <Button block size="large" type="primary" onClick={check}>Submit</Button>
       </Space>
 
       <ConfirmSubmit showForm={confirm} close={closeConfirmation} />

@@ -1,10 +1,13 @@
 import React, { useState, useEffect }  from "react"
+import { useParams } from "react-router-dom"
+import axios from "axios"
 import ApplicationForm from "../../../Components/ApplicationForm"
 import AppHeader from "../../../Components/ApplicationForm/ApplicantHeader"
 import "../index.css"
 
 import {
-  message
+  message,
+  Spin
 } from "antd"
 
 import moment from "moment"
@@ -12,26 +15,15 @@ import moment from "moment"
 const Application = () => {
   const [user, setUser] = useState(null)
   const [application, setApplication] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
+  const { job } = useParams()
+
+  useEffect(async () => {
     console.log("retrieve application details")
-    const application = {
-      fields: ["name", "email", "address", "workExperience"],
-      extraQuestions: [
-        {
-          id: "6050cf3b2b1075721d44f214",
-          label: "Why do you want to join?",
-          required: true,
-          type: "textarea"
-        },
-        {
-          id: "6050d3ad8b47286b9091e134",
-          label: "What can you bring to the job?",
-          required: true,
-          type: "textarea"
-        }
-      ]
-    }
+
+    const application = await axios.get(`https://6050e7e35346090017670c11.mockapi.io/applications/${job}`)
+    setLoading(false)
 
     console.log("retrieve current user")
     const currentUser = {
@@ -62,6 +54,7 @@ const Application = () => {
         education: [
           {
             school: "New York University",
+            level: "Bachelors",
             startDate: moment("Aug 2018", "MMM YYYY"),
             endDate: moment("May 2021", "MMM YYYY"),
             major: "Computer Science"
@@ -70,8 +63,8 @@ const Application = () => {
       }
     }
 
-    if (application) {
-      setApplication(application)
+    if (application.data) {
+      setApplication(application.data)
     }
 
     if (currentUser) {
@@ -88,14 +81,22 @@ const Application = () => {
 
       <div className="main">
         <div className="application">
-          {/* Put job description here */}
+          {!loading ?
 
-          {/* Form for application */}
+          /* Put job description here */
+
+          /* Form for application */
           <ApplicationForm
             user={user}
             fields={application ? application.fields : []}
             extraQuestions={application ? application.extraQuestions : []}
           />
+
+          :
+          <div className="loading">
+            <Spin />
+          </div>
+          }
         </div>
       </div>
     </>

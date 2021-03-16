@@ -12,7 +12,7 @@ const Gender = () => {
         <Form.Item
           label="Gender"
           name="gender"
-          rules={[{ required: true, message: 'Please choose your gender' }]}
+          rules={[{ required: true, message: 'Please choose one' }]}
         >
           <Radio.Group>
             <Radio value={"Male"}>Male</Radio>
