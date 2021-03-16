@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import {
   Button,
@@ -9,6 +9,7 @@ import {
   Divider,
   Card,
   Space,
+  Typography,
   message
 } from "antd"
 
@@ -20,16 +21,34 @@ import Education from "./Education"
 
 import ConfirmSubmit from "./ConfirmSubmit"
 
+const { Title } = Typography
 
-const ApplicationForm = () => {
+
+const ApplicationForm = (props) => {
   const [detailsForm] = Form.useForm()
   const [extraForm] = Form.useForm()
   const [jobs, setJobs] = useState([])
   const [education, setEducation] = useState([])
   const [confirm, setConfirm] = useState(false)
+  const [userDetails, setUserDetails] = useState(null)
 
   const history = useHistory()
   const { company, job } = useParams()
+
+  // when receive the current user from props, update the state
+  useEffect(() => {
+    if (props.user) {
+      const { details } = props.user
+      setUserDetails(details)
+
+      // auto fill in some of the fields
+      detailsForm.setFieldsValue({
+        name: details.name,
+        email: details.email,
+        address: details.address
+      })
+    }
+  }, [props.user])
 
   const updateJobs = (newJobs) => {
     setJobs(newJobs)
@@ -71,27 +90,48 @@ const ApplicationForm = () => {
     }
   }
 
+  const display = (fieldName) => {
+    return props.fields.includes(fieldName)
+  }
+
   return (
     <>
       <Space direction="vertical" size="large">
         <Card>
-          <h2>Applicant Details</h2>
+          {/* <h2>Applicant Details</h2> */}
+          <Title level={4}>Applicant Details</Title>
           <Form form={detailsForm} layout="vertical">
             <Row gutter={[16]}>
-                <Name />
-                <Email />
-                <Address />
+                {display("name") ? <Name /> : ""}
+                {display("email") ? <Email /> : ""}
+                {display("address") ? <Address /> : ""}
             </Row>
           </Form>
 
-          <Divider orientation="left">Work Experience</Divider>
-          <WorkExperience updateJobs={updateJobs} />
+          {display("workExperience") ?
+          <>
+            <Divider orientation="left">Work Experience</Divider>
+            <WorkExperience
+              updateJobs={updateJobs}
+              jobs={userDetails ? userDetails.workExperience : []}
+            />
+          </>
+          : ""}
 
+
+          {display("education") ?
+          <>
           <Divider orientation="left">Education</Divider>
-          <Education updateEducation={updateEducation} />
+          <Education
+            updateEducation={updateEducation}
+            education={userDetails ? userDetails.education: []}
+          />
+          </>
+          : ""}
+
         </Card>
         <Card>
-          <h2>Extra Questions</h2>
+          <Title level={4}>Extra Questions</Title>
           <Form form={extraForm} layout="vertical">
             <Row gutter={16}>
               <Col span={24}>
