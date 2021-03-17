@@ -10,6 +10,7 @@ import Landing from "./View/Landing"
 import BusinessDashboard from "./View/Business/Dashboard"
 import BusinessNewListing from "./View/Business/NewListing"
 import BusinessSignup from "./View/Business/Signup"
+import BusinessAppView from "./View/Business/AppView"
 
 import Application from "./View/Applicant/Application"
 
@@ -20,9 +21,10 @@ const App = () => {
         <Switch>
           {/* All Business routes  */}
           <Route path="/business/signup" component={BusinessSignup} />
-          <Route path="/business/dashboard" component={BusinessDashboard} />
+          <Route exact path="/business/dashboard" component={BusinessDashboard} />
+          <Route exact path="/business/dashboard/applications" component={BusinessAppView}/>
           <Route path="/business/listing/new" component={BusinessNewListing} />
-
+          
           {/* All Applicant routes  */}
           <Route path="/application/:company/:job" component={Application} />
 

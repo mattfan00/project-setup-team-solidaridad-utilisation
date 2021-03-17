@@ -1,4 +1,4 @@
-import react, {useState} from 'react'
+import react from 'react'
 import { useHistory } from "react-router-dom"
 import {Card} from "antd"
 
@@ -21,7 +21,12 @@ const JobView = (props) => {
                         <a href="#">View Applicant</a>
                     }
                 >
-                    --Questions and answers--
+                    <div className="education">
+                        --Institution and year--
+                    </div>
+                    <div className="recentWork">
+                        --most recent job--
+                    </div>
                 </Card>
             ))}
         </Card>

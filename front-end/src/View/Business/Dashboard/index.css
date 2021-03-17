@@ -2,17 +2,30 @@
     font-size: x-large;
     font: bold;
     margin: 50px;
-    text-align: center;
+    text-align: Left;
+    float:left;
 }
 
-.newJob {
+.buttons {
     text-align: center;
+    margin: 10px;
     
 }
 
 .joblist{
     align-items: center;
     margin-top: 5%;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.profile {
+    float:right;
+    margin: 50px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
