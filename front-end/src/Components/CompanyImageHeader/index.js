@@ -1,6 +1,6 @@
 import React from "react"
 
-const imageHeader = () => {
+const CompanyLogo = () => {
     <div>
     <img src="CompanyLogo.jpg" alt="Company Logo here"> </img>
     </div>

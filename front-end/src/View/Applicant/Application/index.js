@@ -2,6 +2,7 @@ import React from "react"
 import ApplicationForm from "../../../Components/ApplicationForm"
 import ApplicantHeader from "../../../Components/ApplicantHeader"
 import JobDescription from "../../../Components/JobDescription/JobDescription"
+import CompanyLogo from "../../../Components/CompanyImageHeader"
 import "../index.css"
 
 const Application = () => {
