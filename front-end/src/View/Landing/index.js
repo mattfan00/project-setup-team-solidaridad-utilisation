@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 
 
 import { Divider } from 'antd'; 
+import { Link } from "react-router-dom"; 
 
 const Landing = () => {
   return (
@@ -44,8 +45,8 @@ const Party = () => {
       <span className="party-text">
         Are you an applicant or company? 
       </span>
-      <link to="/applicant">Applicant</link>
-      <link to="/signup">Company</link>
+      <Link to="/applicant">Applicant</Link>
+      <Link to="/signup">Company</Link>
     </div>
   )
 }
