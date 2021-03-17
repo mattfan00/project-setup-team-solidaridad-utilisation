@@ -17,6 +17,9 @@ const JobView = (props) => {
             {props.applicants && props.applicants.map(applicant => (
                 <Card
                     title = {applicant.name}
+                    extra = {
+                        <a href="#">View Applicant</a>
+                    }
                 >
                     --Questions and answers--
                 </Card>
