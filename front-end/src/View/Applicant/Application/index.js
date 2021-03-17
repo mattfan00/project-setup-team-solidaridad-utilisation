@@ -2,7 +2,8 @@ import React, { useState, useEffect }  from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import ApplicationForm from "../../../Components/ApplicationForm"
-import AppHeader from "../../../Components/ApplicationForm/ApplicantHeader"
+import ApplicantHeader from "../../../Components/ApplicantHeader"
+import JobDescription from "../../../Components/JobDescription/JobDescription"
 import "../index.css"
 
 import {
@@ -76,22 +77,24 @@ const Application = () => {
   return (
     <>
       <div className="header">
-        {<AppHeader />}
+        {/* Application Header */}
+        {<ApplicantHeader />}
       </div>
 
       <div className="main">
         <div className="application">
           {!loading ?
+          <>
+            {/* Put job description here */}
+            <JobDescription />
 
-          /* Put job description here */
-
-          /* Form for application */
-          <ApplicationForm
-            user={user}
-            fields={application ? application.fields : []}
-            extraQuestions={application ? application.extraQuestions : []}
-          />
-
+            {/* Form for application */}
+            <ApplicationForm
+              user={user}
+              fields={application ? application.fields : []}
+              extraQuestions={application ? application.extraQuestions : []}
+            />
+          </>
           :
           <div className="loading">
             <Spin />
