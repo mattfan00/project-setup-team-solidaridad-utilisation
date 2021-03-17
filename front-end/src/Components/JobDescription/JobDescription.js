@@ -1,24 +1,22 @@
 import React from "react"
+import './index.css'
+
 import {
     Typography,
     Col,
 } from "antd"
-import Title from "antd/lib/skeleton/Title";
-
+import CompanyLogo from "../CompanyImageHeader"
 
 const JobDescription = (props) => {
     const {Title} = Typography;
     return (
-        <div>
+        <div className="JobDescription">
             <Col span={24}>
                 <div layout="vertical">
-                    <div className="CompanyLogo">
-
-                    </div>
-
+                    <CompanyLogo/>
                     <div className="JobTitle">
                         <h1>Software Engineer</h1>
-                        <h2>Amazon</h2>
+                        <h2>Chapter</h2>
                     </div>
                     
                     <div className="Description">

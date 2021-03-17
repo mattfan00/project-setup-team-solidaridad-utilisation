@@ -1,7 +1,13 @@
 import React from "react"
+import companyLogo from './CompanyLogo.jpg'
+import './index.css'
 
 const CompanyLogo = () => {
-    <div>
-    <img src="CompanyLogo.jpg" alt="Company Logo here"> </img>
-    </div>
+    return(
+        <div className="logoContainer">
+        <img src={companyLogo} className="companyLogo"/> 
+        </div>
+    )
 }
+
+export default CompanyLogo
