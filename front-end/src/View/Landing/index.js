@@ -1,13 +1,9 @@
 import React from 'react'; 
-import ReactDOM from 'react-dom'; 
 import './index.css'; 
 import 'antd/dist/antd.css'; 
 
-
-import { Layout } from 'antd'; 
-import { Link } from "react-router-dom"; 
-import { Row, Col } from 'antd'; 
 import { Button } from 'antd'; 
+
 const Landing = () => {
   return (
     <body>
