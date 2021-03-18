@@ -12,7 +12,7 @@ const CommonElements = () => {
     return (
         <div>
         <Space direction="vertical" style={{ width:"50%" }}>
-            <Card style={{ borderColor:"orange" }}>
+            <Card style={{ borderColor:"skyblue" }}>
                 <h3>Tick all the details you want to require:</h3>
                 <Form
                 name="basic"
@@ -98,7 +98,7 @@ const CommonElements = () => {
                     </Button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <Button type="primary" htmlType="submit" size="medium" 
-                    style={{ backgroundColor:"orange", borderColor:"orange" }}>
+                    style={{ backgroundColor:"skyblue", borderColor:"skyblue" }}>
                     Next
                     </Button>
                 </Form.Item>
@@ -110,69 +110,3 @@ const CommonElements = () => {
 }
 
 export default CommonElements
-
-
-/* <h3>Tick all the details you want to require:</h3>
-<Checkbox.Group style={{ width: '70%' }} onChange={onChange}>
-<Row gutter={[0,16]}>
-    <Col span={12}>
-    <Checkbox value="firstName">First Name</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="lastName">Last Name</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="gender">Gender</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="email">Email</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="address">Address</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="city">City</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="state">State</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="country">Country</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="postalCode">Postal Code</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="primaryPhone">Primary Phone</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="gradDate">Graduation Date</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="workEx">Work Experience</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="linkedin">Linkedin Profile</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="website">Website</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="veteran">Veteran Status</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="disability">Disability Status</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="hispanicLatino">Hispanice/Latino</Checkbox>
-    </Col>
-    <Col span={12}>
-    <Checkbox value="workAuth">Work Authorization</Checkbox>
-    </Col>
-</Row>
-</Checkbox.Group>
-<div>
-    <Button>Back</Button>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <Button type="primary">Next</Button>
-</div> */
