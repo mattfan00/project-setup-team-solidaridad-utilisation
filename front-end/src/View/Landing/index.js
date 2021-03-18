@@ -13,7 +13,7 @@ const Landing = () => {
         <p>Are you an applicant or Company?</p> 
         <div class="button">
           <Button size="large" href="/applicant/signin">Applicant</Button>
-          <Button size="large" href="/business/signin">Company</Button>
+          <Button size="large" href="/business/signup">Company</Button>
         </div>
       </div>
     </body>
