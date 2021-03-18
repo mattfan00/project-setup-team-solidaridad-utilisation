@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom"
 import JobList from "../../../Components/Dashboard/JobList"
 import {Button} from "antd"
+import Header from '../../../Components/BusinessHeader/Header'
 
 import './index.css'
 
@@ -12,7 +13,10 @@ const Dashboard = () => {
     title: "jobtitle",
     desc: "desc1",
     appCount: 12,
-    status: "Open"
+    status: "Open",
+    applicants: [
+      
+    ]
   },
   { 
     title: "otherjob", 
@@ -24,30 +28,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className='header'>
-        <div className='welcomeText'>
-          $Company$
-        </div>
-        <div className="profile">
-          <Button>
-            Sign out
-          </Button>
-          $userName$
-        </div>  
-      </div>
-
-      <div className="buttons">
-        <div>
-          <Button
-            type="primary"
-            onClick={() => history.push("/business/profile")}
-            href="#"
-          >
-            Edit Company Profile
-        </Button>
-        </div>
-        
-      </div>
+      <Header/>
       <div className="buttons">
         <Button 
           type="primary"

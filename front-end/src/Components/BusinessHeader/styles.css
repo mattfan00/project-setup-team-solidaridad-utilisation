@@ -1,0 +1,24 @@
+.welcomeText{
+    font-size: x-large;
+    font: bold;
+    margin: 50px;
+    text-align: Left;
+    float:left;
+}
+
+.buttons {
+    text-align: center;
+    margin: 10px;
+    
+}
+
+.profile {
+    float:right;
+    margin: 50px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
