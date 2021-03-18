@@ -2,3 +2,13 @@
     align-items: right;
     color: #696969
 }
+
+.headerextra{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+.headCounter{
+    padding-right: 10px;
+}
