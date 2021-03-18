@@ -1,3 +1,4 @@
+import React from "react"
 import {
   BrowserRouter,
   Switch,
@@ -12,6 +13,9 @@ import BusinessSignup from "./View/Business/Signup"
 
 import Application from "./View/Applicant/Application"
 import NewListing from "./View/Business/NewListing"
+import ApplicationSuccess from "./View/Applicant/Success"
+import ApplcationSignin from "./View/Applicant/Signin"
+import ApplcationSignup from "./View/Applicant/Signup"
 
 const App = () => {
   return (
@@ -25,6 +29,9 @@ const App = () => {
           <Route path="/business/newlisting/elements" component={NewListing} />
 
           {/* All Applicant routes  */}
+          <Route path="/application/signin" component={ApplcationSignin} />
+          <Route path="/application/signup" component={ApplcationSignup} />
+          <Route path="/application/:company/:job/success" component={ApplicationSuccess} />
           <Route path="/application/:company/:job" component={Application} />
 
           {/* Landing route */}

@@ -1,11 +1,28 @@
-import { Button } from "antd"
+import React from "react"
+import ApplicationForm from "../../../Components/ApplicationForm"
+import ApplicantHeader from "../../../Components/ApplicantHeader"
+import JobDescription from "../../../Components/JobDescription/JobDescription"
+import CompanyLogo from "../../../Components/CompanyImageHeader"
+import "../index.css"
 
 const Application = () => {
   return (
-    <div>
-      this is the application page hello
-      <Button type="primary">Button</Button>
-    </div>
+    <>
+      <div className="header">
+        {/* Application Header */}
+        {<ApplicantHeader />}
+      </div>
+
+      <div className="main">
+        <div className="application">
+          {/* Put job description here */}
+          <JobDescription />
+          {/* Form for application */}
+          <ApplicationForm />
+
+        </div>
+      </div>
+    </>
   )
 }
 
