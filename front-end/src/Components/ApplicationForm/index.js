@@ -13,6 +13,7 @@ import {
 
 import { AuthContext } from "../../Context/AuthContext"
 
+import Resume from "./FormElements/Resume"
 import Name from "./FormElements/Name"
 import Email from "./FormElements/Email"
 import Phone from "./FormElements/Phone"
@@ -114,6 +115,7 @@ const ApplicationForm = (props) => {
           <Title level={4}>Applicant Details</Title>
           <Form form={detailsForm} layout="vertical">
             <Row gutter={[16]}>
+                {display("resume") ? <Resume /> : ""}
                 {display("name") ? <Name /> : ""}
                 {display("email") ? <Email /> : ""}
                 {display("phone") ? <Phone /> : ""}
