@@ -1,15 +1,14 @@
 import React from "react"
 import logo from './copply.png'
-import { PageHeader, Image } from 'antd';
+import { PageHeader} from 'antd';
 
 import "./logoStyling.css"
 
-const AppHeader = () => {
+const ApplicantHeader = () => {
     return (
         <div>
             <PageHeader
                 className="site-page-header"
-                onBack={() => null}
                 title={
                     <img src={logo} alt="website logo" className="logo"/>
                 }
@@ -18,4 +17,4 @@ const AppHeader = () => {
     );
 }
 
-export default AppHeader
+export default ApplicantHeader

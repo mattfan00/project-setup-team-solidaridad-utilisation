@@ -12,6 +12,7 @@ import BusinessNewListing from "./View/Business/NewListing"
 import BusinessSignup from "./View/Business/Signup"
 
 import Application from "./View/Applicant/Application"
+import NewListing from "./View/Business/NewListing"
 import ApplicationSuccess from "./View/Applicant/Success"
 import ApplcationSignin from "./View/Applicant/Signin"
 import ApplcationSignup from "./View/Applicant/Signup"
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/business/signup" component={BusinessSignup} />
           <Route path="/business/dashboard" component={BusinessDashboard} />
           <Route path="/business/listing/new" component={BusinessNewListing} />
+          <Route path="/business/newlisting/elements" component={NewListing} />
 
           {/* All Applicant routes  */}
           <Route path="/application/signin" component={ApplcationSignin} />
