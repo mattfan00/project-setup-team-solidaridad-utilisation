@@ -16,6 +16,8 @@ import ApplicationSuccess from "./View/Applicant/Success"
 import ApplcationSignin from "./View/Applicant/Signin"
 import ApplcationSignup from "./View/Applicant/Signup"
 
+import { AuthProvider } from "./Context/AuthContext"
+
 const App = () => {
   return (
     <>
@@ -27,10 +29,12 @@ const App = () => {
           <Route path="/business/listing/new" component={BusinessNewListing} />
 
           {/* All Applicant routes  */}
-          <Route path="/application/signin" component={ApplcationSignin} />
-          <Route path="/application/signup" component={ApplcationSignup} />
-          <Route path="/application/:company/:job/success" component={ApplicationSuccess} />
-          <Route path="/application/:company/:job" component={Application} />
+          <AuthProvider>
+            <Route path="/application/signin" component={ApplcationSignin} />
+            <Route path="/application/signup" component={ApplcationSignup} />
+            <Route exact path="/application/:company/:job/success" component={ApplicationSuccess} />
+            <Route exact path="/application/:company/:job" component={Application} />
+          </AuthProvider>
 
           {/* Landing route */}
           <Route exact path="/" component={Landing} />

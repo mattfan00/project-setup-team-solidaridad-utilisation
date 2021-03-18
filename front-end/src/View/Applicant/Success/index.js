@@ -12,10 +12,10 @@ const ApplicationSuccess = () => {
       </div>
 
       <CompanyLogo/>
-    <Result
-      status="success"
-      title="You’ve successfully submitted your application!"
-    />
+      <Result
+        status="success"
+        title="You’ve successfully submitted your application!"
+      />
     </div>
   )
 }

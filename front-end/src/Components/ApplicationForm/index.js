@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import {
   Button,
@@ -10,6 +10,8 @@ import {
   Typography,
   message
 } from "antd"
+
+import { AuthContext } from "../../Context/AuthContext"
 
 import Name from "./FormElements/Name"
 import Email from "./FormElements/Email"
@@ -39,13 +41,15 @@ const ApplicationForm = (props) => {
   const [confirm, setConfirm] = useState(false)
   const [userDetails, setUserDetails] = useState(null)
 
+  const { user } = useContext(AuthContext)
+
   const history = useHistory()
   const { company, job } = useParams()
 
-  // when receive the current user from props, update the state
+  // when receive the current user, update the state
   useEffect(() => {
-    if (props.user) {
-      const { details } = props.user
+    if (user) {
+      const { details } = user
       setUserDetails(details)
 
       // auto fill in some of the fields
@@ -54,8 +58,9 @@ const ApplicationForm = (props) => {
         email: details.email,
         address: details.address
       })
+      message.success("Autofilled applicable fields")
     }
-  }, [props.user])
+  }, [user])
 
   const updateJobs = (newJobs) => {
     setJobs(newJobs)
