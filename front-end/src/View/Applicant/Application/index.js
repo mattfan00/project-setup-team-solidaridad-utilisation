@@ -44,10 +44,11 @@ const Application = () => {
           {!loading ?
           <>
             {/* Put job description here */}
-            <ExpressApply />
+            
             <JobDescription />
 
             {/* Form for application */}
+            <ExpressApply />
             <ApplicationForm
               fields={application ? application.fields : []}
               extraQuestions={application ? application.extraQuestions : []}
