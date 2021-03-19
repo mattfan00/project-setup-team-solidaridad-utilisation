@@ -26,6 +26,9 @@ const App = () => {
     <>
       <BrowserRouter>
         <Switch>
+          {/* Landing route */}
+          <Route exact path="/" component={Landing} />
+          
           {/* All Business routes  */}
           <Route path="/business/signup" component={BusinessSignin} />
           <Route path="/business/signin" component={BusinessSignup} />
@@ -41,9 +44,6 @@ const App = () => {
             <Route exact path="/application/:company/:job/success" component={ApplicationSuccess} />
             <Route exact path="/application/:company/:job" component={Application} />
           </AuthProvider>
-
-          {/* Landing route */}
-          <Route exact path="/" component={Landing} />
         </Switch>
       </BrowserRouter>
     </>

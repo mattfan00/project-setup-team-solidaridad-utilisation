@@ -6,6 +6,9 @@ import { AuthContext } from "../../../Context/AuthContext"
 import ApplicationForm from "../../../Components/ApplicationForm"
 import ApplicantHeader from "../../../Components/ApplicantHeader"
 import JobDescription from "../../../Components/JobDescription/JobDescription"
+import CompanyLogo from "../../../Components/CompanyImageHeader"
+import ExpressApply from "../../../Components/ExpressButton"
+
 import "../index.css"
 
 import {
@@ -36,14 +39,16 @@ const Application = () => {
         {<ApplicantHeader />}
       </div>
 
-      <div className="main">
+      <div className="applicant-main">
         <div className="application">
           {!loading ?
           <>
             {/* Put job description here */}
+            
             <JobDescription />
 
             {/* Form for application */}
+            <ExpressApply />
             <ApplicationForm
               fields={application ? application.fields : []}
               extraQuestions={application ? application.extraQuestions : []}
