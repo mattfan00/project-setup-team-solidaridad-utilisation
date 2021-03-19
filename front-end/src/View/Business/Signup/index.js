@@ -29,7 +29,7 @@ const Signup = () => {
   };
 
   return (
-    <div class = "main">
+    <div class="business-main">
       <h1>Copply</h1>
       <h2>Making the application process seamless for both parties</h2>
       <Form
