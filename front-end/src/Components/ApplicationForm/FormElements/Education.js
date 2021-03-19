@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import moment from "moment"
 
 import {
@@ -14,7 +14,7 @@ import {
   EditTwoTone
 } from "@ant-design/icons"
 
-import "./card.css"
+import "../card.css"
 
 import NewEducationForm from "./NewEducationForm"
 import UpdateEducationForm from "./UpdateEducationForm"
@@ -24,6 +24,12 @@ const Education = (props) => {
   const [showNewForm, setShowNewForm] = useState(false)
   const [showUpdateForm, setShowUpdateForm] = useState(false)
   const [initialValues, setInitialValues] = useState(null)
+
+  useEffect(() => {
+    if (props.education) {
+      setEducation(props.education)
+    }
+  }, [props.education])
 
   // used when you want to add a completely new education
   const newEducationForm = () => {
@@ -80,7 +86,7 @@ const Education = (props) => {
         <Col span={24}>
           <Row gutter={[16, 16]}>
             {education && education.map((edu, i) => (
-              <Col span={24}>
+              <Col span={24} key={i}>
                 <Card className="info-card" size="small">
                   <div><strong>{edu.school}</strong></div>
                   <div>{formatDate(edu.startDate)} - {formatDate(edu.endDate)}</div>
