@@ -6,10 +6,14 @@
 }
 .checkBoxGrid {
     text-align: center;
-} */
+    color: #1D1C35;
+}
 .backNextButtons {
     text-align: center;
 }
-h1,h2,h3 {
+.elements-instruction {
+    font-size: medium;
+    font-weight: 600;
     text-align: center;
+    color: #1D1C35;
 }
