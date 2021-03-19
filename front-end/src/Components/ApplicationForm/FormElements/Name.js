@@ -5,13 +5,13 @@ import {
   Input
 } from "antd"
 
-const Name = () => {
+const Name = (props) => {
   return (
     <>
       <Col span={12}>
         <Form.Item
           label="First Name"
-          name="firstName"
+          name={["name", "firstName"]}
           rules={[{ required: true, message: 'Please input your first name' }]}
         >
           <Input />
@@ -20,7 +20,7 @@ const Name = () => {
       <Col span={12}>
         <Form.Item
           label="Last Name"
-          name="lastName"
+          name={["name", "lastName"]}
           rules={[{ required: true, message: 'Please input your last name' }]}
         >
           <Input />
