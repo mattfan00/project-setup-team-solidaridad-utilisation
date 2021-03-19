@@ -1,0 +1,8 @@
+.companyLogo {
+    max-width: 300px;
+}
+
+.logoContainer {
+    display: flex;
+    justify-content: center;
+}
