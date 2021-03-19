@@ -13,6 +13,7 @@ import BusinessSignup from "./View/Business/Signup"
 import BusinessJobView from "./View/Business/JobView"
 import BusinessApplicant from "./View/Business/Applicant"
 
+
 import Application from "./View/Applicant/Application"
 import NewListing from "./View/Business/NewListing"
 import ApplicationSuccess from "./View/Applicant/Success"

@@ -12,7 +12,8 @@ const ActiveJob = (props) => {
             title={props.job.title}
             extra={
                 <Link 
-                to='/business/dashboard/applications'
+                    to='/business/dashboard/applications'
+                    onClick={history.push('/business/dashboard/applications')}
                 >
                     View Applications
                 </Link>

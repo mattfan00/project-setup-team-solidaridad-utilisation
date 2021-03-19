@@ -5,7 +5,7 @@ import './styles.css'
 import {DownOutlined} from '@ant-design/icons'
 
 const JobView = (props) => {
-
+    const history = useHistory()
     const [status, setStatus] = useState('Open')
 
     function handleMenuClick(i) {
@@ -55,7 +55,12 @@ const JobView = (props) => {
                 title='Applicant Name'
                 type='inner'
                 extra={
-                    <a href="#">View Applicant</a>
+                    <Link 
+                        to='/business/dashboard/applications/applicant'
+                        onClick={history.push('/business/dashboard/applications/applicant')}
+                    >
+                        View Applications
+                    </Link>
                 }
             >
                 <div className="education">
@@ -71,7 +76,12 @@ const JobView = (props) => {
                 <Card
                     title={applicant.name}
                     extra={
-                        <a href="#">View Applicant</a>
+                        <Link
+                            to='/business/dashboard/applications/applicant'
+                            onClick={history.push('/business/dashboard/applications/applicant')}
+                        >
+                            View Applications
+                        </Link>
                     }
                 >
                     <div className="description">

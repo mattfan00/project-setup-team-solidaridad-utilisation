@@ -1,10 +1,25 @@
 import React from 'react'
-import {} from 'antd'
+import {Card} from 'antd'
+import './styles.css'
+import Education from './Education.js'
+import WorkExperience from './WorkExperience'
 
-const Candidate = () => {
+
+const Candidate = (props) => {
     return (
-        <div>
+        <div className="content">
+            <Card
+            title="Applicant Name{props.name}"
             
+            >
+                <Education/>
+                <WorkExperience/>
+                {props.work && props.work.map(w =>
+                    <WorkExperience workExp = {w}/>
+                )}
+                
+
+            </Card>
         </div>
     )
 }
