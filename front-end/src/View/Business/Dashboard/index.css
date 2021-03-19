@@ -1,0 +1,18 @@
+.welcomeText{
+    font-size: x-large;
+    font: bold;
+    margin: 50px;
+    text-align: center;
+}
+
+.newJob {
+    text-align: center;
+    
+}
+
+.joblist{
+    align-items: center;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+}

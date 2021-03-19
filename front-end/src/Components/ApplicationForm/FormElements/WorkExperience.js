@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import moment from "moment"
 
 import {
@@ -14,7 +14,7 @@ import {
   EditTwoTone
 } from "@ant-design/icons"
 
-import "./card.css"
+import "../card.css"
 
 import NewJobForm from "./NewJobForm"
 import UpdateJobForm from "./UpdateJobForm"
@@ -24,6 +24,12 @@ const WorkExperience = (props) => {
   const [showNewForm, setShowNewForm] = useState(false)
   const [showUpdateForm, setShowUpdateForm] = useState(false)
   const [initialValues, setInitialValues] = useState(null)
+
+  useEffect(() => {
+    if (props.jobs) {
+      setJobs(props.jobs)
+    }
+  }, [props.jobs])
 
   // used when you want to add a completely new job
   const newJobForm = () => {
@@ -80,7 +86,7 @@ const WorkExperience = (props) => {
         <Col span={24}>
           <Row gutter={[16, 16]}>
             {jobs && jobs.map((job, i) => (
-              <Col span={24}>
+              <Col span={24} key={i}>
                 <Card className="info-card" size="small">
                   <div><strong>{job.title} - {job.employer}</strong></div>
                   <div>{formatDate(job.startDate)} - {job.currentJob ? "Present" : formatDate(job.endDate)}</div>

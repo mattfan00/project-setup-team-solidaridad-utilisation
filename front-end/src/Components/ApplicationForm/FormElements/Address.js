@@ -11,7 +11,7 @@ const Address = () => {
       <Col span={24}>
         <Form.Item
           label="Address"
-          name="address"
+          name={["address", "address"]}
           rules={[{ required: true, message: 'Please input your address' }]}
         >
           <Input />
@@ -21,7 +21,7 @@ const Address = () => {
       <Col span={12}>
         <Form.Item
           label="City"
-          name="city"
+          name={["address", "city"]}
           rules={[{ required: true, message: 'Please input your city' }]}
         >
           <Input />
@@ -30,7 +30,7 @@ const Address = () => {
       <Col span={12}>
         <Form.Item
           label="State"
-          name="state"
+          name={["address", "state"]}
           rules={[{ required: true, message: 'Please input your state' }]}
         >
           <Input />
@@ -40,7 +40,7 @@ const Address = () => {
       <Col span={12}>
         <Form.Item
           label="Country"
-          name="country"
+          name={["address", "country"]}
           rules={[{ required: true, message: 'Please input your country' }]}
         >
           <Input />
@@ -49,7 +49,7 @@ const Address = () => {
       <Col span={12}>
         <Form.Item
           label="Postal Code"
-          name="postalCode"
+          name={["address", "postalCode"]}
           rules={[{ required: true, message: 'Please input your postal code' }]}
         >
           <Input />
