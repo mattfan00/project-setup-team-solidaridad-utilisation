@@ -3,6 +3,8 @@ import ApplicationForm from "../../../Components/ApplicationForm"
 import ApplicantHeader from "../../../Components/ApplicantHeader"
 import JobDescription from "../../../Components/JobDescription/JobDescription"
 import CompanyLogo from "../../../Components/CompanyImageHeader"
+import ExpressApply from "../../../Components/ExpressButton"
+
 import "../index.css"
 
 const Application = () => {
@@ -15,11 +17,13 @@ const Application = () => {
 
       <div className="main">
         <div className="application">
+          {/* Put Express Button Here */}
+          <ExpressApply />
           {/* Put job description here */}
           <JobDescription />
           {/* Form for application */}
           <ApplicationForm />
-
+          
         </div>
       </div>
     </>
