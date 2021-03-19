@@ -12,7 +12,7 @@ const DescriptionForm = () => {
     return (
         <div>
         <Space direction="vertical" style={{ width:"50%" }}>
-            <Card style={{ borderColor:"skyblue" }}>
+            <Card style={{ borderColor:"#DADCFB", backgroundColor:"#DADCFB" }}>
                 <Form
                 name="basic"
                 initialValues={{ remember: true }}
@@ -20,12 +20,12 @@ const DescriptionForm = () => {
                 onFinishFailed={onFinishFailed}
                 >      
                 <Form.Item name="job-description">
-                    <h3>Job Desription</h3>
-                    <Input.TextArea rows={6} />
+                    <h3 className="description-text">Job Desription</h3>
+                    <Input.TextArea rows={6}/>
                 </Form.Item>
 
                 <Form.Item name="job-type">
-                    <h3>Job Type</h3>
+                    <h3 className="description-text">Job Type</h3>
                     <Checkbox.Group style={{ width:"100%" }}>
                     <Row gutter={[0,24]}>
                         <Col span={6}>
@@ -53,24 +53,24 @@ const DescriptionForm = () => {
                 </Form.Item>
 
                 <Form.Item name="job-location">
-                    <h3>Job Location</h3>
+                    <h3 className="description-text">Job Location</h3>
                     <Input.TextArea rows={2} />
                 </Form.Item>
 
                 <Form.Item name="job-location">
-                    <h3>Desired Skills</h3>
+                    <h3 className="description-text">Desired Skills</h3>
                     <Input.TextArea rows={2} />
                 </Form.Item>          
 
                 <Divider></Divider>
 
                 <Form.Item name="back-next-buttons">
-                    <Button htmlType="submit" size="medium" style={{ backgroundColor:"lightgray" }}>
+                    <Button htmlType="submit" size="medium" style={{ backgroundColor:"white", borderColor:"white" }}>
                     Back
                     </Button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <Button type="primary" htmlType="submit" size="medium" 
-                    style={{ backgroundColor:"skyblue", borderColor:"skyblue" }}>
+                    style={{ backgroundColor:"#5D68EC", borderColor:"#5D68EC" }}>
                     Next
                     </Button>
                 </Form.Item>

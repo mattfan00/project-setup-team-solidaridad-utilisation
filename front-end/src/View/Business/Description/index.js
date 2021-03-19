@@ -7,7 +7,7 @@ const Description = () => {
         {/* Insert Copply Head Banner Component */}
         <h2>Insert Copply-Header</h2>
         {/* Insert Progress Bar Component */}
-        <h2>Insert Progress-Tracker (Common Elements)</h2>
+        <h2>Insert Progress-Tracker (Job Description)</h2>
         <DescriptionForm></DescriptionForm>
     </div>
   )

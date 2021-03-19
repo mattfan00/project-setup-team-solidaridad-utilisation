@@ -1,9 +1,6 @@
 .backNextButtons {
     text-align: center;
 }
-h1,h2 {
-    text-align: center;
-}
-h3 {
-    text-align: left;
+.description-text {
+    color: #1D1C35;
 }

@@ -12,14 +12,15 @@ const CommonElements = () => {
     return (
         <div>
         <Space direction="vertical" style={{ width:"50%" }}>
-            <Card style={{ borderColor:"skyblue" }}>
-                <h3>Tick all the details you want to require:</h3>
+            <Card style={{ borderColor:"#DADCFB", backgroundColor:"#DADCFB" }}>
+                <div className="elements-instruction">Tick all the details you want to require:</div>
+                <br></br>
                 <Form
                 name="basic"
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
-                >      
+                >
                 <Form.Item name="checkbox-group">
                 <Checkbox.Group>
                 <Row gutter={[0,16]}>
@@ -93,12 +94,12 @@ const CommonElements = () => {
                 </Form.Item>
                 <Divider></Divider>
                 <Form.Item>
-                    <Button htmlType="submit" size="medium" style={{ backgroundColor:"lightgray" }}>
+                    <Button htmlType="submit" size="medium" style={{ backgroundColor:"white", borderColor:"white" }}>
                     Back
                     </Button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <Button type="primary" htmlType="submit" size="medium" 
-                    style={{ backgroundColor:"skyblue", borderColor:"skyblue" }}>
+                    style={{ backgroundColor:"#5D68EC", borderColor:"#5D68EC" }}>
                     Next
                     </Button>
                 </Form.Item>
