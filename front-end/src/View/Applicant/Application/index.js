@@ -23,7 +23,6 @@ const Application = () => {
           <JobDescription />
           {/* Form for application */}
           <ApplicationForm />
-          
         </div>
       </div>
     </>
