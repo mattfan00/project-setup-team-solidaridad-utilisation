@@ -1,18 +1,28 @@
 import React from "react"
 import ApplicationForm from "../../../Components/ApplicationForm"
-import "./index.css"
+import ApplicantHeader from "../../../Components/ApplicantHeader"
+import JobDescription from "../../../Components/JobDescription/JobDescription"
+import CompanyLogo from "../../../Components/CompanyImageHeader"
+import "../index.css"
 
 const Application = () => {
   return (
-    <div className="main">
-      <div className="application">
-        {/* Put job description here */}
-
-        {/* Form for application */}
-        <ApplicationForm />
-
+    <>
+      <div className="header">
+        {/* Application Header */}
+        {<ApplicantHeader />}
       </div>
-    </div>
+
+      <div className="main">
+        <div className="application">
+          {/* Put job description here */}
+          <JobDescription />
+          {/* Form for application */}
+          <ApplicationForm />
+
+        </div>
+      </div>
+    </>
   )
 }
 
