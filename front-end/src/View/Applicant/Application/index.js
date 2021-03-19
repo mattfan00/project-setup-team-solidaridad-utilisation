@@ -6,12 +6,9 @@ import { AuthContext } from "../../../Context/AuthContext"
 import ApplicationForm from "../../../Components/ApplicationForm"
 import ApplicantHeader from "../../../Components/ApplicantHeader"
 import JobDescription from "../../../Components/JobDescription/JobDescription"
-<<<<<<< HEAD
 import CompanyLogo from "../../../Components/CompanyImageHeader"
 import ExpressApply from "../../../Components/ExpressButton"
 
-=======
->>>>>>> 687e07699eb92e78645f507d16623a12b58b8fcb
 import "../index.css"
 
 import {
