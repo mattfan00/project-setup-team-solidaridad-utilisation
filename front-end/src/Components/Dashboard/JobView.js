@@ -68,7 +68,7 @@ const JobView = (props) => {
                     </div>
                 <div className="recentWork">
                     --most recent job--
-                    </div>
+                </div>
             </Card>
             
             
