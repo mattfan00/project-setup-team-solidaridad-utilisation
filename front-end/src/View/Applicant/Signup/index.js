@@ -1,6 +1,7 @@
 import React from "react"
 import ApplicantHeader from "../../../Components/ApplicantHeader"
 import CompanyLogo from "../../../Components/CompanyImageHeader"
+import ApplicantSignup from "../../../Components/ApplicantSignUp"
 
 import "../index.css"
 
@@ -14,6 +15,7 @@ const Signin = () => {
       <div className="applicant-main">
         <div className="application">
           <CompanyLogo/>
+          <ApplicantSignup/>
         </div>
       </div>
     </>
