@@ -12,14 +12,13 @@ import ExpressApply from "../../../Components/ExpressButton"
 import "../index.css"
 
 import {
-  message,
   Spin
 } from "antd"
 
 const Application = () => {
   const [application, setApplication] = useState(null)
   const [loading, setLoading] = useState(true)
-
+  const { user } = useContext(AuthContext)
   const { job } = useParams()
 
   useEffect(async () => {
@@ -44,11 +43,14 @@ const Application = () => {
           {!loading ?
           <>
             {/* Put job description here */}
-            
+
             <JobDescription />
 
             {/* Form for application */}
-            <ExpressApply />
+
+            {/* Only show express apply button when not logged in */}
+            {!user ? <ExpressApply /> : "" }
+
             <ApplicationForm
               fields={application ? application.fields : []}
               extraQuestions={application ? application.extraQuestions : []}

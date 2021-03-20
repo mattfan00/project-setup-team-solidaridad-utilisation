@@ -17,7 +17,7 @@ const ExtraQuestions = (props) => {
   return (
     <>
       {props.questions.map(question => (
-      <Col span={24}>
+      <Col span={24} key={question.id}>
         <Form.Item
           label={question.label}
           name={question.id}
