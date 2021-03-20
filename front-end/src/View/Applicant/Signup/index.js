@@ -11,7 +11,7 @@ const Signin = () => {
         {<ApplicantHeader/>}
       </div>
 
-      <div className="main">
+      <div className="applicant-main">
         <div className="application">
           <CompanyLogo/>
           this is the sign up page

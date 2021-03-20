@@ -8,7 +8,6 @@ import {
 import CompanyLogo from "../CompanyImageHeader"
 
 const JobDescription = (props) => {
-    const {Title} = Typography;
     return (
         <div className="JobDescription">
             <Col span={24}>
