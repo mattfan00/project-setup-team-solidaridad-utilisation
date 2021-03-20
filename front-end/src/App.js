@@ -10,6 +10,8 @@ import Landing from "./View/Landing"
 import BusinessDashboard from "./View/Business/Dashboard"
 import BusinessNewListing from "./View/Business/NewListing"
 import BusinessSignup from "./View/Business/Signup"
+import BusinessJobView from "./View/Business/JobView"
+import BusinessApplicant from "./View/Business/Applicant"
 import BusinessSignin from "./View/Business/Signin"
 import NewListing from "./View/Business/NewListing"
 import DescriptionForm from "./View/Business/Description"
@@ -30,9 +32,11 @@ const App = () => {
           <Route exact path="/" component={Landing} />
           
           {/* All Business routes  */}
-          <Route path="/business/signup" component={BusinessSignin} />
+          <Route path="/business/signup" component={BusinessSignup} />
           <Route path="/business/signin" component={BusinessSignup} />
-          <Route path="/business/dashboard" component={BusinessDashboard} />
+          <Route exact path="/business/dashboard" component={BusinessDashboard} />
+          <Route exact path="/business/dashboard/applications" component={BusinessJobView}/>
+          <Route exact path="/business/dashboard/applications/applicant" component={BusinessApplicant}/>
           <Route path="/business/listing/new" component={BusinessNewListing} />
           <Route path="/business/newlisting/description" component={DescriptionForm} />
           <Route path="/business/newlisting/elements" component={NewListing} />
