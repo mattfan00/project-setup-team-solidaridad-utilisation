@@ -8,7 +8,6 @@ import "../index.css"
 const Signin = () => {
   return (
     <>
-
       <div className="header">
         {/* Application Header */}
         {<ApplicantHeader />}
@@ -18,7 +17,6 @@ const Signin = () => {
         <div className="application">
           <CompanyLogo/>
           <ApplicantSignIn/>
-          this is the sign in page
         </div>
       </div>
     </>

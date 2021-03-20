@@ -33,11 +33,11 @@ const App = () => {
           
           {/* All Business routes  */}
           <Route path="/business/signup" component={BusinessSignup} />
+          <Route path="/business/signin" component={BusinessSignup} />
           <Route exact path="/business/dashboard" component={BusinessDashboard} />
           <Route exact path="/business/dashboard/applications" component={BusinessJobView}/>
           <Route exact path="/business/dashboard/applications/applicant" component={BusinessApplicant}/>
           <Route path="/business/listing/new" component={BusinessNewListing} />
-          <Route path="/business/signin" component={BusinessSignup} />
           <Route path="/business/newlisting/description" component={DescriptionForm} />
           <Route path="/business/newlisting/elements" component={NewListing} />
 
