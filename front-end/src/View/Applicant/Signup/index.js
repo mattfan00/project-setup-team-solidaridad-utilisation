@@ -14,7 +14,6 @@ const Signin = () => {
       <div className="applicant-main">
         <div className="application">
           <CompanyLogo/>
-          this is the sign up page
         </div>
       </div>
     </>
