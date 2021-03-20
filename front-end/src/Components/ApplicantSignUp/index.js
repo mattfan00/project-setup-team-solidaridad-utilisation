@@ -42,19 +42,28 @@ const ApplicantSignUp = () => {
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label="Password"
-                                name="password"
+                                label="Set Password"
+                                name="Set password"
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input your password!',
+                                        message: 'Set Password',
                                     },
                                 ]}
                             >
                                 <Input.Password />
                             </Form.Item>
-                            <Form.Item {...layout} name="remember" valuePropName="checked">
-                                <Checkbox>Remember me</Checkbox>
+                            <Form.Item
+                                label="Confirm Password"
+                                name="Confirm Password"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Confirm Password',
+                                    },
+                                ]}
+                            >
+                                <Input.Password />
                             </Form.Item>
                         </Form> 
 
