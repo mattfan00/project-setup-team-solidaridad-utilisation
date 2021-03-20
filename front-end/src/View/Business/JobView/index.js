@@ -2,7 +2,6 @@ import React from 'react'
 import JobView from '../../../Components/Dashboard/JobView'
 import './index.css'
 import Header from '../../../Components/BusinessHeader/Header'
-//import businessHeader
 
 const ApplicationView = (props) => {
     return (

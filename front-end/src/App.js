@@ -32,7 +32,6 @@ const App = () => {
           <Route exact path="/" component={Landing} />
           
           {/* All Business routes  */}
-
           <Route path="/business/signup" component={BusinessSignup} />
           <Route path="/business/signin" component={BusinessSignup} />
           <Route exact path="/business/dashboard" component={BusinessDashboard} />
@@ -41,6 +40,7 @@ const App = () => {
           <Route path="/business/listing/new" component={BusinessNewListing} />
           <Route path="/business/newlisting/description" component={DescriptionForm} />
           <Route path="/business/newlisting/elements" component={NewListing} />
+
           {/* All Applicant routes  */}
           <AuthProvider>
             <Route path="/application/signin" component={ApplcationSignin} />
