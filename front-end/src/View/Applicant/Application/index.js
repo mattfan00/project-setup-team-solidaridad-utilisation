@@ -8,6 +8,7 @@ import ApplicantHeader from "../../../Components/ApplicantHeader"
 import JobDescription from "../../../Components/JobDescription/JobDescription"
 import CompanyLogo from "../../../Components/CompanyImageHeader"
 import ExpressApply from "../../../Components/ExpressButton"
+import NotFound from "../../../Components/NotFound"
 
 import "../index.css"
 
@@ -23,11 +24,16 @@ const Application = () => {
 
   useEffect(async () => {
     // get the application details
-    const result = await axios.get(`https://6050e7e35346090017670c11.mockapi.io/applications/${job}`)
-    setLoading(false)
+    try {
+      const result = await axios.get(`https://6050e7e35346090017670c11.mockapi.io/applications/${job}`)
+      setLoading(false)
 
-    if (result.data) {
-      setApplication(result.data)
+      if (result.data) {
+        setApplication(result.data)
+      }
+    } catch(err) {
+      // cannot retrieve application
+      setLoading(false)
     }
   }, [])
 
@@ -40,7 +46,7 @@ const Application = () => {
 
       <div className="applicant-main">
         <div className="application">
-          {!loading ?
+          {!loading && application ?
           <>
             {/* Put job description here */}
 
@@ -56,11 +62,17 @@ const Application = () => {
               extraQuestions={application ? application.extraQuestions : []}
             />
           </>
-          :
+          : "" }
+
+          {!loading && !application ?
+          <NotFound />
+          : "" }
+
+          {loading ?
           <div className="loading">
             <Spin />
           </div>
-          }
+          : "" }
         </div>
       </div>
     </>
