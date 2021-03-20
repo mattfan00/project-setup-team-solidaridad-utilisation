@@ -15,6 +15,7 @@ import BusinessApplicant from "./View/Business/Applicant"
 import BusinessSignin from "./View/Business/Signin"
 import NewListing from "./View/Business/NewListing"
 import DescriptionForm from "./View/Business/Description"
+import BusinessEditProfile from "./View/Business/EditProfile"
 
 import Application from "./View/Applicant/Application"
 import ApplicationSuccess from "./View/Applicant/Success"
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/business/listing/new" component={BusinessNewListing} />
           <Route path="/business/newlisting/description" component={DescriptionForm} />
           <Route path="/business/newlisting/elements" component={NewListing} />
+          <Route path="/business/dashboard/editprofile" component={BusinessEditProfile} />
 
           {/* All Applicant routes  */}
           <AuthProvider>
