@@ -1,19 +1,16 @@
 import React from 'react'
-import {Card, Dropdown} from 'antd'
+import {Card, Descriptions} from 'antd'
 
 const Common = (props) => {
     return (
-        <Card
-        title='Common Questions'
-        type='inner'
-        extra={
-            <div>
-                {props.commonQCount}
-            </div>
-        }
+        <Descriptions 
+            bordered
+            column={2}
         >
-            {props.commonQuestions}
-        </Card>
+            <Descriptions.Item label='Question1'>Answer1</Descriptions.Item>
+            <Descriptions.Item label='Question2'>Answer2</Descriptions.Item>
+            <Descriptions.Item label='Question3'>Answer3</Descriptions.Item>
+        </Descriptions>
     )
 }
 

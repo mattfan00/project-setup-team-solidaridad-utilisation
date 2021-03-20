@@ -1,31 +1,26 @@
 import React from 'react'
-import {Card} from 'antd'
+import {Card, Collapse} from 'antd'
+
+const {Panel} = Collapse
 
 const Extra = (props) => {
     return (
-        <Card
-            title='Extra Questions'
-            extra = {
-                <div>
-                    {props.extraQuestionCount}
-                </div>
-            } 
+        <Collapse
+            bordered={false}
         >
-            <Card
-                title="extraquestion"
-                type='inner'
+            <Panel
+                header={'Q: '}
             >
-                response
-            </Card>
+                {'A: '}
+            </Panel>
             {props.questions && props.questions.map(q => 
-                <Card
-                title={q.question}
-                type='inner'
+                <Panel
+                    header={'Q: '+q.question}
                 >
-                    {q.response}
-                </Card>    
+                    {"A: "+q.answer}
+                </Panel>
             )}
-        </Card>
+        </Collapse>
     )
 }
 
