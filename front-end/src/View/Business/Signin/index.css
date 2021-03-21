@@ -1,4 +1,5 @@
 .business-signin-main h1{
+    padding-top: 18vh;
     font-size: 8vw;
     line-height: 0.5; 
 }
@@ -12,5 +13,4 @@
     height:100vh; 
     display:flex;
     flex-direction: column;
-    justify-content: center; 
 }

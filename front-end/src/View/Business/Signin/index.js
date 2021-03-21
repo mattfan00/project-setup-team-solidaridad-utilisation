@@ -31,6 +31,13 @@ const Signin = () => {
 
   return (
     <div class="business-signin-main">
+      <Row>
+        <Col span={2}>
+          <Button type="link" href="/business/dashboard" size = "middle" block="true">
+            <p>Back to Sign Up</p>
+          </Button>
+        </Col>
+      </Row>
       <Row><Col span={6} offset={9}><h1>Copply</h1></Col></Row>
       <Row><Col span={14} offset={5}><h2>Making the application process seamless for both parties</h2></Col></Row>
       
