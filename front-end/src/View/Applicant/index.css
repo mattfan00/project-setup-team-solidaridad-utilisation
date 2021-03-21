@@ -1,0 +1,16 @@
+.applicant-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.application {
+  width: 600px;
+  margin: 0px 20px 100px 20px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

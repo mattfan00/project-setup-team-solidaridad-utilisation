@@ -1,5 +1,13 @@
 # Guide to Contributing
 
+## Roles
+- Sprint 1:
+  - Product Owner: Jay Li
+  - Scrum Master: Andrew
+- Sprint 2:
+  - Product Owner: Matthew
+  - Scrum Master: Jonathan
+
 ## Rules of Contributing
 - Every pull request should be related to an assigned task or bug
 - Always do pull requests instead of merging directly
@@ -11,8 +19,9 @@
     - 1 hour cap on team discussion meetings
 - Support those who are learning
 - Standups (3 days/week)
-- Post link to meeting in general chat
-    - Take notes for each meeting and post after it's done in Slack
+  - Monday 10:00 PM / Thursday 10:00 PM / Saturday 10:00 AM (EST)
+  - Link [here](https://nyu.zoom.us/j/94685988260).
+- Take notes for each meeting and post after it's done in Slack
 - Transparency
     - As soon as a problem arises, report in Slack
 - No shame in having a problem, we are here to help each other out

@@ -1,21 +1,16 @@
-import ExtraQuestions from "./ExtraQuestions/ExtraQuestions";
-import './index.css';
+
+import React from "react"
+import CommonElements from "./CommonElements"
+import Header from '../../../Components/BusinessHeader/Header'
 
 const NewListing = () => {
   return (
-    <>
-      <div className="header">
-          The header!
-      </div>
-      <div className="grid-container">
-        <div className="menu">
-          <ExtraQuestions></ExtraQuestions>
-        </div>
-        <div className="template">
-
-        </div>
-      </div>
-    </>
+    <div className="checkBoxForm">
+      <Header></Header>
+      {/* Insert Progress Bar Component */}
+      <h3>Insert Progress-Tracker (Common Elements)</h3>
+      <CommonElements></CommonElements>
+    </div>
   )
 }
 

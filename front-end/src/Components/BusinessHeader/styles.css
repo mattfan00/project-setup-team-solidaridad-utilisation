@@ -1,0 +1,26 @@
+.welcomeText{
+    font-size: x-large;
+    font: bold;
+    margin: 50px;
+    text-align: Left;
+    float:left;
+}
+
+.buttons {
+    text-align: center;
+    margin: 10px;
+    
+}
+
+.profile {
+    float:right;
+    margin: 50px;
+}
+
+.top{
+    margin:2.5%;
+}
+
+.logo{
+    height: 30px;
+}
