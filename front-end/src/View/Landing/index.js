@@ -11,7 +11,7 @@ const Landing = () => {
           <h1>Copply</h1>
           <h2>Making the application process seamless for both parties</h2>
         <p>Are you an applicant or Company?</p> 
-        <div class="button">
+        <div class="landing-buttons">
           <Button size="large" href="/application/signup">Applicant</Button>
           <Button size="large" href="/business/signup">Company</Button>
         </div>

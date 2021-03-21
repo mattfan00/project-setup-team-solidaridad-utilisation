@@ -22,7 +22,7 @@
     font-size:17px;  
 }
 
-.business-main .signup-buttons {
+.business-main .landing-buttons {
     display:flex; 
     flex-direction:row; 
     justify-content:center; 
