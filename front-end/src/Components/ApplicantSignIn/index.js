@@ -1,11 +1,34 @@
-import React from "react"
+import React, { useContext } from "react"
+import { useHistory } from "react-router-dom"
 import './index.css'
-import { Card, Col, Button, Form, Input,Checkbox } from 'antd';
+import { Card, Col, Button, Form, Input, Checkbox, message } from 'antd';
 import {
     Link,
-  } from "react-router-dom";
+} from "react-router-dom";
+import { AuthContext } from "../../Context/AuthContext"
+import axios from "axios"
 
 const ApplicantSignIn = () => {
+    const history = useHistory()
+    const { setUser } = useContext(AuthContext)
+    const [form] = Form.useForm()
+
+    const signin = async () => {
+        try {
+            const validateResult = await form.validateFields()
+            console.log(validateResult)
+
+            // sign in the user
+            const result = await axios.get("https://6050e7e35346090017670c11.mockapi.io/user/1")
+            setUser(result.data)
+
+            history.push("/application/amazon/1")
+        } catch (errorInfo) {
+            console.log('Failed:', errorInfo)
+            message.error("Please fill out all of the required fields")
+        }
+    }
+
     const layout = {
         labelCol: {
             span: 24,
@@ -14,6 +37,7 @@ const ApplicantSignIn = () => {
             span: 24,
         },
     };
+
     return (
         <div className="Applicant-SignIn-Card">
             <Col span={24}>
@@ -24,10 +48,10 @@ const ApplicantSignIn = () => {
                     </div>
                         <Form
                             {...layout}
-                            name="basic"
+                            form={form}
                             initialValues={{
                                 remember: true,
-                            }}                          
+                            }}
                         >
                             <Form.Item
                                 label="Username"
@@ -56,10 +80,10 @@ const ApplicantSignIn = () => {
                             <Form.Item {...layout} name="remember" valuePropName="checked">
                                 <Checkbox>Remember me</Checkbox>
                             </Form.Item>
-                        </Form> 
+                        </Form>
 
 
-                    <Button type="primary" block>
+                    <Button type="primary" block onClick={signin}>
                         Continue with Copply
                     </Button>
                 </Card>
