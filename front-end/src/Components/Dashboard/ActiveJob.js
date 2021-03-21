@@ -13,7 +13,6 @@ const ActiveJob = (props) => {
             extra={
                 <Link 
                     to='/business/dashboard/applications'
-                    onClick={history.push('/business/dashboard/applications')}
                 >
                     View Applications
                 </Link>

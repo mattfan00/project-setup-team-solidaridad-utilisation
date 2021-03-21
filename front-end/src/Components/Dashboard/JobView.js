@@ -57,7 +57,6 @@ const JobView = (props) => {
                 extra={
                     <Link 
                         to='/business/dashboard/applications/applicant'
-                        onClick={history.push('/business/dashboard/applications/applicant')}
                     >
                         View Applications
                     </Link>
@@ -78,7 +77,6 @@ const JobView = (props) => {
                     extra={
                         <Link
                             to='/business/dashboard/applications/applicant'
-                            onClick={history.push('/business/dashboard/applications/applicant')}
                         >
                             View Applications
                         </Link>
