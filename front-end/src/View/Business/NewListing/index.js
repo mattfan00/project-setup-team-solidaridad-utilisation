@@ -1,11 +1,11 @@
 import React from "react"
 import CommonElements from "./CommonElements"
+import Header from '../../../Components/BusinessHeader/Header'
 
 const NewListing = () => {
   return (
     <div className="checkBoxForm">
-      {/* Insert Copply Head Banner Component */}
-      <h3>Insert Copply-Header</h3>
+      <Header></Header>
       {/* Insert Progress Bar Component */}
       <h3>Insert Progress-Tracker (Common Elements)</h3>
       <CommonElements></CommonElements>

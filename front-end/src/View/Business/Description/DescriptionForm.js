@@ -11,8 +11,8 @@ const DescriptionForm = () => {
     };
     return (
         <div>
-        <Space direction="vertical" style={{ width:"50%" }}>
-            <Card style={{ borderColor:"#DADCFB", backgroundColor:"#DADCFB" }}>
+        <Space direction="vertical" style={{ width:"90%" }}>
+            <Card style={{ borderColor:"#DADCFB", "margin-bottom":"5%" }}>
                 <Form
                 name="basic"
                 initialValues={{ remember: true }}
@@ -21,7 +21,7 @@ const DescriptionForm = () => {
                 >      
                 <Form.Item name="job-description">
                     <h3 className="description-text">Job Desription</h3>
-                    <Input.TextArea rows={6}/>
+                    <Input.TextArea rows={4}/>
                 </Form.Item>
 
                 <Form.Item name="job-type">
@@ -54,12 +54,12 @@ const DescriptionForm = () => {
 
                 <Form.Item name="job-location">
                     <h3 className="description-text">Job Location</h3>
-                    <Input.TextArea rows={2} />
+                    <Input.TextArea rows={1} />
                 </Form.Item>
 
                 <Form.Item name="job-location">
                     <h3 className="description-text">Desired Skills</h3>
-                    <Input.TextArea rows={2} />
+                    <Input.TextArea rows={1} />
                 </Form.Item>          
 
                 <Divider></Divider>
