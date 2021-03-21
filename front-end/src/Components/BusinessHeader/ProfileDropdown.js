@@ -26,7 +26,6 @@ const Profile = () =>{
                     to='/business/dashboard/editprofile'>
                         Edit Profile
                     </Link>
-                    Edit Profile
                 </Menu.Item>
                 <Menu.Item 
                     key='2'
