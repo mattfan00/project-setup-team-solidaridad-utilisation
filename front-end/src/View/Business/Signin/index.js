@@ -3,19 +3,20 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './index.css';
 import { Form, Input, Button, Checkbox } from 'antd';
+import { Row, Col} from 'antd'; 
 
 const layout = {
   labelCol: {
-    span: 8,
+    span: 7
   },
   wrapperCol: {
-    span: 16,
+    span: 10,
   },
 };
 const tailLayout = {
   wrapperCol: {
-    offset: 8,
-    span: 16,
+    offset: 7,
+    span: 10,
   },
 };
 
@@ -29,9 +30,10 @@ const Signin = () => {
   };
 
   return (
-    <div class="business-main">
-      <h1>Copply</h1>
-      <h2>Making the application process seamless for both parties</h2>
+    <div class="business-signin-main">
+      <Row><Col span={6} offset={9}><h1>Copply</h1></Col></Row>
+      <Row><Col span={14} offset={5}><h2>Making the application process seamless for both parties</h2></Col></Row>
+      
       <Form
         {...layout}
         name="basic"
@@ -72,7 +74,7 @@ const Signin = () => {
         </Form.Item>
         
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit" href="/business/dashboard">
+          <Button type="primary" htmlType="submit" href="/business/dashboard" block="true">
             Sign in
           </Button>
         </Form.Item>
