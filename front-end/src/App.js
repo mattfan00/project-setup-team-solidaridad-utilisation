@@ -33,7 +33,7 @@ const App = () => {
           
           {/* All Business routes  */}
           <Route path="/business/signup" component={BusinessSignup} />
-          <Route path="/business/signin" component={BusinessSignup} />
+          <Route path="/business/signin" component={BusinessSignin} />
           <Route exact path="/business/dashboard" component={BusinessDashboard} />
           <Route exact path="/business/dashboard/applications" component={BusinessJobView}/>
           <Route exact path="/business/dashboard/applications/applicant" component={BusinessApplicant}/>
