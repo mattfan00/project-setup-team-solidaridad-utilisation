@@ -27,6 +27,7 @@ const Application = () => {
     try {
       const result = await axios.get(`https://6050e7e35346090017670c11.mockapi.io/applications/${job}`)
       setLoading(false)
+      console.log(result.data)
 
       if (result.data) {
         setApplication(result.data)
@@ -50,7 +51,9 @@ const Application = () => {
           <>
             {/* Put job description here */}
 
-            <JobDescription />
+            <JobDescription 
+              details={application}
+            />
 
             {/* Form for application */}
 
