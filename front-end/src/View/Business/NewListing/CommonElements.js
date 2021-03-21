@@ -2,10 +2,12 @@ import React from "react";
 import { Space, Card, Form, Button, Checkbox, Col, Row, Divider } from "antd";
 import "../NewListing/index.css";
 
-const CommonElements = () => {
-    const onFinish = (values: any) => {
-      console.log('Success:', values);
-    };
+const CommonElements = ({
+    handleNextButton
+}) => {
+    // const onFinish = (values: any) => {
+    //   console.log('Success:', values);
+    // };
     const onFinishFailed = (errorInfo: any) => {
       console.log('Failed:', errorInfo);
     };
@@ -18,7 +20,7 @@ const CommonElements = () => {
                 <Form
                 name="basic"
                 initialValues={{ remember: true }}
-                onFinish={onFinish}
+                onFinish={handleNextButton}
                 onFinishFailed={onFinishFailed}
                 >
                 <Form.Item name="checkbox-group">
