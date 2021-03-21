@@ -7,16 +7,16 @@ import { Row, Col} from 'antd';
 
 const layout = {
   labelCol: {
-    span: 7
+    span: 8
   },
   wrapperCol: {
-    span: 10,
+    span: 8,
   },
 };
 const tailLayout = {
   wrapperCol: {
-    offset: 7,
-    span: 10,
+    offset: 8,
+    span: 8,
   },
 };
 
