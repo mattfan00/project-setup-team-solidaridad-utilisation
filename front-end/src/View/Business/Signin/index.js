@@ -33,7 +33,7 @@ const Signin = () => {
     <div class="business-signin-main">
       <Row>
         <Col span={2}>
-          <Button type="link" href="/business/dashboard" size = "middle" block="true">
+          <Button type="link" href="/business/signup" size = "middle" block="true">
             <p>Back to Sign Up</p>
           </Button>
         </Col>
