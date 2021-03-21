@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './index.css';
-import { Form, Input, Button, Checkbox } from 'antd';
-
+import { Form, Input, Button } from 'antd';
+import { Row, Col} from 'antd'; 
+ 
 const layout = {
   labelCol: {
-    span: 8,
+    span: 4,
+    offset: 4
   },
   wrapperCol: {
-    span: 16,
+    span: 9,
   },
 };
 const tailLayout = {
@@ -29,9 +31,9 @@ const Signup = () => {
   };
 
   return (
-    <div class = "main">
-      <h1>Copply</h1>
-      <h2>Making the application process seamless for both parties</h2>
+    <div class="business-signup-main">
+      <Row><Col span={6} offset={9}><h1>Copply</h1></Col></Row>
+      <Row><Col span={14} offset={5}><h2>Making the application process seamless for both parties</h2></Col></Row>
       <Form
         {...layout}
         name="basic"
@@ -85,6 +87,10 @@ const Signup = () => {
           name="email"
           rules={[
             {
+              type:'email',
+              message: 'email is not valid'
+            }, 
+            {
               required: true,
               message: 'Please input your email',
             },
@@ -94,36 +100,54 @@ const Signup = () => {
         </Form.Item>
 
         <Form.Item
-          label="Set Password"
-          name="setpassword"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+        name="password"
+        label="Password"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your password!',
+          },
+        ]}
+        hasFeedback
+      >
+        <Input.Password />
+      </Form.Item>
 
-        <Form.Item
-          label="Confirm Password"
-          name="confirmpassword"
-          rules={[
-            {
-              required: true,
-              message: 'Please confirm your password',
+      <Form.Item
+        name="confirm"
+        label="Confirm Password"
+        dependencies={['password']}
+        hasFeedback
+        rules={[
+          {
+            required: true,
+            message: 'Please confirm your password!',
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+
+              return Promise.reject(new Error('The two passwords that you entered do not match!'));
             },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+          }),
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
 
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit" href="/business/signin">
-            Sign up
-          </Button>
-          <Button type="link" href="/business/signin">Already have an account? sign in</Button>
+          <Row>
+            <Col>
+              <Button type="primary" htmlType="submit" href="/business/signin" block="true">
+                Sign up
+              </Button>
+            </Col>
+            <Col offset={3}>
+              <Button type="link" href="/business/signin">Already have an account? Sign In</Button>
+            </Col>
+          </Row>
         </Form.Item>
       </Form>
     </div>
