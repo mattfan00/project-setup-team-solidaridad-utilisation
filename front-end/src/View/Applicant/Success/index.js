@@ -1,7 +1,8 @@
 import React from "react"
 import CompanyLogo from "../../../Components/CompanyImageHeader"
 import ApplicantHeader from "../../../Components/ApplicantHeader"
-import { Result } from "antd"
+import { Result, Card } from "antd"
+import "../index.css"
 
 const ApplicationSuccess = () => {
   return (
@@ -11,11 +12,17 @@ const ApplicationSuccess = () => {
         {<ApplicantHeader />}
       </div>
 
-      <CompanyLogo/>
-      <Result
-        status="success"
-        title="You’ve successfully submitted your application!"
-      />
+      <div className="applicant-main">
+        <div className="application">
+          <CompanyLogo/>
+          <Card>
+            <Result
+              status="success"
+              title="You’ve successfully submitted your application!"
+            />
+          </Card>
+        </div>
+      </div>
     </div>
   )
 }

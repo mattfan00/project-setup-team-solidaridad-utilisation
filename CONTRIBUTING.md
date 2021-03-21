@@ -1,5 +1,13 @@
 # Guide to Contributing
 
+## Roles
+- Sprint 1:
+  - Product Owner: Jay Li
+  - Scrum Master: Andrew
+- Sprint 2:
+  - Product Owner: Matthew
+  - Scrum Master: Jonathan
+
 ## Rules of Contributing
 - Every pull request should be related to an assigned task or bug
 - Always do pull requests instead of merging directly

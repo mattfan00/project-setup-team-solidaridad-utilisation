@@ -17,8 +17,10 @@
     margin: 50px;
 }
 
-.header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.top{
+    margin:5%;
+}
+
+.logo{
+    height: 30px;
 }
