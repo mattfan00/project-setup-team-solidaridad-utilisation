@@ -41,7 +41,7 @@ const Candidate = (props) => {
     return (
         <div className="content">
             <Card
-                title={"Applicant Name" + props.name}
+                title={props.details.firstname +' '+ props.details.lastname}
                 extra = {
                     <Dropdown
                         overlay={menu()}
@@ -56,24 +56,54 @@ const Candidate = (props) => {
                     bordered={false}
                     defaultActiveKey={['1']}
                 >
-                    <Panel header="Education" key='1'>
-                        <Education education={props.education} year={props.educationYear} />
+                    <Panel 
+                        header="Education" 
+                        key='1'
+                    >
+                        {console.log(props.details)}
+                        {console.log(props.details.work)}
+                        <Education 
+                            education={props.details.education} 
+                            year={props.details.gradYear} 
+                            description={props.details.edDescription}
+                        />
                     </Panel>
-                    <Panel header="Work Experience" key='2'>
-                        <WorkExperience work={props.work} />
-                        {props.work && props.work.map(w =>
-                            <WorkExperience workExp={w} />
+                    <Panel 
+                        header="Work Experience" 
+                        key='2'
+                    >
+                        {props.details.work && props.details.work.map(w =>
+                            <WorkExperience 
+                                company={w.company}
+                                role={w.role}
+                                year={w.year}
+                                desc={w.description}
+                            />
                         )}
                     </Panel>
-                    <Panel header="Responses" key='3'>
-                        <Responses answers={props.answers} />
-                    </Panel>
-                    <Panel header="Projects" key='4'>
-                        <Project />
-                        {props.projects && props.projects.map(p =>
-                            <Project project={p} />
+                    {console.log(props.details.projects[0])}
+                    <Panel 
+                        header="Projects" 
+                        key='4'
+                    >
+                        {props.details.projects && props.details.projects.map(p =>
+                            <Project
+                                projectTitle={p.title}
+                                description={p.description}
+                                year={p.year}
+                            />
                         )}
-                    </Panel>                    
+                    </Panel>   
+
+                    <Panel 
+                        header="Responses" 
+                        key='3'
+                    >
+                        {console.log(props.details.responses[0])}
+                        <Responses 
+                            questions={props.details.responses[0]} 
+                        />
+                    </Panel>                
                 </Collapse>
             </Card>
         </div>

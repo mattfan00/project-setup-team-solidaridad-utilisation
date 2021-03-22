@@ -4,15 +4,15 @@ import {Card} from 'antd'
 const Education = (props) => {
     return (
         <Card
-            title='New York University{props.institution}'
+            title={props.education}
             type='inner'
             extra={
                 <div>
-                    2022 {props.gradYear}
+                    {props.year}
                 </div>
             }
         >
-            Description {props.description}   
+            {props.description} 
         </Card>
     )
 }
