@@ -13,10 +13,9 @@ const NewListing = () => {
 
 
 
-  const [current, setCurrent] = useState(1);
+  const [current, setCurrent] = useState(0);
 
   const handleNextButton = () => {
-    console.log("hello");
     setCurrent(current + 1);
   }
 

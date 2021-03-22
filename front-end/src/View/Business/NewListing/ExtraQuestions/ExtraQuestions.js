@@ -1,5 +1,5 @@
-import React from "react";
-import {Menu, Input, DatePicker, Button, Space, Card, Radio} from "antd";
+import React, { useState } from "react";
+import { Menu, Input, DatePicker, Button, Space, Card, Radio } from "antd";
 import '../index.css';
 
 
@@ -20,16 +20,22 @@ const options = {
   image: ""
 };
 
-const question = "<Input placeholder='Write question here' /> <br></br>"
+
+
+const question = "<Input placeholder='Write question here' bordered={false} /> <br></br>"
 
 const ExtraQuestions = ({
   // handleNextButton,
   handleBackButton
 }) => {
+
+  const [questions, setQuestions] = useState([]);
+
+
+
   const handleClick = e => {
-    console.log(options[e.key]);
-    document.getElementById("template").innerHTML += question + options[e.key];
-    console.log('click ', e.key);
+    setQuestions(questions => [...questions, e.key]);
+    console.log(questions);
   };
   return (
     <div className="gridContainer">
@@ -61,6 +67,22 @@ const ExtraQuestions = ({
         <Card style={{ "margin-bottom":"5%"}}>
         <div className = "template" id="template">
           Add Extra Questions <br></br>
+          {questions.map( type => (
+            ( type === 'singleLine'  ?
+              <>
+                <Input placeholder='Write question here' bordered={false}></Input>
+                <Input placeholder='Input' /> 
+              </>
+             : "" ) ||
+
+            ( type === 'multiline'  ?
+            <>
+              <Input placeholder='Write question here' bordered={false}></Input>
+              <TextArea rows = {4} placeholder='Input'></TextArea>
+            </>
+            : "" )
+
+          ))}
         </div>
         </Card>
       </Space>
