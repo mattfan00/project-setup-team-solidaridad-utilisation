@@ -22,3 +22,9 @@
     text-align: center;
     color: #1D1C35;
 }
+
+.grid-container {
+    margin-left: 20%;
+    margin-right: auto;
+
+}

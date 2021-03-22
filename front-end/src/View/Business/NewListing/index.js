@@ -2,9 +2,9 @@ import React, { useState } from "react"
 import Header from '../../../Components/BusinessHeader/Header'
 import { Steps } from "antd"
 import JobDescription from "./Description/index"
-import CommonElements from "./CommonElements"
+import CommonElements from "./CommonElements/index"
 import ExtraQuestions from "./ExtraQuestions/ExtraQuestions"
-import Preview from "./Preview/Preview"
+// import Preview from "./Preview/Preview"
 
 const { Step } = Steps;
 
@@ -38,16 +38,17 @@ const NewListing = () => {
       title: 'Add Extra Questions',
       content: <ExtraQuestions handleNextButton={handleNextButton} handleBackButton={handleBackButton}/>
     },
-    {
-      title: 'Preview',
-      content: <Preview />
-    },
+    // {
+    //   title: 'Preview',
+    //   content: <Preview />
+    // },
   ];
   
   return (
     <>
       <Header></Header>
-      <Steps current={current}>
+      
+      <Steps classcurrent={current}>
         {steps.map(item => (
           <Step title = {item.title}/>
         ))}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Space, Card, Form, Button, Checkbox, Col, Row, Divider } from "antd";
-import "../NewListing/index.css";
+import "../index.css";
 
 const CommonElements = ({
     handleNextButton,
@@ -14,8 +14,8 @@ const CommonElements = ({
     };
     return (
         <div>
-        <Space direction="vertical" style={{ width:"90%" }}>
-            <Card style={{ borderColor:"#DADCFB", "margin-bottom":"5%" }}>
+        <Space direction="vertical" style={{ width:"60%" }}>
+            <Card style={{ "margin-bottom":"5%" }}>
                 <div className="elements-instruction">Tick all the details you want to require:</div>
                 <br></br>
                 <Form
