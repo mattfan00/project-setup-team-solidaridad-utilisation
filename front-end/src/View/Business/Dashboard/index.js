@@ -1,34 +1,29 @@
+import React, {useEffect, useState} from 'react'
 import { useHistory } from "react-router-dom"
 import JobList from "../../../Components/Dashboard/JobList"
 import {Button} from "antd"
 import Header from '../../../Components/BusinessHeader/Header'
+import axios from "axios"
+
 
 import './index.css'
 
 const Dashboard = () => {
   const history = useHistory()
   
-  //dummydata for testing purposes
-  const jobs = [{
-    title: "jobtitle",
-    desc: "desc1",
-    appCount: 12,
-    status: "Open",
-    applicants: [
-      
-    ]
-  },
-  { 
-    title: "otherjob", 
-    desc: "lorem ipsum",
-    appCount: 643,
-    status: "Open"
-  }
-  ]
+  const [jobs, setJobs] = useState([])
+
+  useEffect(async () => {
+    const result = await axios(
+      'https://60577e9cc3f49200173acb8f.mockapi.io/ActiveJobs',
+    );
+    console.log(result.data)
+    setJobs(result.data)
+  }, []);
 
   return (
     <div>
-      <Header/>
+      <Header company={'Amazon'}/>
       <div className="buttons">
         <Button 
           type="primary"

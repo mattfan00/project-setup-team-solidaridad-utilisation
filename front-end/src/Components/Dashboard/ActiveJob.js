@@ -9,17 +9,20 @@ const ActiveJob = (props) => {
     return (
         <Card
             type="inner"
-            title={props.job.title}
+            title={props.job.jobTitle}
             extra={
                 <Link 
-                    to='/business/dashboard/applications'
+                    to={{
+                        pathname:'/business/dashboard/applications',
+                        aboutProps:props.job
+                    }}
                 >
                     View Applications
                 </Link>
             }
         >
             <div className="counter">
-                {props.job.appCount} Applicants
+                {props.job.applicantCount} Applicants
             </div>
             <div>
                 Status: {props.job.status}
