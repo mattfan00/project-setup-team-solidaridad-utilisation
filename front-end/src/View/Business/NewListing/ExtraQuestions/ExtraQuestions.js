@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, Input, DatePicker, Button, Space, Card, Radio } from "antd";
+import { Menu, Input, DatePicker, Button, Space, Card, Radio, Modal, Result} from "antd";
 import '../index.css';
 
 
@@ -7,22 +7,7 @@ import '../index.css';
 const { SubMenu } = Menu;
 const { TextArea } = Input;
 
-const options = {
-  sections: "",
-  singleLine: "<Input placeholder='Input' /> <br></br>",
-  multiline: "<TextArea rows = {4} placeholder='Input'></TextArea> <br></br>",
-  date: "<DatePicker></DatePicker>",
-  yesNo: "<Radio.Group><Radio >Yes</Radio><Radio>No</Radio></Radio.Group> <br></br>",
-  dropdown: "",
-  checkbox: "",
-  multipleChoice: "",
-  attachments: "",
-  image: ""
-};
 
-
-
-const question = "<Input placeholder='Write question here' bordered={false} /> <br></br>"
 
 const ExtraQuestions = ({
   // handleNextButton,
@@ -37,6 +22,15 @@ const ExtraQuestions = ({
     setQuestions(questions => [...questions, e.key]);
     console.log(questions);
   };
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = () => {
+    setIsModalVisible(true);
+  }
+  const handleOk = () => {
+    setIsModalVisible(false);
+  }
+
   return (
     <div className="gridContainer">
       <Space direction="vertical" style={{ width:"20%" }}>
@@ -109,10 +103,16 @@ const ExtraQuestions = ({
     </Button>
 
 
-    <Button type="primary"  size="medium" 
+    <Button type="primary"  size="medium" onClick={showModal}
       style={{ backgroundColor:"#5D68EC", borderColor:"#5D68EC" }}>
         Submit
     </Button>
+
+
+    <Modal visible = {isModalVisible} onOk={handleOk}>
+      <Result status="success" title="Your job is live!"/>
+    </Modal>
+
     </div>
   );
 };
