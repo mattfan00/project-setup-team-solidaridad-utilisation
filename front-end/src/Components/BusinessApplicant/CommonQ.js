@@ -7,9 +7,16 @@ const Common = (props) => {
             bordered
             column={2}
         >
-            <Descriptions.Item label='Question1'>Answer1</Descriptions.Item>
-            <Descriptions.Item label='Question2'>Answer2</Descriptions.Item>
-            <Descriptions.Item label='Question3'>Answer3</Descriptions.Item>
+            <Descriptions.Item label='email'>santaisreal@gmail.com</Descriptions.Item>
+            <Descriptions.Item label='location'>New York, NY</Descriptions.Item>
+            <Descriptions.Item label='phone'>(123)-456-7890</Descriptions.Item>
+            {props.commonQ && props.commonQ.map(common =>
+                <Descriptions.Item
+                    label={common.question}
+                >
+                    {common.answer}
+                </Descriptions.Item>
+            )}
         </Descriptions>
     )
 }

@@ -12,10 +12,10 @@ const Responses = (props) => {
             defaultActiveKey={['1']}
         >
             <Panel header='Common Questions' key='1'>
-                <Common ans = {props.commonQuestions}/>
+                <Common commonQ = {props.questions.commonQuestions}/>
             </Panel>
             <Panel header='Extra Questions' key='2'>
-                <Extra ans = {props.extraQuestions}/>
+                <Extra extraQ = {props.questions.extraQuestions}/>
             </Panel>
         </Collapse>
     )

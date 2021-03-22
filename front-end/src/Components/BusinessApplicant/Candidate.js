@@ -100,7 +100,7 @@ const Candidate = (props) => {
                         key='3'
                     >
                         <Responses 
-                            answers={props.details.responses} 
+                            questions={props.details.responses} 
                         />
                     </Panel>                
                 </Collapse>
