@@ -80,7 +80,23 @@ const ExtraQuestions = ({
               <Input placeholder='Write question here' bordered={false}></Input>
               <TextArea rows = {4} placeholder='Input'></TextArea>
             </>
+            : "" ) ||
+
+            ( type === 'date' ?
+            <>
+              <Input placeholder='Write question here' bordered={false}></Input>
+              <DatePicker></DatePicker>
+            </>
+            : "" ) || 
+
+            ( type === 'yesNo' ?
+            <>
+              <Input placeholder='Write question here' bordered={false}></Input>
+              <Radio.Group><Radio >Yes</Radio><Radio>No</Radio></Radio.Group>
+            </>
             : "" )
+
+
 
           ))}
         </div>
