@@ -86,18 +86,13 @@ const Candidate = (props) => {
                         header="Projects" 
                         key='4'
                     >
-                        <Project 
-                            projectTitle={props.details.projects[0].title}
-                            description={props.details.projects[0].description}
-                            year={props.details.projects[0].year}
-                        />
-                            {props.details.projects && props.details.projects.map(p =>
-                            <Project 
+                        {props.details.projects && props.details.projects.map(p =>
+                            <Project
                                 projectTitle={p.title}
                                 description={p.description}
-                                year={p.year} 
-                            />    
-                            )}
+                                year={p.year}
+                            />
+                        )}
                     </Panel>   
 
                     <Panel 
