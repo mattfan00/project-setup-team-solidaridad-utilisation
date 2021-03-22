@@ -11,9 +11,25 @@
 .backNextButtons {
     text-align: center;
 }
+.description-text {
+    color: #1D1C35;
+    text-align: left;
+    font-size: medium;
+}
 .elements-instruction {
     font-size: medium;
     font-weight: 600;
     text-align: center;
     color: #1D1C35;
+}
+.steps {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2%;
+}
+
+.template {
+    text-align: left;
+    
 }
