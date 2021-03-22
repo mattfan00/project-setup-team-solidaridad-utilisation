@@ -8,11 +8,6 @@ const Extra = (props) => {
         <Collapse
             bordered={false}
         >
-            <Panel
-                header={'Q: ' + 'Why are you interesting in working with us?'}
-            >
-                {'A: ' + "Banana"}
-            </Panel>
             {props.extraQ && props.extraQ.map(q => 
                 <Panel
                     header={'Q: '+q.question}

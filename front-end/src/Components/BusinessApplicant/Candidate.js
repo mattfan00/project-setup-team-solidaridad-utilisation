@@ -99,8 +99,9 @@ const Candidate = (props) => {
                         header="Responses" 
                         key='3'
                     >
+                        {console.log(props.details.responses[0])}
                         <Responses 
-                            questions={props.details.responses} 
+                            questions={props.details.responses[0]} 
                         />
                     </Panel>                
                 </Collapse>
