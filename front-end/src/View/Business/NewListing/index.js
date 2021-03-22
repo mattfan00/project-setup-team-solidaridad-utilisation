@@ -3,7 +3,7 @@ import Header from '../../../Components/BusinessHeader/Header'
 import { Steps } from "antd"
 import JobDescription from "./Description/index"
 import CommonElements from "./CommonElements/index"
-import ExtraQuestions from "./ExtraQuestions/ExtraQuestions"
+import ExtraQuestions from "./ExtraQuestions/index"
 // import Preview from "./Preview/Preview"
 
 const { Step } = Steps;
@@ -36,7 +36,7 @@ const NewListing = () => {
     },
     {
       title: 'Add Extra Questions',
-      content: <ExtraQuestions handleNextButton={handleNextButton} handleBackButton={handleBackButton}/>
+      content: (<ExtraQuestions handleBackButton={handleBackButton}/>)
     },
     // {
     //   title: 'Preview',
@@ -48,7 +48,7 @@ const NewListing = () => {
     <>
       <Header></Header>
       
-      <Steps classcurrent={current}>
+      <Steps className="steps" current={current}>
         {steps.map(item => (
           <Step title = {item.title}/>
         ))}

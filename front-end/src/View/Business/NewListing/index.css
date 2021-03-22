@@ -22,9 +22,14 @@
     text-align: center;
     color: #1D1C35;
 }
-
-.grid-container {
-    margin-left: 20%;
+.steps {
+    width: 70%;
+    margin-left: auto;
     margin-right: auto;
+    margin-bottom: 2%;
+}
 
+.template {
+    text-align: left;
+    
 }

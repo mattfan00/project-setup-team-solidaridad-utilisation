@@ -13,7 +13,7 @@ const DescriptionForm = ({
     };
     return (
         <div>
-        <Space direction="vertical" style={{ width:"60%" }}>
+        <Space direction="vertical" style={{ width:"50%" }}>
             <Card style={{ "margin-bottom":"5%" }}>
                 <Form
                     name="basic"

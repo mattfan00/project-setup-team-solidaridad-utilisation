@@ -14,7 +14,7 @@ const CommonElements = ({
     };
     return (
         <div>
-        <Space direction="vertical" style={{ width:"60%" }}>
+        <Space direction="vertical" style={{ width:"50%" }}>
             <Card style={{ "margin-bottom":"5%" }}>
                 <div className="elements-instruction">Tick all the details you want to require:</div>
                 <br></br>

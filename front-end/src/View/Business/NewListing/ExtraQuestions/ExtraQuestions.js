@@ -1,5 +1,5 @@
 import React from "react";
-import {Menu, Input, DatePicker, Button, Space, Card} from "antd";
+import {Menu, Input, DatePicker, Button, Space, Card, Radio} from "antd";
 import '../index.css';
 
 
@@ -12,7 +12,7 @@ const options = {
   singleLine: "<Input placeholder='Input' /> <br></br>",
   multiline: "<TextArea rows = {4} placeholder='Input'></TextArea> <br></br>",
   date: "<DatePicker></DatePicker>",
-  yesNo: "",
+  yesNo: "<Radio.Group><Radio >Yes</Radio><Radio>No</Radio></Radio.Group> <br></br>",
   dropdown: "",
   checkbox: "",
   multipleChoice: "",
@@ -20,17 +20,19 @@ const options = {
   image: ""
 };
 
+const question = "<Input placeholder='Write question here' /> <br></br>"
+
 const ExtraQuestions = ({
-  handleNextButton,
+  // handleNextButton,
   handleBackButton
 }) => {
   const handleClick = e => {
     console.log(options[e.key]);
-    document.getElementById("template").innerHTML += options[e.key];
+    document.getElementById("template").innerHTML += question + options[e.key];
     console.log('click ', e.key);
   };
   return (
-    <div class="grid-container">
+    <div className="gridContainer">
       <Space direction="vertical" style={{ width:"20%" }}>
         <Card style={{ "margin-bottom":"5%" }}>
           <Menu mode="inline" onClick={handleClick}>
@@ -55,9 +57,11 @@ const ExtraQuestions = ({
           </Menu>
         </Card>
       </Space>
-      <Space direction="vertical" style={{ width: "50%"}}>
+      <Space direction="vertical" style={{ width: "40%"}}>
         <Card style={{ "margin-bottom":"5%"}}>
-        <div id="template"></div>
+        <div className = "template" id="template">
+          Add Extra Questions <br></br>
+        </div>
         </Card>
       </Space>
       
