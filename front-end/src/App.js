@@ -13,8 +13,8 @@ import BusinessSignup from "./View/Business/Signup"
 import BusinessJobView from "./View/Business/JobView"
 import BusinessApplicant from "./View/Business/Applicant"
 import BusinessSignin from "./View/Business/Signin"
-import NewListing from "./View/Business/NewListing"
-import DescriptionForm from "./View/Business/Description"
+// import NewListing from "./View/Business/NewListing"
+// import DescriptionForm from "./View/Business/Description"
 import BusinessEditProfile from "./View/Business/EditProfile"
 
 import Application from "./View/Applicant/Application"
@@ -39,8 +39,8 @@ const App = () => {
           <Route exact path="/business/dashboard/applications" component={BusinessJobView}/>
           <Route exact path="/business/dashboard" component={BusinessDashboard} />
           <Route exact path="/business/listing/new" component={BusinessNewListing} />
-          <Route exact path="/business/newlisting/description" component={DescriptionForm} />
-          <Route exact path="/business/newlisting/elements" component={NewListing} />
+          {/* <Route exact path="/business/newlisting/description" component={DescriptionForm} /> */}
+          {/* <Route exact path="/business/newlisting/elements" component={NewListing} /> */}
           <Route exact path="/business/dashboard/editprofile" component={BusinessEditProfile} />
 
           {/* All Applicant routes  */}
