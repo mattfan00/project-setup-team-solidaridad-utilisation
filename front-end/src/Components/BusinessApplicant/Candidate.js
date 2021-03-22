@@ -81,6 +81,25 @@ const Candidate = (props) => {
                             />
                         )}
                     </Panel>
+                    {console.log(props.details.projects[0])}
+                    <Panel 
+                        header="Projects" 
+                        key='4'
+                    >
+                        <Project 
+                            projectTitle={props.details.projects[0].title}
+                            description={props.details.projects[0].description}
+                            year={props.details.projects[0].year}
+                        />
+                            {props.details.projects && props.details.projects.map(p =>
+                            <Project 
+                                projectTitle={p.title}
+                                description={p.description}
+                                year={p.year} 
+                            />    
+                            )}
+                    </Panel>   
+
                     <Panel 
                         header="Responses" 
                         key='3'
@@ -88,16 +107,7 @@ const Candidate = (props) => {
                         <Responses 
                             answers={props.details.responses} 
                         />
-                    </Panel>
-                    <Panel 
-                        header="Projects" 
-                        key='4'
-                    >
-                        <Project project={props.details.projects[0]}/>
-                            {props.details.projects && props.details.projects.map(p =>
-                            <Project project={p} />
-                            )}
-                    </Panel>                    
+                    </Panel>                
                 </Collapse>
             </Card>
         </div>

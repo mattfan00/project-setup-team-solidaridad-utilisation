@@ -4,15 +4,15 @@ import {Card} from 'antd'
 const Project = (props) => {
     return (
         <Card
-            title="Project1 {props.title}"
+            title={'Project Title' + props.projectTitle}
             type='inner'
             extra={
                 <div>
-                    2020 {props.year}
+                    {"project year" + props.year}
                 </div>
             }
         >
-            Description {props.description}
+            {"Project description" + props.description}
         </Card>
     )
 }
