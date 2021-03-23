@@ -51,7 +51,7 @@ const Application = () => {
           <>
             {/* Put job description here */}
 
-            <JobDescription 
+            <JobDescription
               details={application}
             />
 
