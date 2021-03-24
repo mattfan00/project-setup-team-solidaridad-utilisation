@@ -27,6 +27,11 @@ Frontend:
 1. Navigate to the `front-end` directory and type in `npm install` to install the dependencies
 1. Use `npm run start` to start the front-end React server
 
+Backend:
+1. Navigate to the `back-end` directory and type in `npm install` to install the dependencies
+1. Use `npm run start` to start the back-end Express server using `nodemon`
+
+
 ## How to Contribute
 Refer to: [CONTRIBUTING.md](./CONTRIBUTING.md)
 
