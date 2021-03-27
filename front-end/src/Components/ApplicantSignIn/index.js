@@ -19,7 +19,7 @@ const ApplicantSignIn = () => {
             console.log(validateResult)
 
             // sign in the user
-            const result = await axios.get("https://6050e7e35346090017670c11.mockapi.io/user/1")
+            const result = await axios.get("http://localhost:4000/applicant/user")
             setUser(result.data)
 
             history.push("/application/amazon/1")
