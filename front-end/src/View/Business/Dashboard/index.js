@@ -5,7 +5,6 @@ import {Button} from "antd"
 import Header from '../../../Components/BusinessHeader/Header'
 import axios from "axios"
 
-
 import './index.css'
 
 const Dashboard = () => {
@@ -15,7 +14,8 @@ const Dashboard = () => {
 
   useEffect(async () => {
     const result = await axios(
-      'https://60577e9cc3f49200173acb8f.mockapi.io/ActiveJobs',
+      'http://localhost:4000/business/alljobs', // hardcoded as Amazon
+      {page: 1}
     );
     console.log(result.data)
     setJobs(result.data)
