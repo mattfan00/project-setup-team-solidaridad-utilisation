@@ -14,9 +14,7 @@ const Dashboard = () => {
   const [jobs, setJobs] = useState([])
 
   useEffect(async () => {
-    const result = await axios(
-      'https://60577e9cc3f49200173acb8f.mockapi.io/ActiveJobs',
-    );
+    const result = await axios("https://localhost:4000/business/joblist")
     console.log(result.data)
     setJobs(result.data)
   }, []);
