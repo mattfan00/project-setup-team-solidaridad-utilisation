@@ -2,8 +2,8 @@ const express = require("express")
 const router = express.Router()
 
 // Get the applicant that is relevant to this application
-router.get("/application/details", (req, res) => {
-  res.json({
+router.get("/business/application/details", (req, res) => {
+    const applicant = {
         firstname: "Ricardo",
         lastname: "Bogisich",
         education: "New York University",
@@ -56,7 +56,8 @@ router.get("/application/details", (req, res) => {
             ]
           }
         ]
-      })
-    })
+    }
+    res.json(applicant)
+})
 
 module.exports = router
