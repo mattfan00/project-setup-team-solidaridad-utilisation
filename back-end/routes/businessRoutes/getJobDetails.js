@@ -1,5 +1,5 @@
 const express = require('express')
-const router = express.Router
+const router = express.Router()
 
 router.get("/business/jobDetails", (req, res) => {
     const job = {
