@@ -3,12 +3,21 @@ import { useHistory, Link } from "react-router-dom"
 import {Card, Dropdown, Menu} from "antd"
 import './styles.css'
 import {DownOutlined} from '@ant-design/icons'
+import axios from 'axios'
 
 const JobView = (props) => {
     const history = useHistory()
     const [status, setStatus] = useState('Open')
+    const [loading, setLoading] = useState(true)
+    const [job, setJob] = useState()
 
-    console.log(props)
+    useEffect(async () => {
+        const result = await axios("http://localhost:4000/business/jobDetails")
+        console.log(result.data)
+        setJob(result.data)
+        setLoading(false)
+    }, []);
+    console.log(job)
 
     function handleMenuClick(i) {
         console.log(i.key)
@@ -35,51 +44,56 @@ const JobView = (props) => {
         );
     }
 
-    return (  
-        <Card
-            title = {'Applicants to ' + props.job.jobTitle}
-            extra = {
-                <div className="headerextra">
-                    <div className="headCounter">
-                        Applications: {props.job.applicantCount}
-                    </div>
-                    <Dropdown
-                        overlay={menu()}
-                    >
-                        <a>
-                            {status} <DownOutlined/>
-                        </a>
-                    </Dropdown>                    
-                </div>
-            }
-        >
-               
-            {props.job.applicants && props.job.applicants.map((applicant) => (
+    return ( 
+        <div>
+            {!loading ? (
                 <Card
-                    title={applicant.firstname + ' '+applicant.lastname}
-                    extra={
-                        <Link
-                            to={{
-                                pathname:'/business/dashboard/applications/applicant',
-                                aboutProps:applicant
-                            }}
+                title = {'Applicants to ' + job.jobTitle}
+                extra = {
+                    <div className="headerextra">
+                        <div className="headCounter">
+                            Applications: {job.applicantCount}
+                        </div>
+                        <Dropdown
+                            overlay={menu()}
                         >
-                            View Application
-                        </Link>
-                    }
-                >
-                    <div className="description">
-                        <div className="education">
-                            {applicant.education}
-                            {console.log({applicant})}
-                        </div>
-                        <div className="recentWork">
-                            {applicant.work[0].company}
-                        </div>
+                            <a>
+                                {status} <DownOutlined/>
+                            </a>
+                        </Dropdown>                    
                     </div>
-                </Card>
-            ))}
-        </Card>
+                }
+            >
+                   
+                {job.applicants && job.applicants.map((applicant) => (
+                    <Card
+                        title={applicant.firstname + ' '+applicant.lastname}
+                        extra={
+                            <Link
+                                to={{
+                                    pathname:'/business/dashboard/applications/applicant',
+                                    aboutProps:applicant
+                                }}
+                            >
+                                View Application
+                            </Link>
+                        }
+                    >
+                        <div className="description">
+                            <div className="education">
+                                {applicant.education}
+                                {console.log({applicant})}
+                            </div>
+                            <div className="recentWork">
+                                {applicant.work[0].company}
+                            </div>
+                        </div>
+                    </Card>
+                ))}
+            </Card>
+            ) : ""}
+        </div>
+        
     )
 }
 
