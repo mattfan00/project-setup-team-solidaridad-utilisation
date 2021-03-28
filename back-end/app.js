@@ -12,9 +12,10 @@ app.use(express.urlencoded({ extended: true }))
 
 // A section to import all of the routes in ./routes
 const getApplicantUser = require("./routes/getApplicantUser")
-
+const getJobDetails = require("./routes/businessRoutes/getJobDetails")
 // This uses one of the imported routes
 app.use(getApplicantUser)
+app.use(getJobDetails)
 
 app.get("/", (req, res) => {
   res.json({
