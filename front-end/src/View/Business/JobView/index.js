@@ -6,9 +6,9 @@ import Header from '../../../Components/BusinessHeader/Header'
 const ApplicationView = (props) => {
     return (
         <div>
-            <Header/>
+            <Header company={'Amazon'}/>
             <div className = "jobList">
-                <JobView job={props.job}/>
+                <JobView job={props.location.aboutProps}/>
             </div>       
         </div>
     )

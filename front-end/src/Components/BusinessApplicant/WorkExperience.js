@@ -4,16 +4,15 @@ import {Card} from 'antd'
 const WorkExperience = (props) => {
     return (
         <Card
-            title="Company: Role"
+            title={props.company + ": " + props.role}
             type='inner'
             extra = {
                 <div>
-                    2020 {props.date}
+                    {props.year}
                 </div>
             }
         >
-            Developed Feature F using tool T, with p users
-            {props.description}
+            {props.desc}
         </Card>
     )
 }

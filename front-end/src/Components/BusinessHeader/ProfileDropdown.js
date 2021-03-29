@@ -19,7 +19,14 @@ const Profile = () =>{
             <Menu 
                 onClick={handleMenuClick}
             >
-                <Menu.Item key='1'>Edit Profile</Menu.Item>
+                <Menu.Item
+                    key='1'
+                >
+                    <Link
+                    to='/business/dashboard/editprofile'>
+                        Edit Profile
+                    </Link>
+                </Menu.Item>
                 <Menu.Item 
                     key='2'
                 >

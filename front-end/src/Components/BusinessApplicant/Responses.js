@@ -6,16 +6,18 @@ import Extra from './ExtraQ'
 const {Panel} = Collapse
 
 const Responses = (props) => {
+
     return (
         <Collapse
             bordered={false}
             defaultActiveKey={['1']}
         >
             <Panel header='Common Questions' key='1'>
-                <Common ans = {props.commonQuestions}/>
+                <Common commonQ = {props.questions.commonQ}/>
             </Panel>
             <Panel header='Extra Questions' key='2'>
-                <Extra ans = {props.extraQuestions}/>
+                
+                <Extra extraQ = {props.questions.extraQ}/>
             </Panel>
         </Collapse>
     )

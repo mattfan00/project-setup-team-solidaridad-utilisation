@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Collapse} from 'antd'
+import { Collapse} from 'antd'
 
 const {Panel} = Collapse
 
@@ -8,12 +8,7 @@ const Extra = (props) => {
         <Collapse
             bordered={false}
         >
-            <Panel
-                header={'Q: '}
-            >
-                {'A: '}
-            </Panel>
-            {props.questions && props.questions.map(q => 
+            {props.extraQ && props.extraQ.map(q => 
                 <Panel
                     header={'Q: '+q.question}
                 >

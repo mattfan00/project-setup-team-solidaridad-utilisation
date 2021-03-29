@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useHistory, Link } from "react-router-dom"
 import {Card, Dropdown, Menu} from "antd"
 import './styles.css'
@@ -7,6 +7,8 @@ import {DownOutlined} from '@ant-design/icons'
 const JobView = (props) => {
     const history = useHistory()
     const [status, setStatus] = useState('Open')
+
+    console.log(props)
 
     function handleMenuClick(i) {
         console.log(i.key)
@@ -35,11 +37,11 @@ const JobView = (props) => {
 
     return (  
         <Card
-            title = 'Applicants to $jobtitle$'
+            title = {'Applicants to ' + props.job.jobTitle}
             extra = {
                 <div className="headerextra">
                     <div className="headCounter">
-                        Applications: 11{props.appCount}
+                        Applications: {props.job.applicantCount}
                     </div>
                     <Dropdown
                         overlay={menu()}
@@ -51,45 +53,28 @@ const JobView = (props) => {
                 </div>
             }
         >
-            <Card
-                title='Applicant Name'
-                type='inner'
-                extra={
-                    <Link 
-                        to='/business/dashboard/applications/applicant'
-                        onClick={history.push('/business/dashboard/applications/applicant')}
-                    >
-                        View Applications
-                    </Link>
-                }
-            >
-                <div className="education">
-                    --Institution and year--
-                    </div>
-                <div className="recentWork">
-                    --most recent job--
-                </div>
-            </Card>
-            
-            
-            {props.applicants && props.applicants.map(applicant => (
+               
+            {props.job.applicants && props.job.applicants.map((applicant) => (
                 <Card
-                    title={applicant.name}
+                    title={applicant.firstname + ' '+applicant.lastname}
                     extra={
                         <Link
-                            to='/business/dashboard/applications/applicant'
-                            onClick={history.push('/business/dashboard/applications/applicant')}
+                            to={{
+                                pathname:'/business/dashboard/applications/applicant',
+                                aboutProps:applicant
+                            }}
                         >
-                            View Applications
+                            View Application
                         </Link>
                     }
                 >
                     <div className="description">
                         <div className="education">
-                            --Institution and year--
+                            {applicant.education}
+                            {console.log({applicant})}
                         </div>
                         <div className="recentWork">
-                            --most recent job--
+                            {applicant.work[0].company}
                         </div>
                     </div>
                 </Card>

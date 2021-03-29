@@ -1,11 +1,13 @@
+import { OmitProps } from "antd/lib/transfer/ListBody"
 import React from "react"
 import companyLogo from './CompanyLogo.jpg'
 import './index.css'
 
-const CompanyLogo = () => {
+const CompanyLogo = (props) => {
     return(
         <div className="logoContainer">
-        <img src={companyLogo} className="companyLogo"/> 
+            {props.name}
+        <img src={props.image} className="companyLogo"/> 
         </div>
     )
 }
