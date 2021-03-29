@@ -18,6 +18,12 @@ const getBusinessJobs = require("./routes/getBusinessJobs")
 app.use(getApplicantUser)
 app.use(getBusinessJobs)
 
+const getApplicationDetails = require("./routes/businessRoutes/getApplicationDetails")
+
+// This uses one of the imported routes
+app.use(getApplicantUser)
+app.use(getApplicationDetails)
+
 app.get("/", (req, res) => {
   res.json({
     message: "hey"

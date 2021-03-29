@@ -1,0 +1,18 @@
+{
+	"info": {
+		"_postman_id": "07a141f5-e15e-46ad-83a0-58d3ec255aa0",
+		"name": "copply",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Testing GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
