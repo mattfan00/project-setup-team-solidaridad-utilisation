@@ -14,6 +14,12 @@ app.use(express.urlencoded({ extended: true }))
 
 // A section to import all of the routes in ./routes
 const getApplicantUser = require("./routes/getApplicantUser")
+const getBusinessJobs = require("./routes/getBusinessJobs")
+
+// This uses one of the imported routes
+app.use(getApplicantUser)
+app.use(getBusinessJobs)
+
 const getApplicationDetails = require("./routes/businessRoutes/getApplicationDetails")
 const getImageFromFile = require("./routes/getImageFromFile")
 
