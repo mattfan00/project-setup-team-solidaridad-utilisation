@@ -5,7 +5,6 @@ import {Button} from "antd"
 import Header from '../../../Components/BusinessHeader/Header'
 import axios from "axios"
 
-
 import './index.css'
 
 const Dashboard = () => {
@@ -14,7 +13,10 @@ const Dashboard = () => {
   const [jobs, setJobs] = useState([])
 
   useEffect(async () => {
-    const result = await axios("https://localhost:4000/business/joblist")
+    const result = await axios(
+      'http://localhost:4000/business/alljobs', // hardcoded as Amazon
+      {page: 1}
+    );
     console.log(result.data)
     setJobs(result.data)
   }, []);
