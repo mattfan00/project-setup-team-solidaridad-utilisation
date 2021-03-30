@@ -28,5 +28,11 @@ router.get("/company/:name", (req, res) => {
             industry: "Tech",
         },
     ]
-    res.json(req.params.name);
+    const found = companies.find(company => req.params.name.toLowerCase() == company.companyName.toLowerCase());
+    //console.log(found)
+    res.json(
+        found
+    );
 });
+
+module.exports = router
