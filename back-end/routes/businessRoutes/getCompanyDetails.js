@@ -29,7 +29,6 @@ router.get("/company/:name", (req, res) => {
         },
     ]
     const found = companies.find(company => req.params.name.toLowerCase() == company.companyName.toLowerCase());
-    //console.log(found)
     res.json(
         found
     );
