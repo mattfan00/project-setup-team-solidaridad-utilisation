@@ -5,20 +5,9 @@ import {Dropdown, Menu} from 'antd'
 const Profile = () =>{
     const history = useHistory()
 
-    function handleMenuClick(i){
-        if(i.key === '1'){
-            history.push('/business/dashboard/applications/applicant')
-        }
-        else{
-            history.push('/business/signin')
-        }
-    }
-
     const menu = () =>{
         return(
-            <Menu 
-                onClick={handleMenuClick}
-            >
+            <Menu>
                 <Menu.Item
                     key='1'
                 >
