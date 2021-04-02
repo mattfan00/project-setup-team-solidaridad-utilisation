@@ -1,8 +1,7 @@
 const express = require("express")
 const router = express.Router()
+const multer = require("multer")
 
-//handle pdf file
-const multer = require('multer')
 // enable pdf uploads saved to disk in a directory named 'public/resumes'
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -19,14 +18,9 @@ const upload = multer({storage: storage});  //initilialize multer
 
 
 
-const bodyParser = require("body-parser")
-router.use(bodyParser.json()) 
-router.use(bodyParser.urlencoded({ extended: true })) //initialize bodyParser
-
-
 // route for HTTP POST requests for /resume-upload
 // files need to change according to the real html applications parts(haven't found it yet)
-app.post("/resume-upload", upload.array("file", 1), (req, res, next) => {
+router.post("/resume-upload", upload.array("file", 1), (req, res, next) => {
     // check whether anything was uploaded
     if (req.files) {
       // success! send data back to the client
@@ -39,9 +33,68 @@ app.post("/resume-upload", upload.array("file", 1), (req, res, next) => {
     }
   })
 
+let current_applicants = []
 
 router.post("/post-app",(req, res)=>{
-    
+  const applicant = {
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    education: req.body.education,
+    gradYear: req.body.gradYear,
+    edDescription: req.body.edDescription,
+    work: [
+      {
+        id: req.body.work[0].id,
+        company: req.body.work[0].company,
+        role: req.body.work[0].role,
+        description: req.body.work[0].description,
+        year: req.body.work[0].year
+      },
+      {
+        company: req.body.work[1].company,
+        year: req.body.work[1].year,
+        role: req.body.work[1].role,
+        description: req.body.work[1].description,
+      }
+    ],
+
+    /*
+    projects: [
+      {
+        id: "1",
+        title: "bandwidth",
+        description: "Corporate",
+        year: "2020"
+      }
+    ],
+    responses: [
+      {
+        commonQ: [
+          {
+            question: "Email",
+            answer: "apple@oranges.com"
+          },
+          {
+            question: "Veteran",
+            answer: "No"
+          }
+        ],
+        extraQ: [
+          {
+            question: "Which bear is best?",
+            answer: "black bear"
+          },
+          {
+            question: "Why are you interested in working with us?",
+            answer: "banana"
+          }
+        ]
+      }
+    ]
+    */
+  }
+  current_applicants.push(applicant); 
+  res.json(applicant)
 })
 
 
