@@ -33,10 +33,10 @@ router.post("/resume-upload", upload.array("file", 1), (req, res, next) => {
     }
   })
 
-let current_applicants = []
+let applicants = []
 
 router.post("/post-app",(req, res)=>{
-  const applicant = {
+  const current_applicant = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     education: req.body.education,
@@ -93,8 +93,8 @@ router.post("/post-app",(req, res)=>{
     ]
     */
   }
-  current_applicants.push(applicant); 
-  res.json(applicant)
+  applicants.push(current_applicant); 
+  res.json(current_applicant)
 })
 
 
