@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './index.css';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import { Row, Col} from 'antd'; 
+
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { AuthContext } from "../../../Context/AuthContext";
+
+import { formatCountdown } from 'antd/lib/statistic/utils';
  
 const layout = {
   labelCol: {
@@ -22,6 +28,26 @@ const tailLayout = {
 };
 
 const Signup = () => {
+  const history = useHistory();
+  const [form] = Form.useForm();
+  const { setUser } = useContext(AuthContext);
+
+  const signup = async () => {
+    try {
+      const validateResult = await form.validateFields();
+      console.log(validateResult);
+
+      const result = await axios.get("http://localhost:4000/business/user");
+      setUser(result.data);
+
+      history.push("/business/dashboard");
+
+    } catch (errorInfo) {
+      console.log('Failed:', errorInfo);
+      message.error("Please fill out all of the required fields");
+    }
+  }
+
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -37,6 +63,7 @@ const Signup = () => {
       <Form
         {...layout}
         name="basic"
+        form={form}
         initialValues={{
           remember: true,
         }}
@@ -140,7 +167,7 @@ const Signup = () => {
         <Form.Item {...tailLayout}>
           <Row>
             <Col>
-              <Button type="primary" htmlType="submit" href="/business/signin" block="true">
+              <Button type="primary" htmlType="submit" href="/business/signin" block="true" onClick={signup}>
                 Sign up
               </Button>
             </Col>
