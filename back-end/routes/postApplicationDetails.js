@@ -40,7 +40,7 @@ app.post("/resume-upload", upload.array("file", 1), (req, res, next) => {
   })
 
 
-router.post("/create-app",(req, res)=>{
+router.post("/post-app",(req, res)=>{
     
 })
 
