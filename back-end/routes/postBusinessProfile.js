@@ -2,7 +2,8 @@ const express = require("express")
 const router = express.Router()
 const multer = require("multer")
 
-// enable pdf uploads saved to disk in a directory named 'public/resumes'
+/*
+// enable logo uploads saved to disk in a directory named 'public/resumes'
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, "public/images")
@@ -32,19 +33,19 @@ router.post("/logo-upload", upload.array("logo", 1), (req, res, next) => {
       res.json(data) // send respose
     }
   })
+*/
 
-let companies = []
+const companies = []
 
-router.post("/post-app",(req, res)=>{
-    const current_company = 
+router.post("/updateBusinessProfile",(req, res)=>{
+    const business_profile = 
     {
           "description": body.user.description, 
           "introduction": body.user.introduction,
-          "logo": "user.logo"
     }
       
-    companies.push(current_company)
-    res.json(applicant)
+    companies.push(business_profile)
+    res.json(business_profile); 
 })
 
 
