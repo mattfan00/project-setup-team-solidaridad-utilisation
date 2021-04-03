@@ -35,17 +35,13 @@ router.post("/logo-upload", upload.array("logo", 1), (req, res, next) => {
   })
 */
 
+//simulate the database for now
 const companies = []
 
-router.post("/updateBusinessProfile",(req, res)=>{
-    const business_profile = 
-    {
-          "description": body.user.description, 
-          "introduction": body.user.introduction,
-    }
-      
-    companies.push(business_profile)
-    res.json(business_profile); 
+router.post("/updateprofile",(req, res)=>{
+    console.log(req.body.businessProfile)
+    companies.push(req.body.businessProfile)
+    res.json(req.body.businessProfile); 
 })
 
 
