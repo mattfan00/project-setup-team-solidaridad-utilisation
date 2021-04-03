@@ -99,10 +99,10 @@ const ApplicationForm = (props) => {
 
       await axios.post("http://localhost:4000/postapplication",{
         newApplication: {
-          details: result[0], 
+          details: results[0], 
           jobs: jobs, 
           education: education, 
-          extraQuestions: result[1]
+          extraQuestions: results[1]
         }
       })
 
