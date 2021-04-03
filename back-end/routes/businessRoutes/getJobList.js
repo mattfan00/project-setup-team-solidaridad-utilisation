@@ -4,7 +4,7 @@ const router = express.Router()
 router.get("/business/joblist", (req, res) => {
     const joblist = [
         {
-          "jobID": "NaN",
+          "jobID": "0",
           "applicantCount": 8,
           "description": "Product",
           "status": "Open",
@@ -66,7 +66,7 @@ router.get("/business/joblist", (req, res) => {
               ]
             },
             {
-              "id": "2",
+              "id": "1",
               "firstname": "Alva",
               "lastname": "Prosacco",
               "education": "Hartmann - Hodkiewicz",
@@ -80,7 +80,7 @@ router.get("/business/joblist", (req, res) => {
               "responses": []
             },
             {
-              "id": "3",
+              "id": "2",
               "firstname": "Fritz",
               "lastname": "Lakin",
               "education": "Weimann - Harber",
