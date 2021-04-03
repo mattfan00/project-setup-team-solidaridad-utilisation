@@ -26,6 +26,7 @@ const JobView = (props) => {
 
     function handleMenuClick(i) {
         console.log(i.key)
+
         if(i.key == '1'){
             axios.post('http://localhost:4000/business/alljobs', {
                 targetID: 0,
