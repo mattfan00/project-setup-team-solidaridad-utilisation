@@ -26,7 +26,6 @@ router.get("/business/alljobs", (req, res) => {
 });
 
 router.post("/business/alljobs", (req, res) => {
-  console.log(req.body);
   if (req.body.changeStatus === "Open") {
       alljobs[req.body.targetID].status = "Open";
   }
@@ -36,7 +35,7 @@ router.post("/business/alljobs", (req, res) => {
   else if (req.body.changeStatus === "Archived") {
       alljobs[req.body.targetID].status = "Archived";
   }
-  console.log(alljobs)
+  // console.log(alljobs)
   res.json(alljobs)
 })
 
