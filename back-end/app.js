@@ -21,6 +21,7 @@ const getImageFromFile = require("./routes/getImageFromFile")
 const getBusinessProfile = require("./routes/getBusinessProfile")
 const postBusinessProfile = require("./routes/postBusinessProfile")
 
+// const changeJobStatus = require("./routes/businessRoutes/changeJobStatus")
 
 // This uses one of the imported routes
 app.use(getApplicantUser)
@@ -31,6 +32,7 @@ app.use(getBusinessJobs)
 app.use(getBusinessProfile)
 app.use(postBusinessProfile)
 
+// app.use(changeJobStatus)
 
 
 app.get("/", (req, res) => {

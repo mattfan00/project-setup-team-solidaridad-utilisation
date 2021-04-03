@@ -3,7 +3,7 @@ const router = express.Router()
 
 router.get("/business/jobDetails", (req, res) => {
     const job = {
-        "jobID": "NaN",
+        "jobID": "0",
         "applicantCount": 8,
         "description": "Product",
         "status": "Open",
@@ -65,7 +65,7 @@ router.get("/business/jobDetails", (req, res) => {
                 ]
             },
             {
-                "id": "2",
+                "id": "1",
                 "firstname": "Alva",
                 "lastname": "Prosacco",
                 "education": "Hartmann - Hodkiewicz",
@@ -79,7 +79,7 @@ router.get("/business/jobDetails", (req, res) => {
                 "responses": []
             },
             {
-                "id": "3",
+                "id": "2",
                 "firstname": "Fritz",
                 "lastname": "Lakin",
                 "education": "Weimann - Harber",
