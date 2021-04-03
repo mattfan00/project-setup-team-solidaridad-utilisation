@@ -30,6 +30,7 @@ import Linkedin from "./FormElements/Linkedin"
 import ExtraQuestions  from "./FormElements/ExtraQuestions"
 
 import ConfirmSubmit from "./ConfirmSubmit"
+import axios from "axios"
 
 const { Title } = Typography
 
@@ -95,6 +96,15 @@ const ApplicationForm = (props) => {
       console.log("Jobs: ", jobs)
       console.log("Education: ", education)
       console.log("Extra Questions: ", results[1])
+
+      await axios.post("http://localhost:4000/postapplication",{
+        newApplication: {
+          details: result[0], 
+          jobs: jobs, 
+          education: education, 
+          extraQuestions: result[1]
+        }
+      })
 
       setConfirm(true)
     } catch (errorInfo) {
