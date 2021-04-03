@@ -93,6 +93,7 @@ router.post("/post-app",(req, res)=>{
     ]
     */
   }
+  //commit test
   applicants.push(current_applicant); 
   res.json(current_applicant)
 })
