@@ -7,7 +7,7 @@ import { Row, Col} from 'antd';
 
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "../../../Context/AuthContext";
+import { BusinessAuthContext } from "../../../Context/BusinessAuthContext";
 
 import { formatCountdown } from 'antd/lib/statistic/utils';
  
@@ -30,7 +30,7 @@ const tailLayout = {
 const Signup = () => {
   const history = useHistory();
   const [form] = Form.useForm();
-  const { setUser } = useContext(AuthContext);
+  const { setUser } = useContext(BusinessAuthContext);
 
   const signup = async () => {
     try {
@@ -44,7 +44,7 @@ const Signup = () => {
 
     } catch (errorInfo) {
       console.log('Failed:', errorInfo);
-      message.error("Please fill out all of the required fields");
+      message.error("");
     }
   }
 
@@ -167,7 +167,7 @@ const Signup = () => {
         <Form.Item {...tailLayout}>
           <Row>
             <Col>
-              <Button type="primary" htmlType="submit" href="/business/signin" block="true" onClick={signup}>
+              <Button type="primary" htmlType="submit" block="true" onClick={signup}>
                 Sign up
               </Button>
             </Col>
