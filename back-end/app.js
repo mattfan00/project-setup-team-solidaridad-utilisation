@@ -19,6 +19,7 @@ const getJobDetails = require("./routes/businessRoutes/getJobDetails")
 const getApplicationDetails = require("./routes/businessRoutes/getApplicationDetails")
 const getCompanyDetails = require("./routes/businessRoutes/getCompanyDetails")
 const getImageFromFile = require("./routes/getImageFromFile")
+const getBusinessUser = require("./routes/businessRoutes/getBusinessUser")
 
 // This uses one of the imported routes
 app.use(getApplicantUser)
@@ -27,6 +28,7 @@ app.use(getApplicationDetails)
 app.use(getCompanyDetails)
 app.use(getImageFromFile)
 app.use(getBusinessJobs)
+app.use(getBusinessUser)
 
 
 app.get("/", (req, res) => {
