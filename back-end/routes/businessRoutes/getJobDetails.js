@@ -4,10 +4,10 @@ const router = express.Router()
 router.get("/business/jobDetails", (req, res) => {
     const job = {
         "jobID": "0",
-        "applicantCount": 8,
+        "applicantCount": 3,
         "description": "Product",
         "status": "Open",
-        "jobTitle": "Investor Response Manager",
+        "jobTitle": "Sales Manager",
         "applicants": [
             {
                 "id": "1",
