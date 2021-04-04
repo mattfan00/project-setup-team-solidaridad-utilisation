@@ -6,12 +6,14 @@ import { useHistory, Link } from "react-router-dom"
 const ActiveJob = (props) => {
     const history = useHistory()
 
+    console.log(props.job)
+
     return (
         <Card
             type="inner"
             title={props.job.jobTitle}
             extra={
-                <Link 
+                <Link
                     to={{
                         pathname:'/business/dashboard/applications',
                         aboutProps:props.job

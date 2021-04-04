@@ -9,7 +9,7 @@ const ApplicationView = (props) => {
             <Header company={'Amazon'}/>
             <div className = "jobList">
                 <JobView job={props.location.aboutProps}/>
-            </div>       
+            </div>
         </div>
     )
 }
