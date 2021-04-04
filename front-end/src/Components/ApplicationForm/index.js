@@ -97,9 +97,9 @@ const ApplicationForm = (props) => {
       console.log("Education: ", education)
       console.log("Extra Questions: ", results[1])
 
-      await axios.post("http://localhost:4000/postapplication",{
+      await axios.post("http://localhost:4000/newapplication",{
         newApplication: {
-          details: results[0], 
+          details: results[0],
           jobs: jobs, 
           education: education, 
           extraQuestions: results[1]

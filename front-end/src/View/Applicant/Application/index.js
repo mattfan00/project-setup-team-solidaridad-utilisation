@@ -20,14 +20,21 @@ const Application = () => {
   const [application, setApplication] = useState(null)
   const [loading, setLoading] = useState(true)
   const { user } = useContext(AuthContext)
-  const { job } = useParams()
+  const { company, job } = useParams()
+  const [companyDetails, setCompanyDetails] = useState(null)
+
 
   useEffect(async () => {
     // get the application details
     try {
+
       const result = await axios.get(`https://6050e7e35346090017670c11.mockapi.io/applications/${job}`)
+      const resultCompany = await axios.get(`http://localhost:4000/company/${company}`)
+      
       setLoading(false)
       console.log(result.data)
+
+      setCompanyDetails(resultCompany.data)
 
       if (result.data) {
         setApplication(result.data)
@@ -47,11 +54,12 @@ const Application = () => {
 
       <div className="applicant-main">
         <div className="application">
-          {!loading && application ?
+          {!loading && application && companyDetails ?
           <>
             {/* Put job description here */}
 
             <JobDescription
+              company={companyDetails}
               details={application}
             />
 
