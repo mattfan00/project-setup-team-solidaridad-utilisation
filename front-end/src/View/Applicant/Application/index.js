@@ -28,16 +28,17 @@ const Application = () => {
     // get the application details
     try {
 
-      const result = await axios.get(`https://6050e7e35346090017670c11.mockapi.io/applications/${job}`)
       const resultCompany = await axios.get(`http://localhost:4000/company/${company}`)
+      const resultJob = await axios.get(`http://localhost:4000/business/allJobs`)
 
       setLoading(false)
-      console.log(result.data)
 
       setCompanyDetails(resultCompany.data)
 
-      if (result.data) {
-        setApplication(result.data)
+      console.log(resultJob.data[job])
+
+      if (resultJob.data) {
+        setApplication(resultJob.data[job])
       }
     } catch(err) {
       // cannot retrieve application
