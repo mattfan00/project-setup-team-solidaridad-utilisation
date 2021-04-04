@@ -7,9 +7,14 @@ import axios from 'axios'
 
 const JobView = (props) => {
     const history = useHistory()
-    const [status, setStatus] = useState('Open')
+    const [status, setStatus] = useState("Open")
     const [loading, setLoading] = useState(true)
     const [job, setJob] = useState()
+
+    useEffect(async () => {
+        const alljobs = await axios('http://localhost:4000/business/alljobs')
+        setStatus(alljobs.data[0].status)
+    }, [])
 
     useEffect(async () => {
         const result = await axios("http://localhost:4000/business/jobDetails")
@@ -21,14 +26,36 @@ const JobView = (props) => {
 
     function handleMenuClick(i) {
         console.log(i.key)
+
         if(i.key == '1'){
-            setStatus('Open')
+            axios.post('http://localhost:4000/business/alljobs', {
+                targetID: 0,
+                changeStatus: "Open"
+            }).then((res) => {
+                setStatus('Open')
+            }).catch(err => {
+                console.log(err)
+            })
         } 
         else if(i.key == '2'){
-            setStatus('Closed')
+            axios.post('http://localhost:4000/business/alljobs', {
+                targetID: 0,
+                changeStatus: "Closed"
+            }).then((res) => {
+                setStatus('Closed')
+            }).catch(err => {
+                console.log(err)
+            })        
         }
         else{
-            setStatus('Archived')
+            axios.post('http://localhost:4000/business/alljobs', {
+                targetID: 0,
+                changeStatus: "Archived"
+            }).then((res) => {
+                setStatus('Archived')
+            }).catch(err => {
+                console.log(err)
+            })        
         }
     }
 
