@@ -4,7 +4,8 @@ import axios from "axios"
 const AuthContext = createContext()
 
 const AuthProvider = (props) => {
-  const [user, setUser] = useState(null)
+  const [applicantUser, setApplicantUser] = useState(null)
+  const [businessUser, setBusinessUser] = useState(null)
 
   // useEffect(async () => {
   //   console.log("get user in AuthContext")
@@ -15,8 +16,10 @@ const AuthProvider = (props) => {
   return (
     <AuthContext.Provider
       value={{
-        user,
-        setUser
+        applicantUser,
+        setApplicantUser,
+        businessUser,
+        setBusinessUser,
       }}
     >
       {props.children}
