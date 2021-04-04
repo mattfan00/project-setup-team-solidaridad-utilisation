@@ -19,7 +19,7 @@ import {
 const Application = () => {
   const [application, setApplication] = useState(null)
   const [loading, setLoading] = useState(true)
-  const { user } = useContext(AuthContext)
+  const { applicantUser } = useContext(AuthContext)
   const { company, job } = useParams()
   const [companyDetails, setCompanyDetails] = useState(null)
 
@@ -30,7 +30,7 @@ const Application = () => {
 
       const result = await axios.get(`https://6050e7e35346090017670c11.mockapi.io/applications/${job}`)
       const resultCompany = await axios.get(`http://localhost:4000/company/${company}`)
-      
+
       setLoading(false)
       console.log(result.data)
 
@@ -66,7 +66,7 @@ const Application = () => {
             {/* Form for application */}
 
             {/* Only show express apply button when not logged in */}
-            {!user ? <ExpressApply /> : "" }
+            {!applicantUser ? <ExpressApply /> : "" }
 
             <ApplicationForm
               fields={application ? application.fields : []}
