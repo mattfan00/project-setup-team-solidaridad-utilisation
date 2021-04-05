@@ -5,6 +5,7 @@ import './index.css';
 import { Form, Input, Upload, Button } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { Row, Col } from 'antd'; 
+import axios from 'axios'; 
 
 //layout of the form item
 const layout = {
@@ -38,8 +39,16 @@ const normFile = (e) => {
   };
 
 const BusinessEditProfile = () => {
-  const onFinish = (values) => {
+  const onFinish = async(values) => {
     console.log(values);
+    
+    await axios.post("http://localhost:4000/updateprofile",{
+      businessProfile: {
+        description: values.user.description, 
+        introduction: values.user.introduction
+      }
+    })
+    
   };
 
   return (
