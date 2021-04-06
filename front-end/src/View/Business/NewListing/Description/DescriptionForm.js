@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Space, Card, Form, Button, Input, Divider, Col, Row, Checkbox } from "antd";
 import "../index.css";
 import { formatCountdown } from "antd/lib/statistic/utils";
@@ -24,6 +24,7 @@ const DescriptionForm = ({
     
 
     const [form] = Form.useForm()
+
     const update = async (e) => {
         try {
             console.log('Success:', values);
@@ -49,16 +50,15 @@ const DescriptionForm = ({
                     form={form}
                     name="basic"
                     onFinish={update}
-                    initialValues={description}
                 >      
                     <Form.Item name="jobDescription">
                         <h3 className="description-text">Job Description</h3>
-                        <Input.TextArea onChange={(e)=>setValues({...values, jobDescription: e.target.value})} rows={4}/>
+                        <Input.TextArea defaultValue={description.jobDescription} onChange={(e)=>setValues({...values, jobDescription: e.target.value})} rows={4}/>
                     </Form.Item>
 
                     <Form.Item name="jobType">
                         <h3 className="description-text">Job Type</h3>
-                        <Checkbox.Group onChange={(value)=>setValues({...values, jobType: value})} style={{ width:"100%" }}>
+                        <Checkbox.Group defaultValue={description.jobType} onChange={(value)=>setValues({...values, jobType: value})} style={{ width:"100%" }}>
                             <Row gutter={[0,24]}>
                                 <Col span={6}>
                                 <Checkbox value="full-time">
@@ -86,12 +86,12 @@ const DescriptionForm = ({
 
                     <Form.Item name="jobLocation">
                         <h3 className="description-text">Job Location</h3>
-                        <Input.TextArea onChange={(e)=>setValues({...values, jobLocation: e.target.value})} rows={1} />
+                        <Input.TextArea defaultValue={description.jobLocation} onChange={(e)=>setValues({...values, jobLocation: e.target.value})} rows={1} />
                     </Form.Item>
 
                     <Form.Item name="desiredSkills">
                         <h3 className="description-text">Desired Skills</h3>
-                        <Input.TextArea onChange={(e)=>setValues({...values, desiredSkills: e.target.value})} rows={1} />
+                        <Input.TextArea defaultValue={description.desiredSkills} onChange={(e)=>setValues({...values, desiredSkills: e.target.value})} rows={1} />
                     </Form.Item>          
 
                     <Divider></Divider>
