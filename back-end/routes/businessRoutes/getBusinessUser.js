@@ -13,13 +13,11 @@ router.get("/business/user", (req, res) => {
         "firstName": "Jo",
         "lastName": "Ko"
       },
-      "company":[
-        {
+      "company": {
           "name": "Amazon",
           "employeeID": "idk2",
           "description": "i guess it's alright here"
-        }
-      ]
+      }
     }
   }
 

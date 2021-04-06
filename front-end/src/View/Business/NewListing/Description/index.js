@@ -1,10 +1,14 @@
 import React from "react"
 import DescriptionForm from "./DescriptionForm"
 
-const Description = ({handleNextButton}) => {
+const Description = ({handleNextButton, updateDescription, description}) => {
   return (
     <div className="checkBoxForm">
-        <DescriptionForm handleNextButton={handleNextButton}></DescriptionForm>
+        <DescriptionForm 
+          handleNextButton={handleNextButton}
+          updateDescription={updateDescription}
+          description={description}
+        ></DescriptionForm>
     </div>
   )
 }

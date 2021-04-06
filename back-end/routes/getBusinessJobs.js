@@ -85,4 +85,11 @@ router.post("/business/alljobs", (req, res) => {
   res.json(alljobs)
 })
 
+router.post("/business/newjob", (req, res)=> {
+  console.log(req.body.newJob);
+
+  alljobs.push(req.body.newJob);
+  res.json(req.body.newJob);
+})
+
 module.exports = router;

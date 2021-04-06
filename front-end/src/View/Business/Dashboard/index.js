@@ -22,8 +22,8 @@ const Dashboard = () => {
     //   setCompany(details.details.company.name);
     // }
     const result = await axios.get("http://localhost:4000/business/user");
-    console.log(result.data.details.company[0].name);
-    setCompany(result.data.details.company[0].name);
+    console.log(result.data.details.company.name);
+    setCompany(result.data.details.company.name);
   }, []);
 
   useEffect(async () => {

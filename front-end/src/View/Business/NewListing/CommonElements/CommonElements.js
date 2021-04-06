@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Space, Card, Form, Button, Checkbox, Col, Row, Divider } from "antd";
 import "../index.css";
 
 const CommonElements = ({
     handleNextButton,
-    handleBackButton
+    handleBackButton,
+    updateCommon
 }) => {
     // const onFinish = (values: any) => {
     //   console.log('Success:', values);
     // };
-    const onFinishFailed = (errorInfo: any) => {
-      console.log('Failed:', errorInfo);
-    };
+
+
+    const [values, setValues] = useState([]);
+    
+
+    const update = async (e) => {
+        try {
+            console.log('Success:', values);
+            updateCommon(
+                {
+                    fields:values
+                }
+            );
+            handleNextButton();
+        } catch (errorInfo) {
+            console.log('Failed:', errorInfo);
+        }
+    }
+
     return (
         <div>
         <Space direction="vertical" style={{ width:"50%" }}>
@@ -21,11 +38,10 @@ const CommonElements = ({
                 <Form
                     name="basic"
                     initialValues={{ remember: true }}
-                    onFinish={handleNextButton}
-                    onFinishFailed={onFinishFailed}
+                    onFinish={update}
                 >
                     <Form.Item name="checkbox-group">
-                    <Checkbox.Group>
+                    <Checkbox.Group onChange={(value)=>setValues({...values, value})}>
                     <Row gutter={[0,16]}>
                         <Col span={12}>
                         <Checkbox value="name" style={{ lineHeight: '32px' }}>
