@@ -36,6 +36,15 @@ const CommonElements = ({
         }
     }
 
+    const updateBack = async () => {
+        try {
+            updateCommon(values);
+            handleBackButton();
+        } catch (errorInfo) {
+            console.log('Failed:', errorInfo);
+        }
+    }
+
     return (
         <div>
         <Space direction="vertical" style={{ width:"50%" }}>
@@ -118,7 +127,7 @@ const CommonElements = ({
                     </Form.Item>
                     <Divider></Divider>
                     <Form.Item className="backNextButtons">
-                        <Button type="default" onClick={handleBackButton} size="medium" style={{ backgroundColor:"white", borderColor:"white" }}>
+                        <Button type="default" onClick={updateBack} size="medium" style={{ backgroundColor:"white", borderColor:"white" }}>
                         Back
                         </Button>
 
