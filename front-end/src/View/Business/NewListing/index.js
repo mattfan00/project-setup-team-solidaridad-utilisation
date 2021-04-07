@@ -6,6 +6,7 @@ import CommonElements from "./CommonElements/index"
 import ExtraQuestions from "./ExtraQuestions/index"
 
 import axios from "axios"
+import TextArea from "antd/lib/input/TextArea"
 // import Preview from "./Preview/Preview"
 
 const { Step } = Steps;
@@ -14,13 +15,22 @@ const { Step } = Steps;
 const NewListing = () => {
 
   const [description, setDescription] = useState({
-    jobDescription: "hello",
-    jobType: [],
-    jobLocation: "yo",
-    desiredSkills: "java"
+    jobDescription: "Software Engineer",
+    jobType: ["full-time"],
+    jobLocation: "NYC",
+    desiredSkills: "Java"
   });
-  const [common, setCommon] = useState([]);
-  const [extra, setExtra] = useState({});
+  const [common, setCommon] = useState([
+    "primaryPhone", "workEx", "hispanicLatino", "workAuth"
+  ]);
+  const [extra, setExtra] = useState([
+    {
+      id: 33,
+      label: "Why do you want to join?",
+      required: true,
+      type: "textarea"
+    } 
+  ]);
 
   const updateDescription = (newDescription) => {
     setDescription(newDescription);
@@ -84,6 +94,7 @@ const NewListing = () => {
           handleNextButton={handleNextButton} 
           handleBackButton={handleBackButton}
           updateCommon={updateCommon}
+          common={common}
         />
       )
     },
@@ -93,6 +104,7 @@ const NewListing = () => {
         <ExtraQuestions 
           handleBackButton={handleBackButton}
           updateExtra={updateExtra}
+          extra={extra}
         />
       )
     },

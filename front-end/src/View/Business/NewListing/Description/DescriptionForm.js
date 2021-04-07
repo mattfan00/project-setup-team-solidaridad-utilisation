@@ -16,14 +16,13 @@ const DescriptionForm = ({
 
 
     const [values, setValues] = useState({
-        jobDescription: "",
-        jobType: [],
-        jobLocation: "",
-        desiredSkills: ""
+        jobDescription: description.jobDescription,
+        jobType: description.jobType,
+        jobLocation: description.jobLocation,
+        desiredSkills: description.desiredSkills
     })
     
 
-    const [form] = Form.useForm()
 
     const update = async (e) => {
         try {
@@ -47,7 +46,6 @@ const DescriptionForm = ({
         <Space direction="vertical" style={{ width:"50%" }}>
             <Card style={{ "margin-bottom":"5%" }}>
                 <Form
-                    form={form}
                     name="basic"
                     onFinish={update}
                 >      
