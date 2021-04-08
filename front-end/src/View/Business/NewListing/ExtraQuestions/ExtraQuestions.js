@@ -158,7 +158,7 @@ const ExtraQuestions = ({
                     bordered={false}
                     value={questions[i].label}
                   ></Input>
-                  <Radio.Group><Radio >Yes</Radio><Radio>No</Radio></Radio.Group>
+                  <Radio.Group><Radio value={1} >Yes</Radio><Radio value={2} >No</Radio></Radio.Group>
                 </>
                 : "" )
             ))}
