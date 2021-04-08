@@ -25,10 +25,8 @@ const NewListing = () => {
   ]);
   const [extra, setExtra] = useState([
     {
-      id: 33,
       label: "Why do you want to join?",
-      required: true,
-      type: "textarea"
+      type: "multiline"
     } 
   ]);
 
@@ -59,7 +57,7 @@ const NewListing = () => {
 
   const check = async () => {
     try {
-      await axios.post("http://localhost:4000/newjob", {
+      await axios.post("http://localhost:4000/business/newjob", {
         newJob: {
           description: description.jobDescription,
           type: description.jobType,
@@ -70,8 +68,10 @@ const NewListing = () => {
         }
       })
 
+
     } catch (errorInfo) {
       console.log('Failed:', errorInfo);
+      message.error("Please fill out all of the required fields");
     }
   }
 
@@ -105,6 +105,7 @@ const NewListing = () => {
           handleBackButton={handleBackButton}
           updateExtra={updateExtra}
           extra={extra}
+          check={check}
         />
       )
     },

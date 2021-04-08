@@ -14,44 +14,43 @@ const ExtraQuestions = ({
   // handleNextButton,
   handleBackButton,
   updateExtra,
-  extra
+  extra,
+  check
 }) => {
 
   const extraO = extra;
 
-  const [values, setValues] = useState(extraO);
+
+  const [questions, setQuestions] = useState(extraO);
+
+  const handleClick = e => {
+    setQuestions(questions => [...questions, {
+      label: "",
+      type: e.key
+    }]);
+  };
 
   const update = async () => {
     try {
-        console.log('Success:', values);
-        updateExtra(values);
-        console.log("extra", extraO);
+        console.log('Success:', questions);
+        updateExtra(questions);
         showModal();
+        check();
+    } catch (errorInfo) {
+        console.log('Failed:', errorInfo);
+    }
+  }
+
+  const updateBack = async () => {
+    try {
+        updateExtra(questions);
+        handleBackButton();
     } catch (errorInfo) {
         console.log('Failed:', errorInfo);
     }
   }
 
 
-  const [key,increaseKey] = useState(-1);
-
-  const assignKey = () => {
-    increaseKey(key + 1);
-    return key;
-  }
-
-  const handleOnChange = (e) => {
-    const a = assignKey();
-    setValues(...values, {id: a, label: e.target.value, required: true, type: e.target.type});
-  }
-
-
-  const [questions, setQuestions] = useState([]);
-
-  const handleClick = e => {
-    setQuestions(questions => [...questions, e.key]);
-    console.log(questions);
-  };
 
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -94,33 +93,73 @@ const ExtraQuestions = ({
           Add Extra Questions <br></br>
             <Form
             >
-              {questions.map( type => (
-                ( type === 'singleLine'  ?
-                  <Form.Item name="singleline">
-                    <Input onChange={handleOnChange} placeholder='Write question here' bordered={false}></Input>
+              {questions.map( (question, i) => (
+                ( question.type === 'singleLine'  ?
+                  <>
+                    <Input 
+                      onChange={(e) => {
+                        question.label = e.target.value;
+                        const newQuestions = [...questions];
+                        newQuestions[i] = question;
+                        setQuestions(newQuestions);
+                      }} 
+                      placeholder='Write question here' 
+                      bordered={false}
+                      value={questions[i].label}
+                    ></Input>
                     <Input placeholder='Input' /> 
-                  </Form.Item>
+                  </>
                 : "" ) ||
 
-                ( type === 'multiline'  ?
-                <Form.Item name="textarea">
-                  <Input placeholder='Write question here' bordered={false}></Input>
+                ( question.type === 'multiline'  ?
+                <>
+                  <Input 
+                    onChange={(e) => {
+                      question.label = e.target.value;
+                      const newQuestions = [...questions];
+                      newQuestions[i] = question;
+                      setQuestions(newQuestions);
+                    }}
+                    placeholder='Write question here'
+                    bordered={false}
+                    value={questions[i].label}
+                  ></Input>
                   <TextArea rows = {4} placeholder='Input'></TextArea>
-                </Form.Item>
+                </>
                 : "" ) ||
 
-                ( type === 'date' ?
-                <Form.Item name="date">
-                  <Input placeholder='Write question here' bordered={false}></Input>
+                ( question.type === 'date' ?
+                <>
+                  <Input 
+                    onChange={(e) => {
+                      question.label = e.target.value;
+                      const newQuestions = [...questions];
+                      newQuestions[i] = question;
+                      setQuestions(newQuestions);
+                    }}
+                    placeholder='Write question here' 
+                    bordered={false}
+                    value={questions[i].label}
+                  ></Input>
                   <DatePicker></DatePicker>
-                </Form.Item>
+                </>
                 : "" ) || 
 
-                ( type === 'yesNo' ?
-                <Form.Item name="yesno">
-                  <Input placeholder='Write question here' bordered={false}></Input>
+                ( question.type === 'yesNo' ?
+                <>
+                  <Input 
+                    onChange={(e) => {
+                      question.label = e.target.value;
+                      const newQuestions = [...questions];
+                      newQuestions[i] = question;
+                      setQuestions(newQuestions);
+                    }}
+                    placeholder='Write question here' 
+                    bordered={false}
+                    value={questions[i].label}
+                  ></Input>
                   <Radio.Group><Radio >Yes</Radio><Radio>No</Radio></Radio.Group>
-                </Form.Item>
+                </>
                 : "" )
             ))}
           </Form>
@@ -129,7 +168,7 @@ const ExtraQuestions = ({
       </Space>
       
       <div></div>
-    <Button type="default" onClick={handleBackButton} size="medium" style={{ backgroundColor:"white", borderColor:"white" }}>
+    <Button type="default" onClick={updateBack} size="medium" style={{ backgroundColor:"white", borderColor:"white" }}>
         Back
     </Button>
 
