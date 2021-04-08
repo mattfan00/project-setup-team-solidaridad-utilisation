@@ -75,6 +75,10 @@ const NewListing = () => {
     }
   }
 
+  const finalCheck = () => {
+    check();
+  }
+
   
   const steps = [
     {
@@ -105,7 +109,7 @@ const NewListing = () => {
           handleBackButton={handleBackButton}
           updateExtra={updateExtra}
           extra={extra}
-          check={check}
+          check={finalCheck}
         />
       )
     },

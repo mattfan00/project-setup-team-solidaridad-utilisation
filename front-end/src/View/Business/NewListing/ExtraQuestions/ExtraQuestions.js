@@ -28,14 +28,13 @@ const ExtraQuestions = ({
       label: "",
       type: e.key
     }]);
+    updateExtra(questions);
   };
 
-  const update = async () => {
+  const update = () => {
     try {
         console.log('Success:', questions);
-        updateExtra(questions);
         showModal();
-        check();
     } catch (errorInfo) {
         console.log('Failed:', errorInfo);
     }
@@ -173,7 +172,11 @@ const ExtraQuestions = ({
     </Button>
 
 
-    <Button type="primary"  size="medium" onClick={update}
+    <Button type="primary"  size="medium" 
+      onClick={()=>{
+          update(); 
+          check(); 
+      }}
       style={{ backgroundColor:"#5D68EC", borderColor:"#5D68EC" }}>
         Submit
     </Button>
