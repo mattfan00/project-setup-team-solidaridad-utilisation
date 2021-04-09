@@ -14,7 +14,7 @@ const JobDescription = (props) => {
                 <div layout="vertical">
                     <CompanyLogo image={"http://localhost:4000" + props.company.companyLogo}/>
                     <div className="JobTitle">
-                        <h1>{props.details.title}</h1>
+                        <h1>{props.details.jobTitle}</h1>
                         <h2>{props.company.companyName}</h2>
                     </div>
                     <div className="Description">
@@ -22,19 +22,19 @@ const JobDescription = (props) => {
                         <p>{props.details.description}</p>
                     </div>
                     <div className="Description">
-                        <h3>About Company</h3>    
+                        <h3>About Company</h3>
                         <p>{props.company.description}</p>
                     </div>
                     <div className="Description">
                         <h3>Job Location</h3>
-                        <p>{props.details.location}</p> 
-                    </div>   
+                        <p>{props.details.location}</p>
+                    </div>
                     <div className="Description">
                         <h3>Desired Skills</h3>
                         <p>{props.details.skills}</p>
-                    
-                    </div> 
-                </div>   
+
+                    </div>
+                </div>
             </Col>
         </div>
     )

@@ -15,7 +15,7 @@ const JobView = (props) => {
         const alljobs = await axios('http://localhost:4000/business/alljobs')
         setStatus(alljobs.data[0].status)
     }, [])
-
+    
     useEffect(async () => {
         const result = await axios("http://localhost:4000/business/jobDetails")
         console.log(result.data)
@@ -23,6 +23,7 @@ const JobView = (props) => {
         setLoading(false)
     }, []);
     console.log(job)
+    
 
     function handleMenuClick(i) {
         console.log(i.key)

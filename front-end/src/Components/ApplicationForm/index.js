@@ -30,6 +30,7 @@ import Linkedin from "./FormElements/Linkedin"
 import ExtraQuestions  from "./FormElements/ExtraQuestions"
 
 import ConfirmSubmit from "./ConfirmSubmit"
+import axios from "axios"
 
 const { Title } = Typography
 
@@ -42,15 +43,15 @@ const ApplicationForm = (props) => {
   const [confirm, setConfirm] = useState(false)
   const [userDetails, setUserDetails] = useState(null)
 
-  const { user } = useContext(AuthContext)
+  const { applicantUser } = useContext(AuthContext)
 
   const history = useHistory()
   const { company, job } = useParams()
 
   // when receive the current user, update the state
   useEffect(() => {
-    if (user) {
-      const { details } = user
+    if (applicantUser) {
+      const { details } = applicantUser
       setUserDetails(details)
 
       // auto fill in some of the fields
@@ -61,7 +62,7 @@ const ApplicationForm = (props) => {
       })
       message.success("Autofilled applicable fields")
     }
-  }, [user])
+  }, [applicantUser])
 
   const updateJobs = (newJobs) => {
     setJobs(newJobs)
@@ -95,6 +96,15 @@ const ApplicationForm = (props) => {
       console.log("Jobs: ", jobs)
       console.log("Education: ", education)
       console.log("Extra Questions: ", results[1])
+
+      await axios.post("http://localhost:4000/newapplication",{
+        newApplication: {
+          details: results[0],
+          jobs: jobs,
+          education: education,
+          extraQuestions: results[1]
+        }
+      })
 
       setConfirm(true)
     } catch (errorInfo) {

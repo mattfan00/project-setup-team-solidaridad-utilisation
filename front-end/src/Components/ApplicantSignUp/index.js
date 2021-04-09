@@ -11,7 +11,7 @@ import { AuthContext } from "../../Context/AuthContext";
 const ApplicantSignUp = () => {
     const history = useHistory()
     const [form] = Form.useForm()
-    const { setUser } = useContext(AuthContext)
+    const { setApplicantUser } = useContext(AuthContext)
 
     const signup = async () => {
         try {
@@ -20,7 +20,7 @@ const ApplicantSignUp = () => {
 
             // sign in the user
             const result = await axios.get("http://localhost:4000/applicant/user")
-            setUser(result.data)
+            setApplicantUser(result.data)
 
             history.push("/application/amazon/1")
         } catch (errorInfo) {
