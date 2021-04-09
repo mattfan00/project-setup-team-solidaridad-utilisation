@@ -2,16 +2,22 @@ import React from "react"
 import {
   Col,
   Form,
-  Input
+  Input,
+  DatePicker,
+  Radio
 } from "antd"
 
 const ExtraQuestions = (props) => {
   const getInputType = (type) => {
     switch (type) {
-      case "text":
+      case "singleLine":
         return <Input />
-      case "textarea":
+      case "multiline":
         return <Input.TextArea />
+      case "date":
+        return <DatePicker></DatePicker>
+      case "yesNo": 
+        return <Radio.Group><Radio value={1} >Yes</Radio><Radio value={2} >No</Radio></Radio.Group>
     }
   }
   return (

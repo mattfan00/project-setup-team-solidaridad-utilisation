@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Menu, Input, DatePicker, Button, Space, Card, Radio, Modal, Result} from "antd";
 import '../index.css';
+import Form from "antd/lib/form/Form";
 
 
 
@@ -11,17 +12,45 @@ const { TextArea } = Input;
 
 const ExtraQuestions = ({
   // handleNextButton,
-  handleBackButton
+  handleBackButton,
+  updateExtra,
+  extra,
+  check
 }) => {
 
-  const [questions, setQuestions] = useState([]);
+  const extraO = extra;
 
 
+  const [questions, setQuestions] = useState(extraO);
 
   const handleClick = e => {
-    setQuestions(questions => [...questions, e.key]);
-    console.log(questions);
+    setQuestions(questions => [...questions, {
+      label: "",
+      type: e.key
+    }]);
+    updateExtra(questions);
   };
+
+  const update = () => {
+    try {
+        console.log('Success:', questions);
+        showModal();
+    } catch (errorInfo) {
+        console.log('Failed:', errorInfo);
+    }
+  }
+
+  const updateBack = async () => {
+    try {
+        updateExtra(questions);
+        handleBackButton();
+    } catch (errorInfo) {
+        console.log('Failed:', errorInfo);
+    }
+  }
+
+
+
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {
@@ -61,49 +90,93 @@ const ExtraQuestions = ({
         <Card style={{ "margin-bottom":"5%"}}>
         <div className = "template" id="template">
           Add Extra Questions <br></br>
-          {questions.map( type => (
-            ( type === 'singleLine'  ?
-              <>
-                <Input placeholder='Write question here' bordered={false}></Input>
-                <Input placeholder='Input' /> 
-              </>
-             : "" ) ||
+            <Form
+            >
+              {questions.map( (question, i) => (
+                ( question.type === 'singleLine'  ?
+                  <>
+                    <Input 
+                      onChange={(e) => {
+                        question.label = e.target.value;
+                        const newQuestions = [...questions];
+                        newQuestions[i] = question;
+                        setQuestions(newQuestions);
+                      }} 
+                      placeholder='Write question here' 
+                      bordered={false}
+                      value={questions[i].label}
+                    ></Input>
+                    <Input placeholder='Input' /> 
+                  </>
+                : "" ) ||
 
-            ( type === 'multiline'  ?
-            <>
-              <Input placeholder='Write question here' bordered={false}></Input>
-              <TextArea rows = {4} placeholder='Input'></TextArea>
-            </>
-            : "" ) ||
+                ( question.type === 'multiline'  ?
+                <>
+                  <Input 
+                    onChange={(e) => {
+                      question.label = e.target.value;
+                      const newQuestions = [...questions];
+                      newQuestions[i] = question;
+                      setQuestions(newQuestions);
+                    }}
+                    placeholder='Write question here'
+                    bordered={false}
+                    value={questions[i].label}
+                  ></Input>
+                  <TextArea rows = {4} placeholder='Input'></TextArea>
+                </>
+                : "" ) ||
 
-            ( type === 'date' ?
-            <>
-              <Input placeholder='Write question here' bordered={false}></Input>
-              <DatePicker></DatePicker>
-            </>
-            : "" ) || 
+                ( question.type === 'date' ?
+                <>
+                  <Input 
+                    onChange={(e) => {
+                      question.label = e.target.value;
+                      const newQuestions = [...questions];
+                      newQuestions[i] = question;
+                      setQuestions(newQuestions);
+                    }}
+                    placeholder='Write question here' 
+                    bordered={false}
+                    value={questions[i].label}
+                  ></Input>
+                  <DatePicker></DatePicker>
+                </>
+                : "" ) || 
 
-            ( type === 'yesNo' ?
-            <>
-              <Input placeholder='Write question here' bordered={false}></Input>
-              <Radio.Group><Radio >Yes</Radio><Radio>No</Radio></Radio.Group>
-            </>
-            : "" )
-
-
-
-          ))}
+                ( question.type === 'yesNo' ?
+                <>
+                  <Input 
+                    onChange={(e) => {
+                      question.label = e.target.value;
+                      const newQuestions = [...questions];
+                      newQuestions[i] = question;
+                      setQuestions(newQuestions);
+                    }}
+                    placeholder='Write question here' 
+                    bordered={false}
+                    value={questions[i].label}
+                  ></Input>
+                  <Radio.Group><Radio value={1} >Yes</Radio><Radio value={2} >No</Radio></Radio.Group>
+                </>
+                : "" )
+            ))}
+          </Form>
         </div>
         </Card>
       </Space>
       
       <div></div>
-    <Button type="default" onClick={handleBackButton} size="medium" style={{ backgroundColor:"white", borderColor:"white" }}>
+    <Button type="default" onClick={updateBack} size="medium" style={{ backgroundColor:"white", borderColor:"white" }}>
         Back
     </Button>
 
 
-    <Button type="primary"  size="medium" onClick={showModal}
+    <Button type="primary"  size="medium" 
+      onClick={()=>{
+          update(); 
+          check(); 
+      }}
       style={{ backgroundColor:"#5D68EC", borderColor:"#5D68EC" }}>
         Submit
     </Button>

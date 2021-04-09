@@ -39,7 +39,7 @@ router.post("/newapplication",(req, res)=>{
   console.log(req.body.newApplication); 
   
   //post the newApplication to the database
-  applications.push(req.body.newApplicatin); 
+  applications.push(req.body.newApplication); 
 
   res.json(req.body.newApplication)
 })

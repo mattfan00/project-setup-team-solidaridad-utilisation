@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import { useHistory } from "react-router-dom"
 import JobList from "../../../Components/Dashboard/JobList"
 import {Button} from "antd"
 import Header from '../../../Components/BusinessHeader/Header'
 import axios from "axios"
+
+// import { BusinessAuthContext } from "../../../Context/BusinessAuthContext"
 
 import './index.css'
 
@@ -11,6 +13,18 @@ const Dashboard = () => {
   const history = useHistory()
   
   const [jobs, setJobs] = useState([])
+  // const { user } = useContext(BusinessAuthContext)
+  const [company, setCompany] = useState(null);
+
+  useEffect(async () => {
+    // if (user) {
+    //   const { details } = user;
+    //   setCompany(details.details.company.name);
+    // }
+    const result = await axios.get("http://localhost:4000/business/user");
+    console.log(result.data.details.company.name);
+    setCompany(result.data.details.company.name);
+  }, []);
 
   useEffect(async () => {
     const result = await axios(
@@ -21,9 +35,10 @@ const Dashboard = () => {
     setJobs(result.data)
   }, []);
 
+
   return (
     <div>
-      <Header company={'Amazon'}/>
+      <Header company= {company}/>
       <div className="buttons">
         <Button 
           type="primary"
