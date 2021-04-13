@@ -10,7 +10,7 @@ import axios from "axios"
 
 const ApplicantSignIn = () => {
     const history = useHistory()
-    const { setUser } = useContext(AuthContext)
+    const { setApplicantUser } = useContext(AuthContext)
     const [form] = Form.useForm()
 
     const signin = async () => {
@@ -20,7 +20,7 @@ const ApplicantSignIn = () => {
 
             // sign in the user
             const result = await axios.get("http://localhost:4000/applicant/user")
-            setUser(result.data)
+            setApplicantUser(result.data)
 
             history.push("/application/amazon/1")
         } catch (errorInfo) {

@@ -5,7 +5,7 @@ router.get("/company/:name", (req, res) => {
     const companies = [
         {
             companyName: "Amazon",
-            companyLogo: "/images/CompanyLogo.jpg",
+            companyLogo: "/images/AmazonLogo.png",
             description: "Amazon Advertising operates at the intersection of eCommerce and advertising, offering a rich array of digital display advertising solutions with the goal of helping our customers find and discover anything they want to buy. We help advertisers reach Amazon customers on Amazon.com, across our other owned and operated sites, on other high quality sites across the web, and on millions of Kindles, tablets, and mobile devices. We start with the customer and work backwards in everything we do, including advertising. If you’re interested in joining a rapidly growing team working to build a unique, world-class advertising group with a relentless focus on the customer, you’ve come to the right place.",
             industry: "Tech",
         },

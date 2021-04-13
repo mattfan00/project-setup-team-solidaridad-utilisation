@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './index.css';
 import { Form, Input, Button, message } from 'antd';
-import { Row, Col} from 'antd'; 
+import { Row, Col} from 'antd';
 
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { BusinessAuthContext } from "../../../Context/BusinessAuthContext";
 
 import { formatCountdown } from 'antd/lib/statistic/utils';
- 
+import { AuthContext } from '../../../Context/AuthContext';
+
 const layout = {
   labelCol: {
     span: 4,
@@ -30,7 +31,7 @@ const tailLayout = {
 const Signup = () => {
   const history = useHistory();
   const [form] = Form.useForm();
-  const { setUser } = useContext(BusinessAuthContext);
+  const { setBusinessUser } = useContext(AuthContext);
 
   const signup = async () => {
     try {
@@ -38,7 +39,7 @@ const Signup = () => {
       console.log(validateResult);
 
       const result = await axios.get("http://localhost:4000/business/user");
-      setUser(result.data);
+      setBusinessUser(result.data);
 
       history.push("/business/dashboard");
 
@@ -116,7 +117,7 @@ const Signup = () => {
             {
               type:'email',
               message: 'email is not valid'
-            }, 
+            },
             {
               required: true,
               message: 'Please input your email',
