@@ -6,7 +6,7 @@ let alljobs = [
   {
     "jobID": 0,
     "jobTitle": "Sales Manager", 
-    "status": "Open",
+    "jobStatus": "Open",
     "applicantCount": 3,
     "fields": [
       "resume",
