@@ -4,7 +4,8 @@ let ApplicantSchema = new mongoose.Schema({
     firstname: String,
     lastname: String,
     details: [],
-    work: [],
+    education: [],
+    workExperience: [],
     projects: [],
     extraQuestions: [],
 })
