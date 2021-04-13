@@ -2,13 +2,14 @@ const express = require("express")
 const router = express.Router()
 
 const Example = require("../models/example")
+const Note = require("../models/note")
 
 /*
   DESCRIPTION
     Gets a list of all of the examples stored in the database
 */
 router.get("/example", async (req, res) => {
-  const foundExamples = await Example.find()
+  const foundExamples = await Example.find().populate("notes")
 
   res.json(foundExamples)
 })
@@ -19,7 +20,8 @@ router.get("/example", async (req, res) => {
 */
 router.get("/example/:id", async (req, res) => {
   // This is a more general version, you can put any field in place of "_id", such as "name"
-  const foundExamples = await Example.findOne({"_id": req.params.id})
+  // If you didn't put "populate", there would be an array of ids. The "populate" method populates the ids with the corresponding note
+  const foundExamples = await Example.findOne({"_id": req.params.id}).populate("notes")
 
   // This is a more specific version, you can only search by the id
   // const foundExamples = await Example.findById(req.params.id)
@@ -61,6 +63,36 @@ router.put("/example/:id", async (req, res) => {
   */
 
   res.json(updatedExample)
+})
+
+/*
+  DESCRIPTION
+    Creates a new note by using the contents in body and the id param in the URL
+  BODY
+    text: Number
+*/
+router.post("/example/:id/note/new", async (req, res) => {
+  // create the new note
+  const newNote = await Note.create(req.body)
+
+  // get the example you want to add the note to
+  const foundExample = await Example.findOne({"_id": req.params.id})
+
+  // add the note's id to the example and save it
+  foundExample.notes.push(newNote.id)
+  await foundExample.save()
+
+  res.json(newNote)
+})
+
+/*
+  DESCRIPTION
+    Gets a specifc note depending on the id param in the URL
+*/
+router.get("/note/:id", async (req, res) => {
+  const foundNote = await Note.findOne({"_id": req.params.id})
+
+  res.json(foundNote)
 })
 
 module.exports = router
