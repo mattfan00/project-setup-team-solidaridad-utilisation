@@ -61,6 +61,14 @@ app.get("/", (req, res) => {
   })
 })
 
+// const Job = require("./models/jobDetails")
+
+// app.post("/jobs/new", async (req, res) => {
+//   const newJob = await Job.create(req.body)
+
+//   res.json(newJob)
+// })
+
 
 
 module.exports = app
