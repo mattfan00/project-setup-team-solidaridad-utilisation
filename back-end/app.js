@@ -63,7 +63,7 @@ app.get("/", (req, res) => {
 
 const Application = require("./models/applicant.js")
 
-app.post("/users/new", async (req, res) => {
+app.post("/application", async (req, res) => {
   const newApplication = await Application.create(req.body)
 
   res.json(newApplication)
