@@ -46,8 +46,8 @@ const App = () => {
 
             {/* All Applicant routes  */}
             <Route exact path="/business/dashboard/editprofile" component={BusinessEditProfile} />
-            <Route exact path="/application/signin" component={ApplcationSignin} />
-            <Route exact path="/application/signup" component={ApplcationSignup} />
+            <Route exact path="/application/signin/job/:job" component={ApplcationSignin} />
+            <Route exact path="/application/signup/job/:job" component={ApplcationSignup} />
             <Route exact path="/application/:company/:job/success" component={ApplicationSuccess} />
             <Route exact path="/application/:company/:job" component={Application} />
           </AuthProvider>

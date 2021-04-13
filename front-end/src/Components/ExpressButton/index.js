@@ -1,4 +1,5 @@
 import React from "react"
+import { useParams } from "react-router-dom"
 import './index.css'
 import { Button, Col, Divider, Card } from 'antd';
 import {
@@ -7,16 +8,18 @@ import {
 
 
 const ExpressApply = () => {
+    const { job } = useParams()
+
     return (
-        <div className="ExpressApplyButton"> 
+        <div className="ExpressApplyButton">
             <Col span={24}>
-                <Card className="ExpressApply"> 
-                
-                    <Button href="/application/signin" className="ExpressButton" type="primary" size="large" block>
+                <Card className="ExpressApply">
+
+                    <Button href={`/application/signin/job/${job}`} className="ExpressButton" type="primary" size="large" block>
                         Express Apply
-                    </Button> 
+                    </Button>
                 </Card>
-                
+
                 <Divider className="Divider" >or</Divider>
            </Col>
         </div>

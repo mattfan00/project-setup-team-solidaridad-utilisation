@@ -128,19 +128,19 @@ const ApplicationForm = (props) => {
                 {display("resume") ? <Resume /> : ""}
                 {display("name") ? <Name /> : ""}
                 {display("email") ? <Email /> : ""}
-                {display("phone") ? <Phone /> : ""}
+                {display("primaryPhone") ? <Phone /> : ""}
                 {display("address") ? <Address /> : ""}
                 {display("gender") ? <Gender /> : ""}
                 {display("disability") ? <Disability /> : ""}
-                {display("hispanic-latino") ? <HispanicLatino /> : ""}
+                {display("hispanicLatino") ? <HispanicLatino /> : ""}
                 {display("veteran") ? <Veteran /> : ""}
-                {display("workAuthorization") ? <WorkAuthorization /> : ""}
+                {display("workAuth") ? <WorkAuthorization /> : ""}
                 {display("website") ? <Website /> : ""}
                 {display("linkedin") ? <Linkedin/> : ""}
             </Row>
           </Form>
 
-          {display("workExperience") ?
+          {display("workEx") ?
           <>
             <Divider orientation="left">Work Experience</Divider>
             <WorkExperience
