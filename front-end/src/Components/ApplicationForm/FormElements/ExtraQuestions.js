@@ -16,7 +16,7 @@ const ExtraQuestions = (props) => {
         return <Input.TextArea />
       case "date":
         return <DatePicker></DatePicker>
-      case "yesNo": 
+      case "yesNo":
         return <Radio.Group><Radio value={1} >Yes</Radio><Radio value={2} >No</Radio></Radio.Group>
     }
   }
@@ -26,7 +26,7 @@ const ExtraQuestions = (props) => {
       <Col span={24} key={question.id}>
         <Form.Item
           label={question.label}
-          name={question.id}
+          name={question.label}
           rules={[{ required: question.required, message: 'Please fill out' }]}
         >
           {getInputType(question.type)}
