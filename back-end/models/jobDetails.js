@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 let JobSchema = new mongoose.Schema({
     jobTitle: String, 
-    jobStatus: String,
+    status: String,
     applicantCount: Number,
     fields: [String],
     description: String, 
