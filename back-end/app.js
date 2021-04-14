@@ -77,4 +77,19 @@ app.post("/application", async (req, res) => {
   res.json(newApplication)
 })
 
+
+
+
+
+
+
+
+const ApplicantUser = require("./models/applicantUserSchema")
+
+app.post("/users/new", async (req, res) => {
+  const newApplicantUser = await ApplicantUser.create(req.body)
+
+  res.json(newApplicantUser)
+})
+
 module.exports = app
