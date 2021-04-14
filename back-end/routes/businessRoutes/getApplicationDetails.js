@@ -7,7 +7,7 @@ router.get("/business/application/details", (req, res) => {
         firstname: "Ricardo",
         lastname: "Bogisich",
         education: "New York University",
-        gradYear: "2022",
+        gradYear: 2022,
         edDescription: "CS major",
         work: [
           {
@@ -15,11 +15,11 @@ router.get("/business/application/details", (req, res) => {
             company: "Kiehn - Effertz",
             role: "Senior Integration Representative",
             description: "Did stuff Global",
-            year: "2019"
+            year: 2019
           },
           {
             company: "Yahoo!",
-            year: "2016",
+            year: 2016,
             role: "CEO",
             description: "met with shareholders to discuss company goals"
           }
