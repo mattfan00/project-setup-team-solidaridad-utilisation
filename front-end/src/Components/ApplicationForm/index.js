@@ -54,12 +54,9 @@ const ApplicationForm = (props) => {
       const { details } = applicantUser
       setUserDetails(details)
 
-      // auto fill in some of the fields
-      detailsForm.setFieldsValue({
-        name: details.name,
-        email: details.email,
-        address: details.address
-      })
+      console.log(details)
+      // auto fill in fields
+      detailsForm.setFieldsValue({...details})
       message.success("Autofilled applicable fields")
     }
   }, [applicantUser])
@@ -126,7 +123,7 @@ const ApplicationForm = (props) => {
           <Form form={detailsForm} layout="vertical">
             <Row gutter={[16]}>
                 {display("resume") ? <Resume /> : ""}
-                {display("name") ? <Name /> : ""}
+                <Name />
                 {display("email") ? <Email /> : ""}
                 {display("primaryPhone") ? <Phone /> : ""}
                 {display("address") ? <Address /> : ""}

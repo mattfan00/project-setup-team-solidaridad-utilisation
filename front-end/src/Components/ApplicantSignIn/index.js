@@ -10,7 +10,7 @@ import axios from "axios"
 
 const ApplicantSignIn = () => {
     const history = useHistory()
-    const { setApplicantUser } = useContext(AuthContext)
+    const { setApplicantUser, setApplicantToken } = useContext(AuthContext)
     const [form] = Form.useForm()
     const { job } = useParams()
 
@@ -20,8 +20,14 @@ const ApplicantSignIn = () => {
             console.log(validateResult)
 
             // sign in the user
-            const result = await axios.get("http://localhost:4000/applicant/user")
-            setApplicantUser(result.data)
+            const result = await axios.post("http://localhost:4000/applicant/user/login", {
+                email: validateResult.email,
+                password: validateResult.password,
+            })
+
+            setApplicantUser(result.data.user)
+            setApplicantToken(result.data.token)
+            localStorage.setItem("applicantToken", result.data.token)
 
             history.push(`/application/amazon/${job}`)
         } catch (errorInfo) {
@@ -55,12 +61,12 @@ const ApplicantSignIn = () => {
                             }}
                         >
                             <Form.Item
-                                label="Username"
-                                name="username"
+                                label="Email"
+                                name="email"
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input your username!',
+                                        message: 'Please input your email!',
                                     },
                                 ]}
                             >
