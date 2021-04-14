@@ -8,6 +8,7 @@ router.get("/applicant/user", (req, res) => {
     "id": "1",
     "createdAt": "2021-03-17T16:19:51.802Z",
     "email": "test@test.com",
+    "password": "Test1234",
     "details": {
       "name": {
         "firstName": "Matthew",

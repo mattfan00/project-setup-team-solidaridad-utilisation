@@ -7,7 +7,8 @@ let applicantUser = new mongoose.Schema({
     default: Date.now
   },
   email: String,
-  details: []
+  password: String,
+  details: {}
 })
 
 module.exports = mongoose.model("applicantUser", applicantUser)
