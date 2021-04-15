@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 let ApplicantSchema = new mongoose.Schema({
     firstname: String,
     lastname: String,
-    details: [],
+    details: Object,
     education: [],
     workExperience: [],
     projects: [],
