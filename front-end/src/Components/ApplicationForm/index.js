@@ -57,6 +57,7 @@ const ApplicationForm = (props) => {
       console.log(details)
       // auto fill in fields
       detailsForm.setFieldsValue({...details})
+      setJobs(details.workExperience)
       message.success("Autofilled applicable fields")
     }
   }, [applicantUser])
@@ -79,29 +80,46 @@ const ApplicationForm = (props) => {
 
   const submitApplication = async () => {
     // Add backend logic for submitting applications
+    const results = await Promise.all([
+      detailsForm.validateFields(),
+      extraForm.validateFields()
+    ])
+
+    const { name, ...details } = results[0]
+    const extraQuestions = Object.keys(results[1]).map((key) => {
+      return {
+        question: key,
+        answer: results[1][key]
+      }
+    })
+    console.log("first name", name.firstName)
+    console.log("last name", name.lastName)
+    console.log("Applicant Details: ", details)
+    console.log("WorkExperience: ", jobs)
+    console.log("Education: ", education)
+    console.log("Extra Questions: ", extraQuestions)
+
+    await axios.post("http://localhost:4000/newapplication",{
+      jobId: job,
+      newApplication: {
+        firstName: name.firstName,
+        lastName: name.lastName,
+        details: details,
+        workExperience: jobs,
+        education: education,
+        extraQuestions: extraQuestions
+      }
+    })
 
     history.push(`/application/${company}/${job}/success`)
   }
 
   const check = async () => {
     try {
-      const results = await Promise.all([
+      await Promise.all([
         detailsForm.validateFields(),
         extraForm.validateFields()
       ])
-      console.log("Applicant Details: ", results[0])
-      console.log("Jobs: ", jobs)
-      console.log("Education: ", education)
-      console.log("Extra Questions: ", results[1])
-
-      await axios.post("http://localhost:4000/newapplication",{
-        newApplication: {
-          details: results[0],
-          jobs: jobs,
-          education: education,
-          extraQuestions: results[1]
-        }
-      })
 
       setConfirm(true)
     } catch (errorInfo) {
@@ -122,7 +140,7 @@ const ApplicationForm = (props) => {
           <Title level={4}>Applicant Details</Title>
           <Form form={detailsForm} layout="vertical">
             <Row gutter={[16]}>
-                {display("resume") ? <Resume /> : ""}
+                {/* {display("resume") ? <Resume /> : ""} */}
                 <Name />
                 {display("email") ? <Email /> : ""}
                 {display("primaryPhone") ? <Phone /> : ""}
