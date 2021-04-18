@@ -36,10 +36,11 @@ router.post("/resume-upload", upload.array("file", 1), (req, res, next) => {
 const applications = []
 
 router.post("/newapplication",(req, res)=>{
-  console.log(req.body.newApplication); 
-  
+  console.log(req.body.jobId)
+  console.log(req.body.newApplication);
+
   //post the newApplication to the database
-  applications.push(req.body.newApplication); 
+  applications.push(req.body.newApplication);
 
   res.json(req.body.newApplication)
 })
