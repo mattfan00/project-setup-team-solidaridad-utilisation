@@ -84,6 +84,7 @@ app.post("/application", async (req, res) => {
 
 
 
+
 const ApplicantUser = require("./models/applicantUserSchema")
 
 app.post("/users/new", async (req, res) => {
