@@ -6,7 +6,6 @@ const morgan = require("morgan")
 const mongoose = require("mongoose")
 require('dotenv').config()
 
-
 app.use(morgan("dev"))
 app.use(express.static("public"))
 
@@ -61,14 +60,43 @@ app.get("/", (req, res) => {
   })
 })
 
-// const Job = require("./models/jobDetails")
 
-// app.post("/jobs/new", async (req, res) => {
-//   const newJob = await Job.create(req.body)
+// *** jobDetails - CRUD Operations ***
+const Job = require("./models/jobDetails")
+// jobDetails: Create
+app.post("/jobs/new", async (req, res) => {
+  const newJob = await Job.create(req.body)
 
-//   res.json(newJob)
-// })
+  res.json(newJob)
+})
+// jobDetails: Read
+app.get("/jobs/:id", async (req, res) => {
+  const foundJob = await Job.findOne({"_id": req.params.id})
 
+  res.json(foundJob)
+})
+// jobDetails: Update
+app.put("/jobs/:id", (req, res) => {
+  console.log(req.body)
+
+  Job.findOneAndUpdate(
+    {"_id": req.params.id},
+    {
+      $set: {
+        status: req.body.changeStatus
+      }
+    }
+  )
+})
+// jobDetails: Delete
+app.delete("/jobs/:id", (req, res) => {
+  Job.findByIdAndDelete(
+    {"_id": req.params.id}
+  )
+})
+
+
+// *** Application ***
 const Application = require("./models/applicant.js")
 
 app.post("/application", async (req, res) => {
@@ -77,13 +105,7 @@ app.post("/application", async (req, res) => {
   res.json(newApplication)
 })
 
-
-
-
-
-
-
-
+// *** User (Applicant-side) ***
 const ApplicantUser = require("./models/applicantUserSchema")
 
 app.post("/users/new", async (req, res) => {
