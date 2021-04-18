@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './index.css';
@@ -39,17 +39,22 @@ const normFile = (e) => {
   };
 
 const BusinessEditProfile = () => {
+  const [fileList, setFileList] = useState([])
   const onFinish = async(values) => {
     console.log(values);
     
-    await axios.post("http://localhost:4000/updateprofile",{
-      businessProfile: {
-        description: values.user.description, 
-        introduction: values.user.introduction
-      }
-    })
-    
+
+    let formData = new FormData(); 
+    formData.append("logo", fileList[0].originFileObj)
+    formData.append("description", values.user.description)
+    formData.append("industry", values.user.industry)
+
+    await axios.post("http://localhost:4000/updateprofile", formData)
   };
+
+  const handleUpload = ({ fileList }) => {
+    setFileList(fileList)
+  }
 
   return (
     <div class="profile-main">
@@ -80,8 +85,8 @@ const BusinessEditProfile = () => {
 
         <Row><Col offset={5}>Upload a logo</Col></Row>
         <Form.Item>
-            <Form.Item valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-            <Upload.Dragger name="files" action="/upload.do">
+            <Form.Item name="logo" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
+            <Upload.Dragger name="files" onChange={handleUpload} beforeUpload={() => false}>
                 <p className="ant-upload-drag-icon">
                 <InboxOutlined />
                 </p>
