@@ -75,17 +75,15 @@ app.get("/jobs/:id", async (req, res) => {
 
   res.json(foundJob)
 })
-// jobDetails: Update
-app.put("/jobs/:id", (req, res) => {
-  console.log(req.body)
+// jobDetails: Update (the status of the job)
+app.put("/jobs/:id", async (req, res) => {
+  console.log(req.body.changeStatus)
+  console.log(req.params.id)
 
-  Job.findOneAndUpdate(
+  await Job.findOneAndUpdate(
     {"_id": req.params.id},
-    {
-      $set: {
-        status: req.body.changeStatus
-      }
-    }
+    {status: req.body.changeStatus},
+    {returnOriginal: false}
   )
 })
 // jobDetails: Delete
