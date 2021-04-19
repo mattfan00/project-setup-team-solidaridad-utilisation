@@ -43,7 +43,7 @@ router.get("/updateprofle/:id", getBusiness, (req, res) => {
 })
 
 //create one
-router.post("/updateprofile",(req, res)=>{
+router.post("/updateprofile", async (req, res)=>{
     console.log(req.body.businessProfile)
     const business = new Business({
       //name: name when created, 
