@@ -103,6 +103,7 @@ app.post("/application", async (req, res) => {
   res.json(newApplication)
 })
 
+
 // *** User (Applicant-side) ***
 const ApplicantUser = require("./models/applicantUserSchema")
 
