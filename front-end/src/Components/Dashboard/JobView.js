@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { useHistory, Link } from "react-router-dom"
+import { useHistory, Link, useParams } from "react-router-dom"
 import {Card, Dropdown, Menu} from "antd"
 import './styles.css'
 import {DownOutlined} from '@ant-design/icons'
@@ -10,6 +10,7 @@ const JobView = (props) => {
     const [status, setStatus] = useState("Open")
     const [loading, setLoading] = useState(true)
     const [job, setJob] = useState()
+    const { jobID, applicantID } = useParams()
 
     useEffect(async () => {
         const alljobs = await axios('http://localhost:4000/business/alljobs')
@@ -99,7 +100,7 @@ const JobView = (props) => {
                         extra={
                             <Link
                                 to={{
-                                    pathname:'/business/dashboard/applications/applicant',
+                                    pathname:`/business/dashboard/applications/${applicantID}`,
                                     aboutProps:applicant
                                 }}
                             >

@@ -1,10 +1,12 @@
 import React from "react"
+import {useParams} from "react-router-dom"
 import {Card} from "antd"
 import './styles.css'
 import { useHistory, Link } from "react-router-dom"
 
 const ActiveJob = (props) => {
     const history = useHistory()
+    const {jobID} = useParams()
 
     console.log(props.job)
 
@@ -15,7 +17,7 @@ const ActiveJob = (props) => {
             extra={
                 <Link
                     to={{
-                        pathname:'/business/dashboard/applications',
+                        pathname:`/business/dashboard/job/${jobID}/applications`,
                         aboutProps:props.job
                     }}
                 >
