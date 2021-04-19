@@ -69,23 +69,9 @@ app.get("/", (req, res) => {
 //   res.json(newJob)
 // })
 
-const Application = require("./models/applicant.js")
-
-app.post("/application", async (req, res) => {
-  const newApplication = await Application.create(req.body)
-
-  res.json(newApplication)
-})
-
-
-
-
-
-
-
-
 
 const ApplicantUser = require("./models/applicantUserSchema")
+const { reset } = require("nodemon")
 
 app.post("/users/new", async (req, res) => {
   const newApplicantUser = await ApplicantUser.create(req.body)
