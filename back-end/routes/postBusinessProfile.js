@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const multer = require("multer")
+const Business = require('../models/business')
 
 /*
 // enable logo uploads saved to disk in a directory named 'public/resumes'
@@ -35,13 +36,16 @@ router.post("/logo-upload", upload.array("logo", 1), (req, res, next) => {
   })
 */
 
-//simulate the database for now
-const companies = []
 
 router.post("/updateprofile",(req, res)=>{
     console.log(req.body.businessProfile)
-    companies.push(req.body.businessProfile)
-    res.json(req.body.businessProfile); 
+    const business = new Business({
+      //name: req.body.businessProfile.name, 
+      description: req.body.businessProfile.description, 
+      introduction: req.body.businessProfile.introduction
+    })
+    
+    res.json(req.body.businessProfile)
 })
 
 

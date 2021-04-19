@@ -1,10 +1,7 @@
 const mongoose = require("mongoose")
 
 const BusinessSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  }, 
+  name: String,
   description: String, 
   introduction: String
 })
