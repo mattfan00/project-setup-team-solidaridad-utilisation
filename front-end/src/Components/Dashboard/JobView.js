@@ -15,25 +15,22 @@ const JobView = (props) => {
     const jobID = document.URL.split("/")[5]
 
     useEffect(async () => {
+        const job = await axios("http://localhost:4000/business/jobDetails/" + jobID)
+        setStatus(job.data.status)
+    }, [])
+    useEffect(async () => {
         const result = await axios("http://localhost:4000/business/jobDetails/" + jobID)
         console.log(result.data)
         setJob(result.data)
         setLoading(false)
     }, []);
 
-    useEffect(async () => {
-        // console.log("http://localhost:4000/business/jobDetails/" + job.id)
-        const job = await axios("http://localhost:4000/business/jobDetails/" + jobID)
-        setStatus(job.data.status)
-    }, [])
-
     console.log(job)
-
     
 
     function handleMenuClick(i) {
         if(i.key == '1'){
-            axios.put(("http://localhost:4000/jobs/" + job._id), {
+            axios.put(("http://localhost:4000/jobs/" + jobID), {
                 changeStatus: "Open"
             }).then((res) => {
                 setStatus('Open')
@@ -42,7 +39,7 @@ const JobView = (props) => {
             })
         } 
         else if(i.key == '2'){
-            axios.put(("http://localhost:4000/jobs/" + job._id), {
+            axios.put(("http://localhost:4000/jobs/" + jobID), {
                 changeStatus: "Closed"
             }).then((res) => {
                 setStatus('Closed')
@@ -51,7 +48,7 @@ const JobView = (props) => {
             })        
         }
         else{
-            axios.put(("http://localhost:4000/jobs/" + job._id), {
+            axios.put(("http://localhost:4000/jobs/" + jobID), {
                 changeStatus: "Archived"
             }).then((res) => {
                 setStatus('Archived')
