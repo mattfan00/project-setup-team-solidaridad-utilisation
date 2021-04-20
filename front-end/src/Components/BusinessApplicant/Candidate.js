@@ -22,7 +22,6 @@ const Candidate = (props) => {
 
     useEffect(async () => {
         const result = await axios(`http://localhost:4000/application/${applicantID}`)
-        console.log("hello")
         console.log(result.data)
         setApplicant(result.data)
         setLoading(false)
@@ -77,11 +76,6 @@ const Candidate = (props) => {
                         header="Education" 
                         key='1'
                     >
-                        <Education
-                            education="NYU"
-                            year='2020'
-                            description='I paid them 70k/year'
-                        />
                         {applicant.education && applicant.education.map(education =>
                             <Education
                                 education = "NYU"
@@ -94,12 +88,6 @@ const Candidate = (props) => {
                         header="Work Experience" 
                         key='2'
                     >
-                        <WorkExperience 
-                            company="MLM"
-                            role="friendly guy"
-                            year="2000"
-                            desc="worked there"
-                        />
                         {applicant.workExperience && applicant.workExperience.map(w =>
                             <WorkExperience 
                                 company={w.company}
