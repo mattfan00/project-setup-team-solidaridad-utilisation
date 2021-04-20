@@ -1,13 +1,12 @@
-const express = require("express")
-const router = express.Router()
+GET http://127.0.0.1:4000/
 
-// Gets the current applicant user logged in
-router.get("/applicant/user", (req, res) => {
-  // hardcoded for now
-  const user = {
-    "id": "1",
+###
+
+POST http://127.0.0.1:4000/users/new
+
+{
     "createdAt": "2021-03-17T16:19:51.802Z",
-    "email": "test@test.com",
+    "email": "js7771@nyu.edu",
     "details": {
       "name": {
         "firstName": "Matthew",
@@ -39,9 +38,4 @@ router.get("/applicant/user", (req, res) => {
         }
       ]
     }
-  }
-
-  res.json(user)
-})
-
-module.exports = router
+}

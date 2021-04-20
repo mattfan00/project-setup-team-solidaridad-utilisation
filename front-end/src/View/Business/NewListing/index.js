@@ -15,7 +15,8 @@ const { Step } = Steps;
 const NewListing = () => {
 
   const [description, setDescription] = useState({
-    jobDescription: "Software Engineer",
+    jobTitle: "Software Engineer",
+    jobDescription: "",
     jobType: ["full-time"],
     jobLocation: "NYC",
     desiredSkills: "Java"
@@ -27,7 +28,7 @@ const NewListing = () => {
     {
       label: "Why do you want to join?",
       type: "multiline"
-    } 
+    }
   ]);
 
   const updateDescription = (newDescription) => {
@@ -57,19 +58,23 @@ const NewListing = () => {
 
   const check = async () => {
     try {
-      await axios.post("http://localhost:4000/business/newjob", {
-        newJob: {
-          description: description.jobDescription,
+        const createdJob = {
+          company: "amazon",
+          jobTitle: description.jobTitle,
           type: description.jobType,
           location: description.jobLocation,
-          skills: description.desiredSkills,
+          status: "Open",
+          applicantCount: 0,
           fields: common,
+          description: description.jobDescription,
+          skills: description.desiredSkills,
           extraQuestions: extra
         }
-      })
+        await axios.post("http://localhost:4000/jobs/new", 
+        createdJob
+      )}
 
-
-    } catch (errorInfo) {
+      catch (errorInfo) {
       console.log('Failed:', errorInfo);
       message.error("Please fill out all of the required fields");
     }
@@ -79,13 +84,13 @@ const NewListing = () => {
     check();
   }
 
-  
+
   const steps = [
     {
       title: 'Job Description',
       content: (
-        <JobDescription 
-          handleNextButton={handleNextButton} 
+        <JobDescription
+          handleNextButton={handleNextButton}
           updateDescription={updateDescription}
           description={description}
         />
@@ -94,8 +99,8 @@ const NewListing = () => {
     {
       title: 'Common Elements',
       content: (
-        <CommonElements 
-          handleNextButton={handleNextButton} 
+        <CommonElements
+          handleNextButton={handleNextButton}
           handleBackButton={handleBackButton}
           updateCommon={updateCommon}
           common={common}
@@ -105,7 +110,7 @@ const NewListing = () => {
     {
       title: 'Add Extra Questions',
       content: (
-        <ExtraQuestions 
+        <ExtraQuestions
           handleBackButton={handleBackButton}
           updateExtra={updateExtra}
           extra={extra}
@@ -118,11 +123,11 @@ const NewListing = () => {
     //   content: <Preview />
     // },
   ];
-  
+
   return (
     <>
       <Header></Header>
-      
+
       <Steps className="steps" current={current}>
         {steps.map(item => (
           <Step title = {item.title}/>

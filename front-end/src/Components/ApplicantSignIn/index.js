@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { useHistory } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import './index.css'
 import { Card, Col, Button, Form, Input, Checkbox, message } from 'antd';
 import {
@@ -10,8 +10,9 @@ import axios from "axios"
 
 const ApplicantSignIn = () => {
     const history = useHistory()
-    const { setApplicantUser } = useContext(AuthContext)
+    const { setApplicantUser, setApplicantToken } = useContext(AuthContext)
     const [form] = Form.useForm()
+    const { job } = useParams()
 
     const signin = async () => {
         try {
@@ -19,10 +20,16 @@ const ApplicantSignIn = () => {
             console.log(validateResult)
 
             // sign in the user
-            const result = await axios.get("http://localhost:4000/applicant/user")
-            setApplicantUser(result.data)
+            const result = await axios.post("http://localhost:4000/applicant/user/login", {
+                email: validateResult.email,
+                password: validateResult.password,
+            })
 
-            history.push("/application/amazon/1")
+            setApplicantUser(result.data.user)
+            setApplicantToken(result.data.token)
+            localStorage.setItem("applicantToken", result.data.token)
+
+            history.push(`/application/amazon/${job}`)
         } catch (errorInfo) {
             console.log('Failed:', errorInfo)
             message.error("Please fill out all of the required fields")
@@ -44,7 +51,7 @@ const ApplicantSignIn = () => {
                 <Card>
                     <div className="Applicant-SignIn-Words">
                         <h3>Express Apply</h3>
-                        <p className="NoAccount">Don't have an account? <Link to="/application/signup">Sign up</Link></p>
+                        <p className="NoAccount">Don't have an account? <Link to={`/application/signup/job/${job}`}>Sign up</Link></p>
                     </div>
                         <Form
                             {...layout}
@@ -54,12 +61,12 @@ const ApplicantSignIn = () => {
                             }}
                         >
                             <Form.Item
-                                label="Username"
-                                name="username"
+                                label="Email"
+                                name="email"
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input your username!',
+                                        message: 'Please input your email!',
                                     },
                                 ]}
                             >

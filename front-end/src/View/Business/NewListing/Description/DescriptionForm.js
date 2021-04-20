@@ -16,12 +16,13 @@ const DescriptionForm = ({
 
 
     const [values, setValues] = useState({
+        jobTitle: description.jobTitle,
         jobDescription: description.jobDescription,
         jobType: description.jobType,
         jobLocation: description.jobLocation,
         desiredSkills: description.desiredSkills
     })
-    
+
 
 
     const update = async (e) => {
@@ -29,6 +30,7 @@ const DescriptionForm = ({
             console.log('Success:', values);
             updateDescription(
                 {
+                    jobTitle: values.jobTitle,
                     jobDescription: values.jobDescription,
                     jobType: values.jobType,
                     jobLocation: values.jobLocation,
@@ -48,7 +50,12 @@ const DescriptionForm = ({
                 <Form
                     name="basic"
                     onFinish={update}
-                >      
+                >
+                    <Form.Item name="jobTitle">
+                        <h3 className="description-text">Job Title</h3>
+                        <Input defaultValue={description.jobTitle} onChange={(e)=>setValues({...values, jobTitle: e.target.value})} rows={4}/>
+                    </Form.Item>
+
                     <Form.Item name="jobDescription">
                         <h3 className="description-text">Job Description</h3>
                         <Input.TextArea defaultValue={description.jobDescription} onChange={(e)=>setValues({...values, jobDescription: e.target.value})} rows={4}/>
@@ -90,7 +97,7 @@ const DescriptionForm = ({
                     <Form.Item name="desiredSkills">
                         <h3 className="description-text">Desired Skills</h3>
                         <Input.TextArea defaultValue={description.desiredSkills} onChange={(e)=>setValues({...values, desiredSkills: e.target.value})} rows={1} />
-                    </Form.Item>          
+                    </Form.Item>
 
                     <Divider></Divider>
 

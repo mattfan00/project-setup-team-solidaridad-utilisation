@@ -11,26 +11,26 @@ const JobView = (props) => {
     const [loading, setLoading] = useState(true)
     const [job, setJob] = useState()
 
+    // Using document.URL to parse the current URL to get the current job's ID
+    const jobID = document.URL.split("/")[5]
+
     useEffect(async () => {
-        const alljobs = await axios('http://localhost:4000/business/alljobs')
-        setStatus(alljobs.data[0].status)
+        const job = await axios("http://localhost:4000/business/jobDetails/" + jobID)
+        setStatus(job.data.status)
     }, [])
-    
     useEffect(async () => {
-        const result = await axios("http://localhost:4000/business/jobDetails")
+        const result = await axios("http://localhost:4000/business/jobDetails/" + jobID)
         console.log(result.data)
         setJob(result.data)
         setLoading(false)
     }, []);
+
     console.log(job)
     
 
     function handleMenuClick(i) {
-        console.log(i.key)
-
         if(i.key == '1'){
-            axios.post('http://localhost:4000/business/alljobs', {
-                targetID: 0,
+            axios.put(("http://localhost:4000/jobs/" + jobID), {
                 changeStatus: "Open"
             }).then((res) => {
                 setStatus('Open')
@@ -39,8 +39,7 @@ const JobView = (props) => {
             })
         } 
         else if(i.key == '2'){
-            axios.post('http://localhost:4000/business/alljobs', {
-                targetID: 0,
+            axios.put(("http://localhost:4000/jobs/" + jobID), {
                 changeStatus: "Closed"
             }).then((res) => {
                 setStatus('Closed')
@@ -49,8 +48,7 @@ const JobView = (props) => {
             })        
         }
         else{
-            axios.post('http://localhost:4000/business/alljobs', {
-                targetID: 0,
+            axios.put(("http://localhost:4000/jobs/" + jobID), {
                 changeStatus: "Archived"
             }).then((res) => {
                 setStatus('Archived')
@@ -91,9 +89,9 @@ const JobView = (props) => {
                         </Dropdown>                    
                     </div>
                 }
-            >
-                   
-                {job.applicants && job.applicants.map((applicant) => (
+                >
+                
+                {job.Applicants && job.Applicants.map((applicant) => (
                     <Card
                         title={applicant.firstname + ' '+applicant.lastname}
                         extra={
@@ -113,11 +111,11 @@ const JobView = (props) => {
                                 {console.log({applicant})}
                             </div>
                             <div className="recentWork">
-                                {applicant.work[0].company}
+                                {applicant.workExperience}
                             </div>
                         </div>
                     </Card>
-                ))}
+                 ))}
             </Card>
             ) : ""}
         </div>

@@ -6,7 +6,6 @@ const morgan = require("morgan")
 const mongoose = require("mongoose")
 require('dotenv').config()
 
-
 app.use(morgan("dev"))
 app.use(express.static("public"))
 
@@ -23,7 +22,7 @@ mongoose.connect(process.env.MONGO_URI, {
 })
 
 // A section to import all of the routes in ./routes
-const getApplicantUser = require("./routes/getApplicantUser")
+const applicantUser = require("./routes/applicantUser")
 const getBusinessJobs = require("./routes/getBusinessJobs")
 const getJobDetails = require("./routes/businessRoutes/getJobDetails")
 const getApplicationDetails = require("./routes/businessRoutes/getApplicationDetails")
@@ -39,7 +38,7 @@ const getBusinessUser = require("./routes/businessRoutes/getBusinessUser")
 const exampleRoute = require("./routes/exampleRoute")
 
 // This uses one of the imported routes
-app.use(getApplicantUser)
+app.use(applicantUser)
 app.use(getJobDetails)
 app.use(getApplicationDetails)
 app.use(getCompanyDetails)
@@ -61,6 +60,23 @@ app.get("/", (req, res) => {
   })
 })
 
+// *** Application ***
+const Application = require("./models/applicant.js")
 
+app.post("/application", async (req, res) => {
+  const newApplication = await Application.create(req.body)
+
+  res.json(newApplication)
+})
+
+
+// *** User (Applicant-side) ***
+const ApplicantUser = require("./models/applicantUserSchema")
+
+app.post("/users/new", async (req, res) => {
+  const newApplicantUser = await ApplicantUser.create(req.body)
+
+  res.json(newApplicantUser)
+})
 
 module.exports = app
