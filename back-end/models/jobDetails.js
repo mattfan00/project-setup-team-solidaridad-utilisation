@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 let JobSchema = new mongoose.Schema({
+    company: String,
     jobTitle: String, 
     status: String,
     applicantCount: Number,
