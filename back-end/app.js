@@ -60,40 +60,6 @@ app.get("/", (req, res) => {
   })
 })
 
-
-// *** jobDetails - CRUD Operations ***
-const Job = require("./models/jobDetails")
-// jobDetails: Create
-app.post("/jobs/new", async (req, res) => {
-  const newJob = await Job.create(req.body)
-
-  res.json(newJob)
-})
-// jobDetails: Read
-app.get("/jobs/:id", async (req, res) => {
-  const foundJob = await Job.findOne({"_id": req.params.id})
-
-  res.json(foundJob)
-})
-// jobDetails: Update (the status of the job)
-app.put("/jobs/:id", async (req, res) => {
-  console.log(req.body.changeStatus)
-  console.log(req.params.id)
-
-  await Job.findOneAndUpdate(
-    {"_id": req.params.id},
-    {status: req.body.changeStatus},
-    {returnOriginal: false}
-  )
-})
-// jobDetails: Delete
-app.delete("/jobs/:id", (req, res) => {
-  Job.findByIdAndDelete(
-    {"_id": req.params.id}
-  )
-})
-
-
 // *** Application ***
 const Application = require("./models/applicant.js")
 
