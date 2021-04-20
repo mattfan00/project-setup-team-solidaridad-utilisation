@@ -1,9 +1,18 @@
-import React, {useState} from "react";
-import {Card, Menu, Dropdown} from "antd";
+import React, {useState, useEffect} from "react";
+import {Card, Dropdown} from "antd";
 import ActiveJob from "./ActiveJob";
 import menu from './SortMenu';
+import axios from 'axios'
 
 const JobList = (props) => {
+
+    const [Jobs, setJobs] = useState([])
+
+    useEffect(async () => {
+        const currJobs = await axios('http://localhost:4000/business/alljobs')
+        setJobs(currJobs)
+    }, [])
+    
     return (
         <div>
             {props.pizza}
@@ -15,6 +24,7 @@ const JobList = (props) => {
                     >
                         <a>
                             Sort by
+                            {Jobs.statusText}
                         </a>
                     </Dropdown>
                     

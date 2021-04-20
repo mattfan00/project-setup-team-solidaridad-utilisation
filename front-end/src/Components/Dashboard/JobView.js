@@ -19,7 +19,7 @@ const JobView = (props) => {
     
     useEffect(async () => {
         const result = await axios("http://localhost:4000/business/jobDetails")
-        console.log(result.data)
+        //console.log(result.data)
         setJob(result.data)
         setLoading(false)
     }, []);

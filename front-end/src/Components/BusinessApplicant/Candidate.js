@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { useParams } from "react-router-dom"
 import {Card, Collapse, Dropdown, Menu} from 'antd'
 import './styles.css'
 import Education from './Education.js'
@@ -7,6 +8,7 @@ import Project from './Projects.js'
 import Responses from './Responses'
 import {DownOutlined} from '@ant-design/icons'
 import axios from 'axios'
+import Application from '../../View/Applicant/Application'
 
 const {Panel} = Collapse;
 
@@ -16,8 +18,11 @@ const Candidate = (props) => {
     const [loading, setLoading] = useState(true)
     const [applicant, setApplicant] = useState()
 
+    const { applicantID }  = useParams()
+
     useEffect(async () => {
-        const result = await axios("http://localhost:4000/business/application/details")
+        const result = await axios(`http://localhost:4000/application/${applicantID}`)
+        console.log("hello")
         console.log(result.data)
         setApplicant(result.data)
         setLoading(false)
@@ -53,7 +58,7 @@ const Candidate = (props) => {
         <div className="content">
             {!loading ? (
                 <Card
-                title={applicant.firstname +' '+ applicant.lastname}
+                title={applicant.firstName +' '+ applicant.lastName}
                 extra = {
                     <Dropdown
                         overlay={menu()}
@@ -72,19 +77,30 @@ const Candidate = (props) => {
                         header="Education" 
                         key='1'
                     >
-                        
-                        {console.log(applicant.work)}
-                        <Education 
-                            education={applicant.education} 
-                            year={applicant.gradYear} 
-                            description={applicant.edDescription}
+                        <Education
+                            education="NYU"
+                            year='2020'
+                            description='I paid them 70k/year'
                         />
+                        {applicant.education && applicant.education.map(education =>
+                            <Education
+                                education = "NYU"
+                                year = '2020'
+                                description = 'I paid them 70k/year'
+                            />
+                        )}
                     </Panel>
                     <Panel 
                         header="Work Experience" 
                         key='2'
                     >
-                        {applicant.work && applicant.work.map(w =>
+                        <WorkExperience 
+                            company="MLM"
+                            role="friendly guy"
+                            year="2000"
+                            desc="worked there"
+                        />
+                        {applicant.workExperience && applicant.workExperience.map(w =>
                             <WorkExperience 
                                 company={w.company}
                                 role={w.role}
@@ -93,7 +109,7 @@ const Candidate = (props) => {
                             />
                         )}
                     </Panel>
-                    {console.log(applicant.projects[0])}
+
                     <Panel 
                         header="Projects" 
                         key='4'
@@ -111,9 +127,9 @@ const Candidate = (props) => {
                         header="Responses" 
                         key='3'
                     >
-                        {console.log(applicant.responses[0])}
+                        {console.log(applicant.extraQuestions)}
                         <Responses 
-                            questions={applicant.responses[0]} 
+                            questions={applicant.extraQuestions[0]} 
                         />
                     </Panel>                
                 </Collapse>
