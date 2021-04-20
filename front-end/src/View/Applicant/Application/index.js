@@ -48,10 +48,8 @@ const Application = () => {
 
   return (
     <>
-      <div className="header">
-        {/* Application Header */}
-        {<ApplicantHeader />}
-      </div>
+      {/* Application Header */}
+      {<ApplicantHeader />}
 
       <div className="applicant-main">
         <div className="application">

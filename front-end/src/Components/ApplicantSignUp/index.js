@@ -11,7 +11,7 @@ import { AuthContext } from "../../Context/AuthContext";
 const ApplicantSignUp = () => {
     const history = useHistory()
     const [form] = Form.useForm()
-    const { setApplicantUser } = useContext(AuthContext)
+    const { setApplicantUser, setApplicantToken } = useContext(AuthContext)
     const { job } = useParams()
 
     const signup = async () => {
@@ -19,9 +19,14 @@ const ApplicantSignUp = () => {
             const validateResult = await form.validateFields()
             console.log(validateResult)
 
-            // sign in the user
-            const result = await axios.get("http://localhost:4000/applicant/user")
-            setApplicantUser(result.data)
+            // sign up the user
+            const result = await axios.post("http://localhost:4000/applicant/user/register", {
+                email: validateResult.email,
+                password: validateResult.password,
+            })
+            setApplicantUser(result.data.user)
+            setApplicantToken(result.data.token)
+            localStorage.setItem("applicantToken", result.data.token)
 
             history.push(`/application/amazon/${job}`)
         } catch (errorInfo) {
@@ -55,12 +60,12 @@ const ApplicantSignUp = () => {
                             }}
                         >
                             <Form.Item
-                                label="Username"
-                                name="username"
+                                label="Email"
+                                name="email"
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input your username!',
+                                        message: 'Please input your email!',
                                     },
                                 ]}
                             >
