@@ -133,8 +133,8 @@ const ApplicationForm = (props) => {
   }
 
   return (
-    <>
-      <Space direction="vertical" size="large">
+    <div>
+      <Space direction="vertical" size="large" style={{ width: "100%" }}>
         <Card>
           {/* <h2>Applicant Details</h2> */}
           <Title level={4}>Applicant Details</Title>
@@ -195,7 +195,7 @@ const ApplicationForm = (props) => {
       </Space>
 
       <ConfirmSubmit showForm={confirm} close={closeConfirmation} />
-    </>
+    </div>
   )
 }
 

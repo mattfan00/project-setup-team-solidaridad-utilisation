@@ -34,7 +34,7 @@ const ExtraQuestions = ({
   const update = () => {
     try {
         console.log('Success:', questions);
-        showModal();
+        // showModal();
     } catch (errorInfo) {
         console.log('Failed:', errorInfo);
     }
@@ -52,13 +52,13 @@ const ExtraQuestions = ({
 
 
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const showModal = () => {
-    setIsModalVisible(true);
-  }
-  const handleOk = () => {
-    setIsModalVisible(false);
-  }
+  // const [isModalVisible, setIsModalVisible] = useState(false);
+  // const showModal = () => {
+  //   setIsModalVisible(true);
+  // }
+  // const handleOk = () => {
+  //   setIsModalVisible(false);
+  // }
 
   return (
     <div className="gridContainer">
@@ -95,24 +95,24 @@ const ExtraQuestions = ({
               {questions.map( (question, i) => (
                 ( question.type === 'singleLine'  ?
                   <>
-                    <Input 
+                    <Input
                       onChange={(e) => {
                         question.label = e.target.value;
                         const newQuestions = [...questions];
                         newQuestions[i] = question;
                         setQuestions(newQuestions);
-                      }} 
-                      placeholder='Write question here' 
+                      }}
+                      placeholder='Write question here'
                       bordered={false}
                       value={questions[i].label}
                     ></Input>
-                    <Input placeholder='Input' /> 
+                    <Input placeholder='Input' />
                   </>
                 : "" ) ||
 
                 ( question.type === 'multiline'  ?
                 <>
-                  <Input 
+                  <Input
                     onChange={(e) => {
                       question.label = e.target.value;
                       const newQuestions = [...questions];
@@ -129,31 +129,31 @@ const ExtraQuestions = ({
 
                 ( question.type === 'date' ?
                 <>
-                  <Input 
+                  <Input
                     onChange={(e) => {
                       question.label = e.target.value;
                       const newQuestions = [...questions];
                       newQuestions[i] = question;
                       setQuestions(newQuestions);
                     }}
-                    placeholder='Write question here' 
+                    placeholder='Write question here'
                     bordered={false}
                     value={questions[i].label}
                   ></Input>
                   <DatePicker></DatePicker>
                 </>
-                : "" ) || 
+                : "" ) ||
 
                 ( question.type === 'yesNo' ?
                 <>
-                  <Input 
+                  <Input
                     onChange={(e) => {
                       question.label = e.target.value;
                       const newQuestions = [...questions];
                       newQuestions[i] = question;
                       setQuestions(newQuestions);
                     }}
-                    placeholder='Write question here' 
+                    placeholder='Write question here'
                     bordered={false}
                     value={questions[i].label}
                   ></Input>
@@ -165,29 +165,28 @@ const ExtraQuestions = ({
         </div>
         </Card>
       </Space>
-      
+
       <div></div>
     <Button type="default" onClick={updateBack} size="medium" style={{ backgroundColor:"white", borderColor:"white" }}>
         Back
     </Button>
 
 
-    <Button type="primary"  size="medium" 
+    <Button type="primary"  size="medium"
       onClick={()=>{
-          update(); 
-          check(); 
+          // update();
+          check();
       }}
       style={{ backgroundColor:"#5D68EC", borderColor:"#5D68EC" }}>
         Submit
     </Button>
 
 
-    <Modal visible = {isModalVisible} onOk={handleOk}>
+    {/* <Modal visible = {isModalVisible} onOk={handleOk}>
       <Result status="success" title="Your job is live!"/>
-    </Modal>
-
+    </Modal> */}
     </div>
   );
 };
-  
+
   export default ExtraQuestions

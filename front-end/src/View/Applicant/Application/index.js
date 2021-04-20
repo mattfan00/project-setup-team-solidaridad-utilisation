@@ -27,19 +27,14 @@ const Application = () => {
   useEffect(async () => {
     // get the application details
     try {
-
-      const resultCompany = await axios.get(`http://localhost:4000/company/${company}`)
-      const resultJob = await axios.get(`http://localhost:4000/business/allJobs`)
+      const resultJob = await axios.get(`http://localhost:4000/jobs/${job}`)
+      const resultCompany = await axios.get(`http://localhost:4000/company/${resultJob.data.company}`)
 
       setLoading(false)
 
+      setApplication(resultJob.data)
       setCompanyDetails(resultCompany.data)
 
-      console.log(resultJob.data[job])
-
-      if (resultJob.data) {
-        setApplication(resultJob.data[job])
-      }
     } catch(err) {
       // cannot retrieve application
       setLoading(false)

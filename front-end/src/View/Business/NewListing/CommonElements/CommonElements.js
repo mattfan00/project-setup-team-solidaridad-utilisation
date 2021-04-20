@@ -16,7 +16,7 @@ const CommonElements = ({
     const commonO = common;
 
     const [values, setValues] = useState(commonO);
-    
+
 
     // const checked = (value) => {
     //     if (common.indexOf(value) > -1) {
@@ -57,11 +57,11 @@ const CommonElements = ({
                     <Form.Item initialValue={common} name="checkbox-group">
                         <Checkbox.Group onChange={(value)=>setValues(value)}>
                             <Row gutter={[0,16]}>
-                                <Col span={12}>
+                                {/* <Col span={12}>
                                 <Checkbox value="name" style={{ lineHeight: '32px' }}>
                                     Name
                                 </Checkbox>
-                                </Col>
+                                </Col> */}
                                 <Col span={12}>
                                 <Checkbox value="gender" style={{ lineHeight: '32px' }}>
                                     Gender
@@ -131,7 +131,7 @@ const CommonElements = ({
                         Back
                         </Button>
 
-                        <Button type="primary" htmlType="submit" size="medium" 
+                        <Button type="primary" htmlType="submit" size="medium"
                         style={{ backgroundColor:"#5D68EC", borderColor:"#5D68EC" }}>
                         Next
                         </Button>
