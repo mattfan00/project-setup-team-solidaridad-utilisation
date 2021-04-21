@@ -86,9 +86,10 @@ const Candidate = (props) => {
                     >
                         {applicant.education && applicant.education.map(education =>
                             <Education
-                                education = "NYU"
-                                year = '2020'
-                                description = 'I paid them 70k/year'
+                                education = {education.school}
+                                level = {education.level}
+                                year = {education.startDate + " " + education.endDate}
+                                description = {education.major}
                             />
                         )}
                     </Panel>
