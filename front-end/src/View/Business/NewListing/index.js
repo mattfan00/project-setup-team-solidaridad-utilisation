@@ -6,6 +6,7 @@ import CommonElements from "./CommonElements/index"
 import ExtraQuestions from "./ExtraQuestions/index"
 
 import axios from "axios"
+
 import TextArea from "antd/lib/input/TextArea"
 // import Preview from "./Preview/Preview"
 
@@ -45,8 +46,6 @@ const NewListing = () => {
 
   const [current, setCurrent] = useState(0);
 
-
-
   const handleNextButton = () => {
     setCurrent(current + 1);
   }
@@ -54,7 +53,6 @@ const NewListing = () => {
   const handleBackButton = () => {
     setCurrent(current - 1);
   }
-
 
   const check = async () => {
     try {
