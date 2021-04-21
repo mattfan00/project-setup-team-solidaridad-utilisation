@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {Card} from "antd"
+import { Card, Space} from "antd"
 import axios from 'axios'
 import './styles.css'
 import { useHistory, Link } from "react-router-dom"
@@ -9,8 +9,8 @@ const ActiveJob = (props) => {
     const [job, setJob] = useState()
 
     const id_url_active_job = 'http://localhost:4000/jobs/' + props.job._id
-    const new_pathname = '/business/dashboard/' + props.job._id
-    
+    const new_pathname = '/business/dashboard/job/' + props.job._id
+
     useEffect(async () => {
         const result = await axios(id_url_active_job);
         setJob(result.data)
@@ -20,16 +20,32 @@ const ActiveJob = (props) => {
         <Card
             type="inner"
             title={props.job.jobTitle}
-            extra={
-                <Link
-                    to={{
-                        pathname:`/business/dashboard/job/${props.job._id}`,
-                        aboutProps:props.job
-                    }}
-                >
-                    View Applications
-                </Link>
-            }
+            extra={(
+                <Space size="large">
+                    <Link
+                        to={`/application/${props.job._id}`}
+                    >
+                        View Live Page
+                    </Link>
+                    <Link
+                        to={{
+                            pathname: `/business/dashboard/job/${props.job._id}`,
+                            aboutProps:props.job
+                        }}
+                    >
+                        View Applications
+                    </Link>
+                </Space>
+            )}
+            // extra={
+            //     <Link
+            //         to={{
+            //             aboutProps:props.job
+            //         }}
+            //     >
+            //         View Applications
+            //     </Link>
+            // }
         >
             <div className="counter">
                 {props.job.applicantCount} Applicants

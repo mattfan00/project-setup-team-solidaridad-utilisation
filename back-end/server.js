@@ -1,4 +1,3 @@
-const express = require('express')
 const server = require("./app")
 
 const port = 4000
