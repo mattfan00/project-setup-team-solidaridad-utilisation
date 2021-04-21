@@ -37,7 +37,8 @@ router.post("/jobs/new", async (req, res) => {
 })
 // jobDetails: Read
 router.get("/jobs/:id", async (req, res) => {
-  const foundJob = await Job.findOne({"_id": req.params.id})
+  const foundJob = await Job.findOne({"_id": req.params.id}).populate("applicants")
+  console.log(foundJob)
 
   res.json(foundJob)
 })
