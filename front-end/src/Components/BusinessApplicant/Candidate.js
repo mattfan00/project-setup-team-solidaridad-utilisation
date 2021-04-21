@@ -5,10 +5,10 @@ import './styles.css'
 import Education from './Education.js'
 import WorkExperience from './WorkExperience'
 import Project from './Projects.js'
-import Responses from './Responses'
+import ExtraQ from './ExtraQ'
+import Details from './Details'
 import {DownOutlined} from '@ant-design/icons'
 import axios from 'axios'
-import Application from '../../View/Applicant/Application'
 
 const {Panel} = Collapse;
 
@@ -72,6 +72,14 @@ const Candidate = (props) => {
                     bordered={false}
                     defaultActiveKey={['1']}
                 >
+                    <Panel
+                        header='Details'
+                        key='1'
+                    >
+                        <Details
+                            Details = {applicant.details}
+                        />
+                    </Panel>
                     <Panel 
                         header="Education" 
                         key='1'
@@ -116,8 +124,8 @@ const Candidate = (props) => {
                         key='3'
                     >
                         {console.log(applicant.extraQuestions)}
-                        <Responses 
-                            questions={applicant.extraQuestions[0]} 
+                        <ExtraQ
+                            extraQ={applicant.extraQuestions}
                         />
                     </Panel>                
                 </Collapse>
