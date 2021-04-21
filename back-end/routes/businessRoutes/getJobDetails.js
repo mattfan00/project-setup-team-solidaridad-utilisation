@@ -1,100 +1,19 @@
 const express = require('express')
 const router = express.Router()
 
-router.get("/business/jobDetails", (req, res) => {
-    const job = {
-        "jobID": "0",
-        "applicantCount": 3,
-        "description": "Product",
-        "status": "Open",
-        "jobTitle": "Sales Manager",
-        "applicants": [
-            {
-                "id": "1",
-                "firstname": "Ricardo",
-                "lastname": "Bogisich",
-                "education": "New York University",
-                "gradYear": "2022",
-                "edDescription": "CS major",
-                "work": [
-                    {
-                        "id": "1",
-                        "company": "Kiehn - Effertz",
-                        "role": "Senior Integration Representative",
-                        "description": "Did stuff Global",
-                        "year": "2019"
-                    },
-                    {
-                        "company": "Yahoo!",
-                        "year": "2016",
-                        "role": "CEO",
-                        "description": "met with shareholders to discuss company goals"
-                    }
-                ],
-                "projects": [
-                    {
-                        "id": "1",
-                        "title": "bandwidth",
-                        "description": "Corporate",
-                        "year": "2020"
-                    }
-                ],
-                "responses": [
-                    {
-                        "commonQ": [
-                            {
-                                "question": "Email",
-                                "answer": "apple@oranges.com"
-                            },
-                            {
-                                "question": "Veteran",
-                                "answer": "No"
-                            }
-                        ],
-                        "extraQ": [
-                            {
-                                "question": "Which bear is best?",
-                                "answer": "black bear"
-                            },
-                            {
-                                "question": "Why are you interested in working with us?",
-                                "answer": "banana"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "id": "1",
-                "firstname": "Alva",
-                "lastname": "Prosacco",
-                "education": "Hartmann - Hodkiewicz",
-                "work": [
-                    {
-                        "company": "Google",
-                        "year": "2013"
-                    }
-                ],
-                "projects": [],
-                "responses": []
-            },
-            {
-                "id": "2",
-                "firstname": "Fritz",
-                "lastname": "Lakin",
-                "education": "Weimann - Harber",
-                "work": [
-                    {
-                        "company": "Yahoo!",
-                        "year": "2019"
-                    }
-                ],
-                "projects": [],
-                "responses": []
-            }
-        ]
-    }
-    res.json(job)
+const AllJobs = require("../../models/jobDetails");
+
+router.get("/business/jobDetails/", async (req, res) => {
+    const foundJob = await AllJobs.findOne({"_id": "6075035287a07ed72daf186e"})
+
+    res.json(foundJob)
 })
+
+router.get("/business/jobDetails/:id", async (req, res) => {
+    const foundJob = await AllJobs.findOne({"_id": req.params.id})
+
+    res.json(foundJob)
+})
+
 
 module.exports = router

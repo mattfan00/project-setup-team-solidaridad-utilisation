@@ -39,6 +39,9 @@ const App = () => {
             <Route exact path="/business/signin" component={BusinessSignin} />
             <Route exact path="/business/dashboard/job/:jobID/applicant/:applicantID" component={BusinessApplicant}/>
             <Route exact path="/business/dashboard/job/:jobID" component={BusinessJobView}/>
+            <Route exact path="/business/dashboard/applications/applicant" component={BusinessApplicant}/>
+            {/* <Route exact path="/business/dashboard/applications" component={BusinessJobView}/> */}
+            <Route exact path="/business/dashboard/:id" component={BusinessJobView}/>
             <Route exact path="/business/dashboard" component={BusinessDashboard} />
             <Route exact path="/business/newlisting/description" component={BusinessNewListing} />
             {/* <Route exact path="/business/newlisting/description" component={DescriptionForm} /> */}

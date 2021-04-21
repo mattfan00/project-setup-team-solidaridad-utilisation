@@ -58,20 +58,23 @@ const NewListing = () => {
 
   const check = async () => {
     try {
-      await axios.post("http://localhost:4000/business/newjob", {
-        newJob: {
+        const createdJob = {
+          company: "amazon",
           jobTitle: description.jobTitle,
-          description: description.jobDescription,
           type: description.jobType,
           location: description.jobLocation,
-          skills: description.desiredSkills,
+          status: "Open",
+          applicantCount: 0,
           fields: common,
+          description: description.jobDescription,
+          skills: description.desiredSkills,
           extraQuestions: extra
         }
-      })
+        await axios.post("http://localhost:4000/jobs/new", 
+        createdJob
+      )}
 
-
-    } catch (errorInfo) {
+      catch (errorInfo) {
       console.log('Failed:', errorInfo);
       message.error("Please fill out all of the required fields");
     }

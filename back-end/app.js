@@ -6,7 +6,6 @@ const morgan = require("morgan")
 const mongoose = require("mongoose")
 require('dotenv').config()
 
-
 app.use(morgan("dev"))
 app.use(express.static("public"))
 
@@ -61,15 +60,17 @@ app.get("/", (req, res) => {
   })
 })
 
-// const Job = require("./models/jobDetails")
+// *** Application ***
+const Application = require("./models/applicant.js")
 
-// app.post("/jobs/new", async (req, res) => {
-//   const newJob = await Job.create(req.body)
+app.post("/application", async (req, res) => {
+  const newApplication = await Application.create(req.body)
 
-//   res.json(newJob)
-// })
+  res.json(newApplication)
+})
 
 
+// *** User (Applicant-side) ***
 const ApplicantUser = require("./models/applicantUserSchema")
 const { reset } = require("nodemon")
 
