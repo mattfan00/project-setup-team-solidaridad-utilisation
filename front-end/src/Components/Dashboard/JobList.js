@@ -24,7 +24,6 @@ const JobList = (props) => {
                     >
                         <a>
                             Sort by
-                            {Jobs.statusText}
                         </a>
                     </Dropdown>
                     

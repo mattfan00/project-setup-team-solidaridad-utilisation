@@ -82,7 +82,7 @@ const Candidate = (props) => {
                     </Panel>
                     <Panel 
                         header="Education" 
-                        key='1'
+                        key='2'
                     >
                         {applicant.education && applicant.education.map(education =>
                             <Education
@@ -95,7 +95,7 @@ const Candidate = (props) => {
                     </Panel>
                     <Panel 
                         header="Work Experience" 
-                        key='2'
+                        key='3'
                     >
                         {applicant.workExperience && applicant.workExperience.map(w =>
                             <WorkExperience 
@@ -122,7 +122,7 @@ const Candidate = (props) => {
 
                     <Panel 
                         header="Responses" 
-                        key='3'
+                        key='5'
                     >
                         {console.log(applicant.extraQuestions)}
                         <ExtraQ
