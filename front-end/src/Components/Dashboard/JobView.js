@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { useHistory, Link } from "react-router-dom"
+import { useHistory, Link, useParams } from "react-router-dom"
 import {Card, Dropdown, Menu} from "antd"
 import './styles.css'
 import {DownOutlined} from '@ant-design/icons'
@@ -10,23 +10,22 @@ const JobView = (props) => {
     const [status, setStatus] = useState("Open")
     const [loading, setLoading] = useState(true)
     const [job, setJob] = useState()
+    const { jobID } = useParams()
 
     // Using document.URL to parse the current URL to get the current job's ID
-    const jobID = document.URL.split("/")[5]
+    //const jobID = document.URL.split("/")[5]
 
+    // useEffect(async () => {
+    //     const job = await axios("http://localhost:4000/business/jobDetails/" + jobID)
+    //     setStatus(job.data.status)
+    // }, [])
     useEffect(async () => {
-        const job = await axios("http://localhost:4000/business/jobDetails/" + jobID)
-        setStatus(job.data.status)
-    }, [])
-    useEffect(async () => {
-        const result = await axios("http://localhost:4000/business/jobDetails/" + jobID)
+        const result = await axios("http://localhost:4000/jobs/" + jobID)
         console.log(result.data)
+        setStatus(result.data.status) 
         setJob(result.data)
         setLoading(false)
     }, []);
-
-    console.log(job)
-    
 
     function handleMenuClick(i) {
         if(i.key == '1'){
@@ -89,15 +88,14 @@ const JobView = (props) => {
                         </Dropdown>                    
                     </div>
                 }
-                >
-                
-                {job.Applicants && job.Applicants.map((applicant) => (
+                >               
+                {job.applicants && job.applicants.map((applicant) => (
                     <Card
-                        title={applicant.firstname + ' '+applicant.lastname}
+                        title={applicant.firstName + ' ' + applicant.lastName}
                         extra={
                             <Link
                                 to={{
-                                    pathname:'/business/dashboard/applications/applicant',
+                                    pathname:`/business/dashboard/applications/${applicant._id}`,
                                     aboutProps:applicant
                                 }}
                             >

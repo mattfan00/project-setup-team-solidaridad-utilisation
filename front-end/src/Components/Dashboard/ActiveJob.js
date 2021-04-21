@@ -16,8 +16,6 @@ const ActiveJob = (props) => {
         setJob(result.data)
       }, []);
 
-    console.log(props.job)
-
     return (
         <Card
             type="inner"
@@ -25,7 +23,7 @@ const ActiveJob = (props) => {
             extra={
                 <Link
                     to={{
-                        pathname: new_pathname,
+                        pathname:`/business/dashboard/job/${props.job._id}`,
                         aboutProps:props.job
                     }}
                 >

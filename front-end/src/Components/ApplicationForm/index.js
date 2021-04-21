@@ -99,16 +99,13 @@ const ApplicationForm = (props) => {
     console.log("Education: ", education)
     console.log("Extra Questions: ", extraQuestions)
 
-    await axios.post("http://localhost:4000/newapplication",{
-      jobId: job,
-      newApplication: {
-        firstName: name.firstName,
-        lastName: name.lastName,
-        details: details,
-        workExperience: jobs,
-        education: education,
-        extraQuestions: extraQuestions
-      }
+    await axios.post(`http://localhost:4000/job/${job}/application/new`,{
+      firstName: name.firstName,
+      lastName: name.lastName,
+      details: details,
+      workExperience: jobs,
+      education: education,
+      extraQuestions: extraQuestions
     })
 
     history.push(`/application/${company}/${job}/success`)
