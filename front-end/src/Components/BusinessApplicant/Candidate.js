@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react'
+import { useParams } from "react-router-dom"
 import {Card, Collapse, Dropdown, Menu} from 'antd'
 import './styles.css'
 import Education from './Education.js'
 import WorkExperience from './WorkExperience'
 import Project from './Projects.js'
-import Responses from './Responses'
+import ExtraQ from './ExtraQ'
+import Details from './Details'
 import {DownOutlined} from '@ant-design/icons'
 import axios from 'axios'
 
@@ -16,8 +18,10 @@ const Candidate = (props) => {
     const [loading, setLoading] = useState(true)
     const [applicant, setApplicant] = useState()
 
+    const { applicantID }  = useParams()
+
     useEffect(async () => {
-        const result = await axios("http://localhost:4000/business/application/details")
+        const result = await axios(`http://localhost:4000/application/${applicantID}`)
         console.log(result.data)
         setApplicant(result.data)
         setLoading(false)
@@ -53,7 +57,7 @@ const Candidate = (props) => {
         <div className="content">
             {!loading ? (
                 <Card
-                title={applicant.firstname +' '+ applicant.lastname}
+                title={applicant.firstName +' '+ applicant.lastName}
                 extra = {
                     <Dropdown
                         overlay={menu()}
@@ -68,23 +72,32 @@ const Candidate = (props) => {
                     bordered={false}
                     defaultActiveKey={['1']}
                 >
-                    <Panel 
-                        header="Education" 
+                    <Panel
+                        header='Details'
                         key='1'
                     >
-                        
-                        {console.log(applicant.work)}
-                        <Education 
-                            education={applicant.education} 
-                            year={applicant.gradYear} 
-                            description={applicant.edDescription}
+                        <Details
+                            Details = {applicant.details}
                         />
                     </Panel>
                     <Panel 
-                        header="Work Experience" 
+                        header="Education" 
                         key='2'
                     >
-                        {applicant.work && applicant.work.map(w =>
+                        {applicant.education && applicant.education.map(education =>
+                            <Education
+                                education = {education.school}
+                                level = {education.level}
+                                year = {education.startDate + " " + education.endDate}
+                                description = {education.major}
+                            />
+                        )}
+                    </Panel>
+                    <Panel 
+                        header="Work Experience" 
+                        key='3'
+                    >
+                        {applicant.workExperience && applicant.workExperience.map(w =>
                             <WorkExperience 
                                 company={w.company}
                                 role={w.role}
@@ -93,7 +106,7 @@ const Candidate = (props) => {
                             />
                         )}
                     </Panel>
-                    {console.log(applicant.projects[0])}
+
                     <Panel 
                         header="Projects" 
                         key='4'
@@ -109,11 +122,11 @@ const Candidate = (props) => {
 
                     <Panel 
                         header="Responses" 
-                        key='3'
+                        key='5'
                     >
-                        {console.log(applicant.responses[0])}
-                        <Responses 
-                            questions={applicant.responses[0]} 
+                        {console.log(applicant.extraQuestions)}
+                        <ExtraQ
+                            extraQ={applicant.extraQuestions}
                         />
                     </Panel>                
                 </Collapse>

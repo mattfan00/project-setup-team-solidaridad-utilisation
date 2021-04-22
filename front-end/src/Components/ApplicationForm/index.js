@@ -99,16 +99,13 @@ const ApplicationForm = (props) => {
     console.log("Education: ", education)
     console.log("Extra Questions: ", extraQuestions)
 
-    await axios.post("http://localhost:4000/newapplication",{
-      jobId: job,
-      newApplication: {
-        firstName: name.firstName,
-        lastName: name.lastName,
-        details: details,
-        workExperience: jobs,
-        education: education,
-        extraQuestions: extraQuestions
-      }
+    await axios.post(`http://localhost:4000/job/${job}/application/new`,{
+      firstName: name.firstName,
+      lastName: name.lastName,
+      details: details,
+      workExperience: jobs,
+      education: education,
+      extraQuestions: extraQuestions
     })
 
     history.push(`/application/${company}/${job}/success`)
@@ -133,8 +130,8 @@ const ApplicationForm = (props) => {
   }
 
   return (
-    <>
-      <Space direction="vertical" size="large">
+    <div>
+      <Space direction="vertical" size="large" style={{ width: "100%" }}>
         <Card>
           {/* <h2>Applicant Details</h2> */}
           <Title level={4}>Applicant Details</Title>
@@ -195,7 +192,7 @@ const ApplicationForm = (props) => {
       </Space>
 
       <ConfirmSubmit showForm={confirm} close={closeConfirmation} />
-    </>
+    </div>
   )
 }
 

@@ -71,7 +71,8 @@ app.post("/application", async (req, res) => {
 
 
 // *** User (Applicant-side) ***
-const ApplicantUser = require("./models/BusinessUserSchema")
+const ApplicantUser = require("./models/applicantUserSchema")
+const { reset } = require("nodemon")
 
 app.post("/users/new", async (req, res) => {
   const newApplicantUser = await ApplicantUser.create(req.body)

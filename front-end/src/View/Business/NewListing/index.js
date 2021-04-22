@@ -1,6 +1,7 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import Header from '../../../Components/BusinessHeader/Header'
-import { message, Steps } from "antd"
+import { message, Steps, Modal, Result } from "antd"
 import JobDescription from "./Description/index"
 import CommonElements from "./CommonElements/index"
 import ExtraQuestions from "./ExtraQuestions/index"
@@ -13,7 +14,7 @@ const { Step } = Steps;
 
 
 const NewListing = () => {
-
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [description, setDescription] = useState({
     jobTitle: "Software Engineer",
     jobDescription: "",
@@ -30,6 +31,7 @@ const NewListing = () => {
       type: "multiline"
     }
   ]);
+  const [createdJob, setCreatedJob] = useState(null)
 
   const updateDescription = (newDescription) => {
     setDescription(newDescription);
@@ -58,7 +60,7 @@ const NewListing = () => {
 
   const check = async () => {
     try {
-        const createdJob = {
+        let newJob= {
           company: "amazon",
           jobTitle: description.jobTitle,
           type: description.jobType,
@@ -70,14 +72,25 @@ const NewListing = () => {
           skills: description.desiredSkills,
           extraQuestions: extra
         }
-        await axios.post("http://localhost:4000/jobs/new", 
-        createdJob
-      )}
+        newJob = await axios.post("http://localhost:4000/jobs/new",
+          newJob
+        )
+
+        setCreatedJob(newJob.data)
+        showModal()
+    }
 
       catch (errorInfo) {
       console.log('Failed:', errorInfo);
       message.error("Please fill out all of the required fields");
     }
+  }
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  }
+  const handleOk = () => {
+    setIsModalVisible(false);
   }
 
   const finalCheck = () => {
@@ -134,6 +147,14 @@ const NewListing = () => {
         ))}
       </Steps>
       <div> {steps[current].content}</div>
+
+      <Modal visible = {isModalVisible} onOk={handleOk}>
+        <Result
+          status="success"
+          title="Your job is live!"
+          subTitle={<Link to={`/application/${createdJob?._id}`}>View your job</Link>}
+        />
+      </Modal>
     </>
   )
 }

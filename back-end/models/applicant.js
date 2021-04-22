@@ -1,8 +1,8 @@
 const mongoose = require("mongoose")
 
 let ApplicantSchema = new mongoose.Schema({
-    firstname: String,
-    lastname: String,
+    firstName: String,
+    lastName: String,
     details: Object,
     education: [],
     workExperience: [],
