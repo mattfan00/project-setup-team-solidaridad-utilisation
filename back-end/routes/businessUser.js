@@ -1,10 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const businessAuth = require("../../middleware/businessAuth")
+const express = require("express")
+const router = express.Router()
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
+const businessAuth = require("../middleware/businessAuth")
 
-const BusinessUser = require("../../models/businessUserSchema")
+const BusinessUser = require("../models/businessUserSchema")
 
 const SALT_ROUNDS = 10
 
