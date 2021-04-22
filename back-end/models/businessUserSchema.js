@@ -11,7 +11,7 @@ let businessUser = new mongoose.Schema({
   details: {}
 })
 
-// removes the password field whenever sending back an business user object
+// removes the password field whenever sending back an applicant user object
 businessUser.set('toJSON', {
   transform: function(doc, ret, opt) {
       delete ret['password']
