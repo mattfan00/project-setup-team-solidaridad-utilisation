@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-let applicantUser = new mongoose.Schema({
+let businessUser = new mongoose.Schema({
   createdAt: {
     type: Date,
     required: true,
@@ -11,12 +11,12 @@ let applicantUser = new mongoose.Schema({
   details: {}
 })
 
-// removes the password field whenever sending back an applicant user object
-applicantUser.set('toJSON', {
+// removes the password field whenever sending back an business user object
+businessUser.set('toJSON', {
   transform: function(doc, ret, opt) {
       delete ret['password']
       return ret
   }
 })
 
-module.exports = mongoose.model("applicantUser", applicantUser)
+module.exports = mongoose.model("businessUser", businessUser)
