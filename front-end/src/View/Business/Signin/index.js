@@ -34,7 +34,7 @@ const Signin = () => {
       const validateResult = await form.validateFields();
       console.log(validateResult);
 
-      const result = await axios.get("http://localhost:4000/business/user/login", {
+      const result = await axios.post("http://localhost:4000/business/user/login", {
         email: validateResult.email,
         password: validateResult.password,
       })
