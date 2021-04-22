@@ -23,7 +23,6 @@ import ApplicationSignin from "./View/Applicant/Signin"
 import ApplicationSignup from "./View/Applicant/Signup"
 
 import { AuthProvider } from "./Context/AuthContext"
-import { BusinessAuthProvider } from "./Context/BusinessAuthContext"
 
 const App = () => {
   return (

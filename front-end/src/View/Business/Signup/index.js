@@ -7,7 +7,6 @@ import { Row, Col} from 'antd';
 
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { BusinessAuthContext } from "../../../Context/BusinessAuthContext";
 
 import { formatCountdown } from 'antd/lib/statistic/utils';
 import { AuthContext } from '../../../Context/AuthContext';
@@ -38,7 +37,7 @@ const Signup = () => {
       const validateResult = await form.validateFields();
       console.log(validateResult);
 
-      const result = await axios.get("http://localhost:4000/business/user/register", {
+      const result = await axios.post("http://localhost:4000/business/user/register", {
         email: validateResult.email,
         password: validateResult.password
       })
