@@ -25,4 +25,3 @@ router.get("/business/user", (req, res) => {
 })
 
 module.exports = router
- 

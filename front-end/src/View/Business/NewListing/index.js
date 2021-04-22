@@ -1,6 +1,7 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import Header from '../../../Components/BusinessHeader/Header'
-import { message, Steps } from "antd"
+import { message, Steps, Modal, Result } from "antd"
 import JobDescription from "./Description/index"
 import CommonElements from "./CommonElements/index"
 import ExtraQuestions from "./ExtraQuestions/index"
@@ -14,7 +15,7 @@ const { Step } = Steps;
 
 
 const NewListing = () => {
-
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [description, setDescription] = useState({
     jobTitle: "Software Engineer",
     jobDescription: "",
@@ -31,6 +32,7 @@ const NewListing = () => {
       type: "multiline"
     }
   ]);
+  const [createdJob, setCreatedJob] = useState(null)
 
   const updateDescription = (newDescription) => {
     setDescription(newDescription);
@@ -56,23 +58,37 @@ const NewListing = () => {
 
   const check = async () => {
     try {
-      await axios.post("http://localhost:4000/business/newjob", {
-        newJob: {
+        let newJob= {
+          company: "amazon",
           jobTitle: description.jobTitle,
-          description: description.jobDescription,
           type: description.jobType,
           location: description.jobLocation,
-          skills: description.desiredSkills,
+          status: "Open",
+          applicantCount: 0,
           fields: common,
+          description: description.jobDescription,
+          skills: description.desiredSkills,
           extraQuestions: extra
         }
-      })
+        newJob = await axios.post("http://localhost:4000/jobs/new",
+          newJob
+        )
 
+        setCreatedJob(newJob.data)
+        showModal()
+    }
 
-    } catch (errorInfo) {
+      catch (errorInfo) {
       console.log('Failed:', errorInfo);
       message.error("Please fill out all of the required fields");
     }
+  }
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  }
+  const handleOk = () => {
+    setIsModalVisible(false);
   }
 
   const finalCheck = () => {
@@ -129,6 +145,14 @@ const NewListing = () => {
         ))}
       </Steps>
       <div> {steps[current].content}</div>
+
+      <Modal visible = {isModalVisible} onOk={handleOk}>
+        <Result
+          status="success"
+          title="Your job is live!"
+          subTitle={<Link to={`/application/${createdJob?._id}`}>View your job</Link>}
+        />
+      </Modal>
     </>
   )
 }
