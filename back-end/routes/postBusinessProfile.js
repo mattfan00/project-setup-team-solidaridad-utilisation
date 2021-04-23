@@ -1,6 +1,8 @@
 const express = require("express")
 const router = express.Router()
 const multer = require("multer")
+const business = require("../models/business")
+const Business = require('../models/business')
 
 /*
 // enable logo uploads saved to disk in a directory named 'public/resumes'
@@ -35,15 +37,71 @@ router.post("/logo-upload", upload.array("logo", 1), (req, res, next) => {
   })
 */
 
-//simulate the database for now
-const companies = []
-
-router.post("/updateprofile",(req, res)=>{
-    console.log(req.body.businessProfile)
-    companies.push(req.body.businessProfile)
-    res.json(req.body.businessProfile); 
+//get one
+router.get("/updateprofle/:id", getBusiness, (req, res) => {
+    res.send(res.business)
 })
 
+//create one
+router.post("/updateprofile", async (req, res)=>{
+    console.log(req.body.businessProfile)
+    const business = new Business({
+      //name: name when created, 
+      description: "", 
+      introduction: ""
+    })
+
+    try{
+      const newBusiness = await business.save()
+      //successfully create a project
+      res.status(201).json(newBusiness)
+    } catch(err){
+      res.status(400)
+    }
+})
+
+//update one
+router.patch('/:id', getBusiness, async (req, res) => {
+  if(req.body.businessProfile.description != null){
+    res.business.description = req.body.businessProfile.description
+
+  }
+  if(req.body.businessProfile.introduction != null){
+    res.business.introduction = req.body.businessProfile.introduction
+  }
+  try{
+    const updatedBusiness = await res.business.save()
+    res.json(updatedBusiness)
+  }
+  catch(err){
+    res.status(400)
+  }
+})
+
+//delete one
+router.delete('/updatedprofile/:id', getBusiness, async (req, res) => {
+  try {
+    await res.subscriber.remove()
+    res.json({message:'deleted subscriber'})
+  } catch(err){
+    res.status(500).json({message:err.message})
+  }
+})
+
+
+async function getBusiness(req, res, next){
+  try{
+    business = await Business.findById(req.params.id)
+    if(business == null){
+      return res.status(404).json({message:'cannot find business'})
+    }
+  }
+  catch(err){
+    return status(500).json({message: err.message})
+  }
+  res.business = business
+  next()
+}
 
 
 
