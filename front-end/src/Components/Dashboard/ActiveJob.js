@@ -37,18 +37,9 @@ const ActiveJob = (props) => {
                     </Link>
                 </Space>
             )}
-            // extra={
-            //     <Link
-            //         to={{
-            //             aboutProps:props.job
-            //         }}
-            //     >
-            //         View Applications
-            //     </Link>
-            // }
         >
             <div className="counter">
-                {props.job.applicantCount} Applicants
+                {props.job.applicants.length} Applicants
             </div>
             <div>
                 Status: {props.job.status}

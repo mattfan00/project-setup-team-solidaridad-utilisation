@@ -77,7 +77,7 @@ const JobView = (props) => {
                 extra = {
                     <div className="headerextra">
                         <div className="headCounter">
-                            Applications: {job.applicantCount}
+                            Applications: {job.applicants.length}
                         </div>
                         <Dropdown
                             overlay={menu()}
