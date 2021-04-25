@@ -1,27 +1,70 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const businessAuth = require("../../middleware/businessAuth")
+
+const BusinessUser = require("../../models/businessUserSchema")
+
+const SALT_ROUNDS = 10
 
 // Gets the current business user logged in
-router.get("/business/user", (req, res) => {
-  // hardcoded for now
-  const user = {
-    "id": "1",
-    "createdAt": "2021-04-01T21:23:51.802Z",
-    "email": "test@test.com",
-    "details": {
-      "name": {
-        "firstName": "Jo",
-        "lastName": "Ko"
-      },
-      "company": {
-          "name": "Amazon",
-          "employeeID": "idk2",
-          "description": "i guess it's alright here"
-      }
-    }
+router.get("/business/user", businessAuth, async (req, res) => {
+  console.log(req.businessUser)
+
+  const foundUser = await BusinessUser.findById(req.businessUser.id)
+
+  res.json(foundUser)
+})
+
+router.post("/business/user/register", async (req, res) => {
+  const { email, password } = req.body
+  const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS)
+
+  const existingUser = await BusinessUser.findOne({ email })
+  if (existingUser) {
+    return res.status(400).json("Email already in use")
   }
 
-  res.json(user);
+  const newUser = await BusinessUser.create({
+    email,
+    password: hashedPassword
+  })
+
+
+  const newJwt = jwt.sign({
+    id: newUser.id,
+    email: newUser.email
+  }, process.env.JWT_KEY)
+
+  res.json({
+    user: newUser,
+    token: newJwt
+  })
+})
+
+router.post("/business/user/login", async (req, res) => {
+  const { email, password } = req.body
+
+  const existingUser = await BusinessUser.findOne({ email })
+  if (!existingUser) {
+    return res.status(401).json("Invalid credentials")
+  }
+
+  const correctPassword = await bcrypt.compare(password, existingUser.password)
+  if (!correctPassword) {
+    return res.status(401).json("Invalid credentials")
+  }
+
+  const newJwt = jwt.sign({
+    id: existingUser.id,
+    email: existingUser.email
+  }, process.env.JWT_KEY)
+
+  res.json({
+    user: existingUser,
+    token: newJwt
+  })
 })
 
 module.exports = router

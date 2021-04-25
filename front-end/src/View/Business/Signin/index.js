@@ -27,21 +27,25 @@ const tailLayout = {
 const Signin = () => {
   const history = useHistory();
   const [form] = Form.useForm();
-  const { setBusinessUser } = useContext(AuthContext);
+  const { setBusinessUser, setBusinessToken } = useContext(AuthContext);
 
   const signin = async () => {
     try {
       const validateResult = await form.validateFields();
       console.log(validateResult);
 
-      const result = await axios.get("http://localhost:4000/business/user");
+      const result = await axios.post("http://localhost:4000/business/user/login", {
+        email: validateResult.email,
+        password: validateResult.password,
+      })
       setBusinessUser(result.data);
-
+      setBusinessToken(result.data.token);
+      localStorage.setItem("businessToken", result.data.token);
       history.push("/business/dashboard");
 
     } catch (errorInfo) {
       console.log('Failed:', errorInfo);
-      message.error("");
+      message.error("Please fill out all of the required fields");
     }
   }
 

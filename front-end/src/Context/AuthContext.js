@@ -7,9 +7,11 @@ const AuthProvider = (props) => {
   const [applicantUser, setApplicantUser] = useState(null)
   const [applicantToken, setApplicantToken] = useState(null)
   const [businessUser, setBusinessUser] = useState(null)
+  const [businessToken, setBusinessToken] = useState(null)
 
   useEffect(async () => {
     const localApplicantToken = localStorage.getItem("applicantToken")
+    const localBusinessToken = localStorage.getItem('businessToken');
 
     // if there is already a token stored in localStorage, used that to log the user in automatically
     if (localApplicantToken) {
@@ -26,6 +28,20 @@ const AuthProvider = (props) => {
       } catch(err) {}
     }
 
+    if (localBusinessToken) {
+      setBusinessToken(localBusinessToken)
+
+      try {
+        const result = await axios.get("http://localhost:4000/business/user", {
+          headers: {
+            "Authorization": `Bearer ${localBusinessToken}`
+          }
+        })
+        console.log("get business user in AuthContext")
+        setBusinessUser(result.data)
+      } catch(err) {}
+    }
+
   }, [])
 
   return (
@@ -38,6 +54,8 @@ const AuthProvider = (props) => {
 
         businessUser,
         setBusinessUser,
+        businessToken,
+        setBusinessToken
       }}
     >
       {props.children}
