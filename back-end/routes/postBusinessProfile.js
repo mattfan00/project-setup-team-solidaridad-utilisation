@@ -55,22 +55,24 @@ const upload = multer({
           cb(null, file.originalname); //use Date.now() for unique file keys
       }
   })
-});
+}),
 
 //simulate the database for now
 const companies = []
 
-router.post("/updateprofile", upload.single("logo"), (req, res)=>{
+router.post("/updateprofile", upload.single("logo"), (req, res)=> {
   companies.push({
     description: req.body.description,
     industry: req.body.industry,
     logo: req.file.location,
-  })
-  res.json("Successfully updated"); 
+  }
+})
+
 //get one
 router.get("/updateprofle/:id", getBusiness, (req, res) => {
     res.send(res.business)
 })
+
 
 //create one
 router.post("/updateprofile", async (req, res)=>{
