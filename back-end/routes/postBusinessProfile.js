@@ -57,18 +57,6 @@ const upload = multer({
   })
 })
 
-//simulate the database for now
-const companies = []
-
-router.post("/updateprofile", upload.single("logo"), (req, res)=> {
-  companies.push({
-    description: req.body.description,
-    industry: req.body.industry,
-    logo: req.file.location
-  })
-})
-
-
 //get one
 router.get("/updateprofle/:id", getBusiness, (req, res) => {
     res.send(res.business)
@@ -81,7 +69,7 @@ router.post("/updateprofile", async (req, res)=>{
     const business = new Business({
       //name: name when created, 
       description: "", 
-      introduction: ""
+      industry: ""
     })
 
     try{
@@ -94,13 +82,17 @@ router.post("/updateprofile", async (req, res)=>{
 })
 
 //update one
-router.patch('/:id', getBusiness, async (req, res) => {
-  if(req.body.businessProfile.description != null){
+router.patch('/:id', getBusiness,  upload.single("logo"), async (req, res) => {
+  if(req.body.description != null){
     res.business.description = req.body.description
 
   }
-  if(req.body.businessProfile.introduction != null){
+  if(req.body.industry != null){
     res.business.introduction = req.body.industry
+  }
+
+  if(req.file.location != null) {
+    res.business.logo = req.file.location
   }
   try{
     const updatedBusiness = await res.business.save()
