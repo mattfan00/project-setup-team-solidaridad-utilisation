@@ -1,9 +1,18 @@
 const express = require("express")
 const router = express.Router()
 const multer = require("multer")
+const aws = require('aws-sdk')
+const multerS3 = require('multer-s3')
 const business = require("../models/business")
 const Business = require('../models/business')
 
+aws.config.update({
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  region: process.env.AWS_BUCKET_REGION
+});
+
+const s3 = new aws.S3();
 /*
 // enable logo uploads saved to disk in a directory named 'public/resumes'
 const storage = multer.diskStorage({
@@ -37,10 +46,22 @@ router.post("/logo-upload", upload.array("logo", 1), (req, res, next) => {
   })
 */
 
+const upload = multer({
+  storage: multerS3({
+      s3: s3,
+      bucket: process.env.AWS_BUCKET_NAME,
+      key: function (req, file, cb) {
+          console.log(file);
+          cb(null, file.originalname); //use Date.now() for unique file keys
+      }
+  })
+})
+
 //get one
 router.get("/updateprofle/:id", getBusiness, (req, res) => {
     res.send(res.business)
 })
+
 
 //create one
 router.post("/updateprofile", async (req, res)=>{
@@ -48,7 +69,7 @@ router.post("/updateprofile", async (req, res)=>{
     const business = new Business({
       //name: name when created, 
       description: "", 
-      introduction: ""
+      industry: ""
     })
 
     try{
@@ -61,13 +82,17 @@ router.post("/updateprofile", async (req, res)=>{
 })
 
 //update one
-router.patch('/:id', getBusiness, async (req, res) => {
-  if(req.body.businessProfile.description != null){
-    res.business.description = req.body.businessProfile.description
+router.patch('/:id', getBusiness,  upload.single("logo"), async (req, res) => {
+  if(req.body.description != null){
+    res.business.description = req.body.description
 
   }
-  if(req.body.businessProfile.introduction != null){
-    res.business.introduction = req.body.businessProfile.introduction
+  if(req.body.industry != null){
+    res.business.introduction = req.body.industry
+  }
+
+  if(req.file.location != null) {
+    res.business.logo = req.file.location
   }
   try{
     const updatedBusiness = await res.business.save()
