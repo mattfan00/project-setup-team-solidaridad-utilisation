@@ -4,9 +4,7 @@ node_js:
   - '12'
 services:
   - mongodb
+  - aws
 before_script:
   - cd back-end
   - npm install
-  - mongo mydb_test --eval 'db.createUser({user:"user", pwd:"copply_password", roles:["readWrite"]});'
-env:
-  - MONGO_URI=mongodb+srv://user:copply_password@cluster0.gzhfd.mongodb.net/copply?retryWrites=true&w=majority
