@@ -8,7 +8,7 @@ const ApplicationView = (props) => {
         <div>
             <Header company={'Amazon'}/>
             <div className = "jobList">
-                <JobView job={props.location.aboutProps}/>
+                <JobView />
             </div>
         </div>
     )

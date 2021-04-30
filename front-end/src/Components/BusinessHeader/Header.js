@@ -8,7 +8,6 @@ import { AuthContext } from "../../Context/AuthContext"
 
 const Header = (props) => {
     const {businessUser, setBusinessUser, setBusinessToken } = useContext(AuthContext);
-    console.log(props.company)
 
     const logout = () => {
         setBusinessUser(null)
@@ -33,7 +32,7 @@ const Header = (props) => {
                     <Link
                     to='/business/dashboard'>
                         <img src={logo} alt="website logo" className="logo" />
-                    </Link>   
+                    </Link>
                 }
                 subTitle={props.company}
                 extra={[

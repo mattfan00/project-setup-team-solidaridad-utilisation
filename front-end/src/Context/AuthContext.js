@@ -38,6 +38,7 @@ const AuthProvider = (props) => {
           }
         })
         console.log("get business user in AuthContext")
+        console.log(result.data)
         setBusinessUser(result.data)
       } catch(err) {}
     }

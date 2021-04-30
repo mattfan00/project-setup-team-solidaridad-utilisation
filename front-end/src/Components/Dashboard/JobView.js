@@ -12,17 +12,10 @@ const JobView = (props) => {
     const [job, setJob] = useState()
     const { jobID } = useParams()
 
-    // Using document.URL to parse the current URL to get the current job's ID
-    //const jobID = document.URL.split("/")[5]
-
-    // useEffect(async () => {
-    //     const job = await axios("http://localhost:4000/business/jobDetails/" + jobID)
-    //     setStatus(job.data.status)
-    // }, [])
     useEffect(async () => {
         const result = await axios("http://localhost:4000/jobs/" + jobID)
-        console.log(result.data)
-        setStatus(result.data.status) 
+
+        setStatus(result.data.status)
         setJob(result.data)
         setLoading(false)
     }, []);
@@ -36,7 +29,7 @@ const JobView = (props) => {
             }).catch(err => {
                 console.log(err)
             })
-        } 
+        }
         else if(i.key == '2'){
             axios.put(("http://localhost:4000/jobs/" + jobID), {
                 changeStatus: "Closed"
@@ -44,7 +37,7 @@ const JobView = (props) => {
                 setStatus('Closed')
             }).catch(err => {
                 console.log(err)
-            })        
+            })
         }
         else{
             axios.put(("http://localhost:4000/jobs/" + jobID), {
@@ -53,13 +46,13 @@ const JobView = (props) => {
                 setStatus('Archived')
             }).catch(err => {
                 console.log(err)
-            })        
+            })
         }
     }
 
     const menu = () =>{
         return(
-            <Menu 
+            <Menu
                 onClick={handleMenuClick}
             >
                 <Menu.Item key='1'>Open</Menu.Item>
@@ -69,7 +62,7 @@ const JobView = (props) => {
         );
     }
 
-    return ( 
+    return (
         <div>
             {!loading ? (
                 <Card
@@ -85,19 +78,16 @@ const JobView = (props) => {
                             <a>
                                 {status} <DownOutlined/>
                             </a>
-                        </Dropdown>                    
+                        </Dropdown>
                     </div>
                 }
-                >               
+                >
                 {job.applicants && job.applicants.map((applicant) => (
                     <Card
                         title={applicant.firstName + ' ' + applicant.lastName}
                         extra={
                             <Link
-                                to={{
-                                    pathname:`/business/dashboard/applications/${applicant._id}`,
-                                    aboutProps:applicant
-                                }}
+                                to={`/business/dashboard/applications/${applicant._id}`}
                             >
                                 View Application
                             </Link>
@@ -106,7 +96,6 @@ const JobView = (props) => {
                         <div className="description">
                             <div className="education">
                                 {applicant.education}
-                                {console.log({applicant})}
                             </div>
                             <div className="recentWork">
                                 {applicant.workExperience}
@@ -117,7 +106,7 @@ const JobView = (props) => {
             </Card>
             ) : ""}
         </div>
-        
+
     )
 }
 

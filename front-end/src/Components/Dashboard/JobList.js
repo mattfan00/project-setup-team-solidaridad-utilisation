@@ -9,28 +9,27 @@ const JobList = (props) => {
     const [Jobs, setJobs] = useState([])
 
     useEffect(async () => {
-        const currJobs = await axios('http://localhost:4000/business/alljobs')
-        setJobs(currJobs)
+        const result = await axios('http://localhost:4000/business/alljobs')
+        setJobs(result.data)
     }, [])
-    
+
     return (
         <div>
-            {props.pizza}
-            <Card 
+            <Card
                 title="Active Jobs"
                 extra={
-                    <Dropdown 
+                    <Dropdown
                     overlay = {menu}
                     >
                         <a>
                             Sort by
                         </a>
                     </Dropdown>
-                    
+
                 }
             >
-                {props.jobs && props.jobs.map(job => (
-                    <ActiveJob job={job}></ActiveJob>
+                {Jobs && Jobs.map(job => (
+                    <ActiveJob key={job._id} job={job}></ActiveJob>
                 ))}
             </Card>
         </div>

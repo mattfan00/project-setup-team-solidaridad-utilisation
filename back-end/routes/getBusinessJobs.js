@@ -38,7 +38,6 @@ router.post("/jobs/new", async (req, res) => {
 // jobDetails: Read
 router.get("/jobs/:id", async (req, res) => {
   const foundJob = await Job.findOne({"_id": req.params.id}).populate("applicants")
-  console.log(foundJob)
 
   res.json(foundJob)
 })
@@ -68,7 +67,7 @@ router.delete("/jobs/:id", (req, res) => {
 
 //   res.json(createdJob)
 //   // // hard-coded as Amazon for now
-  
+
 
 //   // const alljobs = await AllJobs.find({company:'amazon'});
 
