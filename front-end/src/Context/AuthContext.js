@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from "react"
-import axios from "axios"
+import axios from "../axios"
 
 const AuthContext = createContext()
 
@@ -19,11 +19,7 @@ const AuthProvider = (props) => {
       setApplicantToken(localApplicantToken)
 
       try {
-        const result = await axios.get("http://localhost:4000/applicant/user", {
-          headers: {
-            "Authorization": `Bearer ${localApplicantToken}`
-          }
-        })
+        const result = await axios.get("/applicant/user")
         console.log("get applicant user in AuthContext")
         setApplicantUser(result.data)
       } catch(err) {}
@@ -33,11 +29,7 @@ const AuthProvider = (props) => {
       setBusinessToken(localBusinessToken)
 
       try {
-        const result = await axios.get("http://localhost:4000/business/user", {
-          headers: {
-            "Authorization": `Bearer ${localBusinessToken}`
-          }
-        })
+        const result = await axios.get("/business/user")
         console.log("get business user in AuthContext")
         setBusinessUser(result.data)
       } catch(err) {}

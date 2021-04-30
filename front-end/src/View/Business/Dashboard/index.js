@@ -23,11 +23,8 @@ const Dashboard = () => {
   }, [businessUser]);
 
   useEffect(async () => {
-    console.log(businessUser)
-
     const result = await axios(
-      'http://localhost:4000/business/alljobs', // hardcoded as Amazon
-      {page: 1}
+      'http://localhost:4000/business/alljobs'
     );
 
     setJobs(result.data)
@@ -36,7 +33,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Header company={"amazon"}/>
+      <Header company={businessUser.company}/>
       <div className="buttons">
         <Button
           type="primary"
