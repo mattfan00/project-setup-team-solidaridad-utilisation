@@ -28,7 +28,7 @@ const ApplicantSignUp = () => {
             setApplicantToken(result.data.token)
             localStorage.setItem("applicantToken", result.data.token)
 
-            history.push(`/application/amazon/${job}`)
+            history.push(`/application/${job}`)
         } catch (errorInfo) {
             console.log('Failed:', errorInfo)
             message.error("Please fill out all of the required fields")

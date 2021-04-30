@@ -4,6 +4,27 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'antd/dist/antd.css';
+import axios from "axios"
+
+axios.defaults.baseURL = "http://localhost:4000"
+
+axios.interceptors.request.use(function (config) {
+  const localApplicantToken = localStorage.getItem("applicantToken")
+  const localBusinessToken = localStorage.getItem('businessToken');
+
+  if (localApplicantToken) {
+    config.headers["Applicant-Authorization"] = `Bearer ${localApplicantToken}`;
+  }
+
+  if (localBusinessToken) {
+    config.headers["Business-Authorization"] = `Bearer ${localBusinessToken}`;
+  }
+
+  return config;
+}, error => {
+  // handle the response error
+  return Promise.reject(error);
+});
 
 ReactDOM.render(
   <React.StrictMode>

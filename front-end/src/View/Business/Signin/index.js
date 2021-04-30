@@ -29,23 +29,27 @@ const Signin = () => {
   const [form] = Form.useForm();
   const { setBusinessUser, setBusinessToken } = useContext(AuthContext);
 
-  const signin = async () => {
+  const validate = async () => {
     try {
       const validateResult = await form.validateFields();
-      console.log(validateResult);
 
-      const result = await axios.post("http://localhost:4000/business/user/login", {
-        email: validateResult.email,
-        password: validateResult.password,
-      })
-      setBusinessUser(result.data);
-      setBusinessToken(result.data.token);
-      localStorage.setItem("businessToken", result.data.token);
-      history.push("/business/dashboard");
-
+      signin(validateResult)
     } catch (errorInfo) {
       console.log('Failed:', errorInfo);
       message.error("Please fill out all of the required fields");
+    }
+  }
+
+  const signin = async (fields ) => {
+    try {
+      const result = await axios.post("http://localhost:4000/business/user/login", fields)
+
+      setBusinessUser(result.data.user);
+      setBusinessToken(result.data.token);
+      localStorage.setItem("businessToken", result.data.token);
+      history.push("/business/dashboard");
+    } catch({ response }) {
+      message.error(response.data)
     }
   }
 
@@ -58,7 +62,7 @@ const Signin = () => {
   };
 
   return (
-    <div class="business-signin-main">
+    <div className="business-signin-main">
       <Row>
         <Col span={2}>
           <Button type="link" href="/business/signup" size = "middle" block="true">
@@ -71,12 +75,13 @@ const Signin = () => {
 
       <Form
         {...layout}
-        name="basic"
+        form={form}
+        //name="basic"
         initialValues={{
           remember: true,
         }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        //onFinish={signin}
+        //onFinishFailed={onFinishFailed}
       >
         <Form.Item
           label="Email"
@@ -104,12 +109,8 @@ const Signin = () => {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit" block="true" onClick={signin}>
+          <Button type="primary" htmlType="submit" block="true" onClick={validate}>
             Sign in
           </Button>
         </Form.Item>

@@ -32,24 +32,26 @@ const Signup = () => {
   const [form] = Form.useForm();
   const { setBusinessUser, setBusinessToken } = useContext(AuthContext);
 
-  const signup = async () => {
+  const validate = async () => {
     try {
       const validateResult = await form.validateFields();
-      console.log(validateResult);
 
-      const result = await axios.post("http://localhost:4000/business/user/register", {
-        email: validateResult.email,
-        password: validateResult.password
-      })
+      signup(validateResult)
+    } catch (errorInfo) {
+      message.error("Please fill out all of the required fields");
+    }
+  }
+
+  const signup = async (fields) => {
+    try {
+      const result = await axios.post("http://localhost:4000/business/user/register", fields)
       setBusinessUser(result.data.user);
       setBusinessToken(result.data.token);
       localStorage.setItem("businessToken", result.data.token)
 
       history.push("/business/dashboard");
-
-    } catch (errorInfo) {
-      console.log('Failed:', errorInfo);
-      message.error("Please fill out all of the required fields");
+    } catch ({ response }) {
+      message.error(response.data);
     }
   }
 
@@ -62,22 +64,22 @@ const Signup = () => {
   };
 
   return (
-    <div class="business-signup-main">
+    <div className="business-signup-main">
       <Row><Col span={6} offset={9}><h1>Copply</h1></Col></Row>
       <Row><Col span={14} offset={5}><h2>Making the application process seamless for both parties</h2></Col></Row>
       <Form
         {...layout}
-        name="basic"
+        //name="basic"
         form={form}
         initialValues={{
           remember: true,
         }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        // onFinish={onFinish}
+        // onFinishFailed={onFinishFailed}
       >
         <Form.Item
           label="Company Name"
-          name="companyname"
+          name="company"
           rules={[
             {
               required: true,
@@ -90,7 +92,7 @@ const Signup = () => {
 
         <Form.Item
           label="First Name"
-          name="firstname"
+          name="firstName"
           rules={[
             {
               required: true,
@@ -103,7 +105,7 @@ const Signup = () => {
 
         <Form.Item
           label="Last Name"
-          name="lastname"
+          name="lastName"
           rules={[
             {
               required: true,
@@ -172,7 +174,7 @@ const Signup = () => {
         <Form.Item {...tailLayout}>
           <Row>
             <Col>
-              <Button type="primary" htmlType="submit" block="true" onClick={signup}>
+              <Button type="primary" htmlType="submit" block="true" onClick={validate}>
                 Sign up
               </Button>
             </Col>

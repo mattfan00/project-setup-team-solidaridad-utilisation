@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import {
   BrowserRouter,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom"
 
 import Landing from "./View/Landing"
@@ -22,7 +23,7 @@ import ApplicationSuccess from "./View/Applicant/Success"
 import ApplicationSignin from "./View/Applicant/Signin"
 import ApplicationSignup from "./View/Applicant/Signup"
 
-import { AuthProvider } from "./Context/AuthContext"
+import { AuthContext, AuthProvider } from "./Context/AuthContext"
 
 const App = () => {
   return (
@@ -36,13 +37,13 @@ const App = () => {
             {/* All Business routes  */}
             <Route exact path="/business/signup" component={BusinessSignup} />
             <Route exact path="/business/signin" component={BusinessSignin} />
-            <Route exact path="/business/dashboard/applications/:applicantID" component={BusinessApplicant}/>
+            <PrivateRoute exact path="/business/dashboard/applications/:applicantID" component={BusinessApplicant}/>
 
             {/* <Route exact path="/business/dashboard/applications" component={BusinessJobView}/> */}
-            <Route exact path="/business/dashboard/job/:jobID" component={BusinessJobView}/>
-            <Route exact path="/business/dashboard" component={BusinessDashboard} />
-            <Route exact path="/business/newlisting/description" component={BusinessNewListing} />
-            <Route exact path="/business/dashboard/editprofile" component={BusinessEditProfile} />
+            <PrivateRoute exact path="/business/dashboard/job/:jobID" component={BusinessJobView}/>
+            <PrivateRoute exact path="/business/dashboard" component={BusinessDashboard} />
+            <PrivateRoute exact path="/business/newlisting/description" component={BusinessNewListing} />
+            <PrivateRoute exact path="/business/dashboard/editprofile" component={BusinessEditProfile} />
             {/* <Route exact path="/business/newlisting/description" component={DescriptionForm} /> */}
             {/* <Route exact path="/business/newlisting/elements" component={NewListing} /> */}
 
@@ -57,6 +58,22 @@ const App = () => {
       </BrowserRouter>
     </>
   );
+}
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const { businessUser, authLoading } = useContext(AuthContext)
+
+  if (authLoading) {
+    return <></>
+  }
+
+  return (
+    <Route {...rest} render={(props) => (
+      businessUser
+        ? <Component {...props} />
+        : <Redirect to='/business/signin' />
+    )} />
+  )
 }
 
 export default App;

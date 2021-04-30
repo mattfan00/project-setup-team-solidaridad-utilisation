@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const businessAuth = require("../../middleware/businessAuth")
 
 const BusinessUser = require("../../models/businessUserSchema")
+const Business = require("../../models/business")
 
 const SALT_ROUNDS = 10
 
@@ -18,7 +19,7 @@ router.get("/business/user", businessAuth, async (req, res) => {
 })
 
 router.post("/business/user/register", async (req, res) => {
-  const { email, password } = req.body
+  const { email, password, company } = req.body
   const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS)
 
   const existingUser = await BusinessUser.findOne({ email })
@@ -26,11 +27,21 @@ router.post("/business/user/register", async (req, res) => {
     return res.status(400).json("Email already in use")
   }
 
+  const existingCompany = await Business.findOne({ name: company })
+  if (existingCompany) {
+    return res.status(400).json("Company name already in use")
+  }
+
   const newUser = await BusinessUser.create({
-    email,
+    ...req.body,
     password: hashedPassword
   })
 
+  const newBusiness = await Business.create({
+    name: company
+  })
+
+  console.log(newBusiness)
 
   const newJwt = jwt.sign({
     id: newUser.id,
@@ -45,6 +56,8 @@ router.post("/business/user/register", async (req, res) => {
 
 router.post("/business/user/login", async (req, res) => {
   const { email, password } = req.body
+
+  console.log(email, password)
 
   const existingUser = await BusinessUser.findOne({ email })
   if (!existingUser) {

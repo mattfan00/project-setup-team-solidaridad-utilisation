@@ -1,17 +1,18 @@
 const express = require("express");
 const router = express.Router();
+const businessAuth = require("../middleware/businessAuth")
 
 const AllJobs = require("../models/jobDetails");
 
 // Gets the array of jobs that the business has
-router.get("/business/alljobs", async (req, res) => {
+router.get("/business/alljobs", businessAuth, async (req, res) => {
   // Hard-coded as Amazon for now
-  const alljobs = await AllJobs.find({company: "amazon"});
+  const alljobs = await AllJobs.find({company: req.businessUser.company});
 
   res.json(alljobs);
 });
 
-router.post("/business/alljobs", (req, res) => {
+router.post("/business/alljobs", businessAuth, (req, res) => {
   if (req.body.changeStatus === "Open") {
       alljobs[req.body.targetID].status = "Open";
   }
@@ -28,22 +29,23 @@ router.post("/business/alljobs", (req, res) => {
 // *** jobDetails - CRUD Operations ***
 const Job = require("../models/jobDetails")
 // jobDetails: Create
-router.post("/jobs/new", async (req, res) => {
-  console.log(req.body)
-  const newJob = await Job.create(req.body)
-  console.log("Created and saved a new job to the DB:", newJob)
+router.post("/jobs/new", businessAuth, async (req, res) => {
+  const newJob = await Job.create({
+    ...req.body,
+    company: req.businessUser.company,
+    status: "open"
+  })
 
   res.json(newJob)
 })
 // jobDetails: Read
 router.get("/jobs/:id", async (req, res) => {
   const foundJob = await Job.findOne({"_id": req.params.id}).populate("applicants")
-  console.log(foundJob)
 
   res.json(foundJob)
 })
 // jobDetails: Update (the status of the job)
-router.put("/jobs/:id", async (req, res) => {
+router.put("/jobs/:id", businessAuth, async (req, res) => {
   console.log(req.body.changeStatus)
   console.log(req.params.id)
 
@@ -56,10 +58,12 @@ router.put("/jobs/:id", async (req, res) => {
   res.json("Successfully updated the job.")
 })
 // jobDetails: Delete
-router.delete("/jobs/:id", (req, res) => {
+router.delete("/jobs/:id", businessAuth, (req, res) => {
   Job.findByIdAndDelete(
     {"_id": req.params.id}
   )
+
+  res.json("Successfully deleted")
 })
 
 // router.post("/business/newjob", async (req, res)=> {
@@ -68,7 +72,7 @@ router.delete("/jobs/:id", (req, res) => {
 
 //   res.json(createdJob)
 //   // // hard-coded as Amazon for now
-  
+
 
 //   // const alljobs = await AllJobs.find({company:'amazon'});
 
