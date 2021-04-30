@@ -4,7 +4,7 @@ import {Card} from 'antd'
 const WorkExperience = (props) => {
     return (
         <Card
-            title={props.company + ": " + props.role}
+            title={props.title + " - " + props.employer}
             type='inner'
             extra = {
                 <div>

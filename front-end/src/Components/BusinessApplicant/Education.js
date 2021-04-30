@@ -4,7 +4,7 @@ import {Card} from 'antd'
 const Education = (props) => {
     return (
         <Card
-            title={props.level + " at " + props.education}
+            title={props.level + " - " + props.education}
             type='inner'
             extra={
                 <div>
@@ -12,7 +12,7 @@ const Education = (props) => {
                 </div>
             }
         >
-            {props.description} 
+            {props.description}
         </Card>
     )
 }

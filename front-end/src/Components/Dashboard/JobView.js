@@ -95,10 +95,10 @@ const JobView = (props) => {
                     >
                         <div className="description">
                             <div className="education">
-                                {applicant.education}
+                                {/* {applicant.education} */}
                             </div>
                             <div className="recentWork">
-                                {applicant.workExperience}
+                                {/* {applicant.workExperience} */}
                             </div>
                         </div>
                     </Card>

@@ -27,7 +27,7 @@ const Education = (props) => {
 
   useEffect(() => {
     if (props.education) {
-      setEducation(props.education)
+      setEducation([...props.education, ...education])
     }
   }, [props.education])
 
@@ -40,6 +40,14 @@ const Education = (props) => {
   // used when you want to bring up the form to update an entry
   const updateJobForm = (index, values) => {
     const newValues = {...values, index}
+
+    if (newValues.startDate) {
+      newValues.startDate = moment(newValues.startDate)
+    }
+
+    if (newValues.endDate) {
+      newValues.endDate = moment(newValues.endDate)
+    }
 
     // initialValues contains the initial values to fill the form with when the modal opens
     setInitialValues(newValues)
@@ -56,6 +64,14 @@ const Education = (props) => {
   }
 
   const addEducation = (details) => {
+    if (details.startDate) {
+      details.startDate = moment(details.startDate).format("YYYY-MM")
+    }
+
+    if (details.endDate) {
+      details.endDate = moment(details.endDate).format("YYYY-MM")
+    }
+
     const newEducation = [...education, details]
     setEducation(newEducation)
     setShowNewForm(false)
@@ -64,7 +80,14 @@ const Education = (props) => {
 
   const updateEducation = (index, updatedEducation) => {
     setShowUpdateForm(false)
-    console.log(index, updatedEducation)
+    if (updatedEducation.startDate) {
+      updatedEducation.startDate = moment(updatedEducation.startDate).format("YYYY-MM")
+    }
+
+    if (updatedEducation.endDate) {
+      updatedEducation.endDate = moment(updatedEducation.endDate).format("YYYY-MM")
+    }
+
     const newEducation = education.map((edu, i) => {
       if (i == index) {
         return {...updatedEducation}
