@@ -17,16 +17,14 @@ const Dashboard = () => {
   const [company, setCompany] = useState(null);
 
   useEffect(async () => {
-    if (businessUser) {
-      console.log(businessUser)
-      //setCompany(details.details.company.name);
-    }
     // const result = await axios.get("http://localhost:4000/business/user");
     // console.log(result.data.details.company.name);
     // setCompany(result.data.details.company.name);
   }, [businessUser]);
 
   useEffect(async () => {
+    console.log(businessUser)
+
     const result = await axios(
       'http://localhost:4000/business/alljobs', // hardcoded as Amazon
       {page: 1}

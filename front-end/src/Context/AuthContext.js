@@ -8,6 +8,7 @@ const AuthProvider = (props) => {
   const [applicantToken, setApplicantToken] = useState(null)
   const [businessUser, setBusinessUser] = useState(null)
   const [businessToken, setBusinessToken] = useState(null)
+  const [authLoading, setAuthLoading] = useState(true)
 
   useEffect(async () => {
     const localApplicantToken = localStorage.getItem("applicantToken")
@@ -23,7 +24,7 @@ const AuthProvider = (props) => {
             "Authorization": `Bearer ${localApplicantToken}`
           }
         })
-        console.log("get user in AuthContext")
+        console.log("get applicant user in AuthContext")
         setApplicantUser(result.data)
       } catch(err) {}
     }
@@ -38,11 +39,11 @@ const AuthProvider = (props) => {
           }
         })
         console.log("get business user in AuthContext")
-        console.log(result.data)
         setBusinessUser(result.data)
       } catch(err) {}
     }
 
+    setAuthLoading(false)
   }, [])
 
   return (
@@ -56,7 +57,9 @@ const AuthProvider = (props) => {
         businessUser,
         setBusinessUser,
         businessToken,
-        setBusinessToken
+        setBusinessToken,
+
+        authLoading
       }}
     >
       {props.children}
