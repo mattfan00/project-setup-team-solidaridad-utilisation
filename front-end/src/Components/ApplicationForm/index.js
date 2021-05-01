@@ -58,10 +58,7 @@ const ApplicationForm = (props) => {
       // auto fill in fields
       detailsForm.setFieldsValue({...details})
       setJobs(details?.workExperience)
-<<<<<<< HEAD
-=======
       setEducation(details?.education)
->>>>>>> a38426c49468451ea7a87f41a587fec17d607305
       message.success("Autofilled applicable fields")
     }
   }, [applicantUser])
