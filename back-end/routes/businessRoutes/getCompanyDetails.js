@@ -3,8 +3,8 @@ const router = express.Router()
 
 const Business = require("../../models/business")
 
-router.get("/company/:name", async (req, res) => {
-    const foundBusiness = await Business.findOne({ name: req.params.name })
+router.get("/company/:id", async (req, res) => {
+    const foundBusiness = await Business.findOne({ _id: req.params.id })
 
     res.json(foundBusiness)
 });

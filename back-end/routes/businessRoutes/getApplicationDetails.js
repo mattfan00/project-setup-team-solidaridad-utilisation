@@ -1,78 +1,34 @@
 const express = require("express")
 const router = express.Router()
+const applicantAuth = require("../../middleware/applicantAuth")
 
 const Application = require("../../models/applicant.js")
 const Jobs = require("../../models/jobDetails")
+const ApplicantUser = require("../../models/applicantUserSchema")
 
-// Get the applicant that is relevant to this application
-router.get("/business/application/details", (req, res) => {
-    const applicant = {
-        firstname: "Ricardo",
-        lastname: "Bogisich",
-        education: "New York University",
-        gradYear: 2022,
-        edDescription: "CS major",
-        work: [
-          {
-            id: "1",
-            company: "Kiehn - Effertz",
-            role: "Senior Integration Representative",
-            description: "Did stuff Global",
-            year: 2019
-          },
-          {
-            company: "Yahoo!",
-            year: 2016,
-            role: "CEO",
-            description: "met with shareholders to discuss company goals"
-          }
-        ],
-        projects: [
-          {
-            id: "1",
-            title: "bandwidth",
-            description: "Corporate",
-            year: "2020"
-          }
-        ],
-        responses: [
-          {
-            commonQ: [
-              {
-                question: "Email",
-                answer: "apple@oranges.com"
-              },
-              {
-                question: "Veteran",
-                answer: "No"
-              }
-            ],
-            extraQ: [
-              {
-                question: "Which bear is best?",
-                answer: "black bear"
-              },
-              {
-                question: "Why are you interested in working with us?",
-                answer: "banana"
-              }
-            ]
-          }
-        ]
-    }
-    res.json(applicant)
-})
-
-
-
-
-router.post("/job/:jobID/application/new", async (req, res) => {
+router.post("/job/:jobID/application/new", applicantAuth, async (req, res) => {
   const newApplication = await Application.create(req.body)
 
   const foundJob = await Jobs.findOne({"_id": req.params.jobID})
 
   foundJob.applicants.push(newApplication.id)
   await foundJob.save()
+
+  // update the users information if they are logged in
+  if (req.applicantUser) {
+    const { firstName, lastName, details, workExperience, education} = req.body
+    await ApplicantUser.findByIdAndUpdate(req.applicantUser.id, {
+      details: {
+        name: {
+          firstName,
+          lastName
+        },
+        ...details,
+        workExperience,
+        education
+      }
+    })
+  }
 
   res.json(newApplication)
 })

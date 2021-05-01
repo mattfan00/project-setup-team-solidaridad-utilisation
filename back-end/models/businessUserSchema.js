@@ -10,7 +10,10 @@ let businessUser = new mongoose.Schema({
   lastName: String,
   email: String,
   password: String,
-  company: String
+  company: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Business"
+  }
 })
 
 // removes the password field whenever sending back an business user object

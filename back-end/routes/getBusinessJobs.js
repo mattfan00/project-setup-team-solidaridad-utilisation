@@ -1,18 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const businessAuth = require("../middleware/businessAuth")
+const requireBusinessAuth = require("../middleware/requireBusinessAuth")
 
 const AllJobs = require("../models/jobDetails");
 
 // Gets the array of jobs that the business has
-router.get("/business/alljobs", businessAuth, async (req, res) => {
-  // Hard-coded as Amazon for now
-  const alljobs = await AllJobs.find({company: req.businessUser.company});
+router.get("/business/alljobs", businessAuth, requireBusinessAuth, async (req, res) => {
+  console.log(req.businessUser.company)
+  const alljobs = await AllJobs.find({ company: req.businessUser.company });
 
   res.json(alljobs);
 });
 
-router.post("/business/alljobs", businessAuth, (req, res) => {
+router.post("/business/alljobs", businessAuth, requireBusinessAuth, (req, res) => {
   if (req.body.changeStatus === "Open") {
       alljobs[req.body.targetID].status = "Open";
   }
@@ -33,7 +34,7 @@ router.post("/jobs/new", businessAuth, async (req, res) => {
   const newJob = await Job.create({
     ...req.body,
     company: req.businessUser.company,
-    status: "open"
+    status: "Open"
   })
 
   res.json(newJob)
@@ -45,7 +46,7 @@ router.get("/jobs/:id", async (req, res) => {
   res.json(foundJob)
 })
 // jobDetails: Update (the status of the job)
-router.put("/jobs/:id", businessAuth, async (req, res) => {
+router.put("/jobs/:id", businessAuth, requireBusinessAuth, async (req, res) => {
   console.log(req.body.changeStatus)
   console.log(req.params.id)
 
@@ -58,7 +59,7 @@ router.put("/jobs/:id", businessAuth, async (req, res) => {
   res.json("Successfully updated the job.")
 })
 // jobDetails: Delete
-router.delete("/jobs/:id", businessAuth, (req, res) => {
+router.delete("/jobs/:id", businessAuth, requireBusinessAuth, (req, res) => {
   Job.findByIdAndDelete(
     {"_id": req.params.id}
   )

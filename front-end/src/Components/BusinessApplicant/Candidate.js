@@ -87,8 +87,9 @@ const Candidate = (props) => {
                         header="Education"
                         key='2'
                     >
-                        {applicant.education && applicant.education.map(education =>
+                        {applicant.education && applicant.education.map((education, i) =>
                             <Education
+                                key={i}
                                 education = {education.school}
                                 level = {education.level}
                                 year = {formatDate(education.startDate) + " - " + formatDate(education.endDate)}
@@ -100,8 +101,9 @@ const Candidate = (props) => {
                         header="Work Experience"
                         key='3'
                     >
-                        {applicant.workExperience && applicant.workExperience.map(w =>
+                        {applicant.workExperience && applicant.workExperience.map((w, i) =>
                             <WorkExperience
+                                key={i}
                                 employer={w.employer}
                                 title={w.title}
                                 year={`${formatDate(w.startDate)} - ${w.currentJob ? "Present" : formatDate(w.endDate)}`}
@@ -127,7 +129,6 @@ const Candidate = (props) => {
                         header="Responses"
                         key='4'
                     >
-                        {console.log(applicant.extraQuestions)}
                         <ExtraQ
                             extraQ={applicant.extraQuestions}
                         />

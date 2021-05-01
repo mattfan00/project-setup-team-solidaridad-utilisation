@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const businessAuth = require("../../middleware/businessAuth")
+const requireBusinessAuth = require("../../middleware/requireBusinessAuth")
 
 const BusinessUser = require("../../models/businessUserSchema")
 const Business = require("../../models/business")
@@ -10,7 +11,7 @@ const Business = require("../../models/business")
 const SALT_ROUNDS = 10
 
 // Gets the current business user logged in
-router.get("/business/user", businessAuth, async (req, res) => {
+router.get("/business/user", businessAuth, requireBusinessAuth, async (req, res) => {
   console.log(req.businessUser)
 
   const foundUser = await BusinessUser.findById(req.businessUser.id)

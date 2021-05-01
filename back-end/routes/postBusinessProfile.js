@@ -6,6 +6,7 @@ const multerS3 = require('multer-s3')
 const business = require("../models/business")
 const Business = require('../models/business')
 
+/*
 aws.config.update({
   secretAccessKey: process.env.AWS_SECRET_KEY,
   accessKeyId: process.env.AWS_ACCESS_KEY,
@@ -13,7 +14,8 @@ aws.config.update({
 });
 
 const s3 = new aws.S3();
-/*
+*/
+
 // enable logo uploads saved to disk in a directory named 'public/resumes'
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -22,7 +24,7 @@ const storage = multer.diskStorage({
     filename: function (req, file, cb) {
       cb(
         null,
-        `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+        `${Date.now()}-${file.originalname}`
       )
     },
   })
@@ -30,6 +32,7 @@ const upload = multer({storage: storage});  //initilialize multer
 
 
 
+/*
 // route for HTTP POST requests for /resume-upload
 // files need to change according to the real html applications parts(haven't found it yet)
 router.post("/logo-upload", upload.array("logo", 1), (req, res, next) => {
@@ -46,16 +49,16 @@ router.post("/logo-upload", upload.array("logo", 1), (req, res, next) => {
   })
 */
 
-const upload = multer({
-  storage: multerS3({
-      s3: s3,
-      bucket: process.env.AWS_BUCKET_NAME,
-      key: function (req, file, cb) {
-          console.log(file);
-          cb(null, file.originalname); //use Date.now() for unique file keys
-      }
-  })
-})
+// const upload = multer({
+//   storage: multerS3({
+//       s3: s3,
+//       bucket: process.env.AWS_BUCKET_NAME,
+//       acl: 'public-read',
+//       key: function (req, file, cb) {
+//           cb(null, `${Date.now().toString()}-${file.originalname}`); //use Date.now() for unique file keys
+//       }
+//   })
+// })
 
 //get one
 router.get("/updateprofle/:id", getBusiness, (req, res) => {
@@ -67,8 +70,8 @@ router.get("/updateprofle/:id", getBusiness, (req, res) => {
 router.post("/updateprofile", async (req, res)=>{
     console.log(req.body.businessProfile)
     const business = new Business({
-      //name: name when created, 
-      description: "", 
+      //name: name when created,
+      description: "",
       industry: ""
     })
 
@@ -82,18 +85,23 @@ router.post("/updateprofile", async (req, res)=>{
 })
 
 //update one
-router.patch('/:id', getBusiness,  upload.single("logo"), async (req, res) => {
+router.patch('/updateProfile/:id', getBusiness, upload.single("logo"), async (req, res) => {
   if(req.body.description != null){
     res.business.description = req.body.description
 
   }
   if(req.body.industry != null){
-    res.business.introduction = req.body.industry
+    res.business.industry = req.body.industry
   }
 
-  if(req.file.location != null) {
-    res.business.logo = req.file.location
+  // if(req.file && req.file.location != null) {
+  //   res.business.logo = req.file.location
+  // }
+
+  if(req.file && req.file.filename != null) {
+    res.business.logo = `/images/${req.file.filename}`
   }
+
   try{
     const updatedBusiness = await res.business.save()
     res.json(updatedBusiness)
@@ -115,17 +123,16 @@ router.delete('/updatedprofile/:id', getBusiness, async (req, res) => {
 
 
 async function getBusiness(req, res, next){
-  try{
-    business = await Business.findById(req.params.id)
+  try {
+    const business = await Business.findById(req.params.id)
     if(business == null){
       return res.status(404).json({message:'cannot find business'})
     }
-  }
-  catch(err){
+    res.business = business
+    next()
+  } catch(err){
     return status(500).json({message: err.message})
   }
-  res.business = business
-  next()
 }
 
 
