@@ -9,7 +9,6 @@ const businessAuth = async (req, res, next) => {
 
   const token = authHeader.split(" ")[1]
   try {
-    console.log(token)
     const payload = jwt.verify(token, process.env.JWT_KEY)
     req.businessUser = await BusinessUser.findById(payload.id)
 

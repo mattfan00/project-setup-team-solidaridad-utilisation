@@ -8,8 +8,9 @@ const Extra = (props) => {
         <Collapse
             bordered={false}
         >
-            {props.extraQ && props.extraQ.map(q => 
+            {props.extraQ && props.extraQ.map((q, i) =>
                 <Panel
+                    key={i}
                     header={'Q: '+q.question}
                 >
                     {"A: "+q.answer}

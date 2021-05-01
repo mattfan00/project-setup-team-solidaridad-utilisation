@@ -1,13 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import './styles.css'
 import Profile from './ProfileDropdown'
 import logo from '../ApplicantHeader/copply.png'
 import { message, PageHeader, Button } from 'antd'
 import { Link } from 'react-router-dom'
 import { AuthContext } from "../../Context/AuthContext"
+import axios from "axios"
 
 const Header = (props) => {
     const {businessUser, setBusinessUser, setBusinessToken } = useContext(AuthContext);
+    const [company, setCompany] = useState()
+
+    useEffect(async () => {
+        const result = await axios.get(`/company/${props.company}`)
+        setCompany(result.data)
+    }, [])
 
     const logout = () => {
         setBusinessUser(null)
@@ -34,7 +41,7 @@ const Header = (props) => {
                         <img src={logo} alt="website logo" className="logo" />
                     </Link>
                 }
-                subTitle={props.company}
+                subTitle={company?.name}
                 extra={[
                     <Profile />,
                     logoutButton()

@@ -84,6 +84,7 @@ const JobView = (props) => {
                 >
                 {job.applicants && job.applicants.map((applicant) => (
                     <Card
+                        key={applicant.id}
                         title={applicant.firstName + ' ' + applicant.lastName}
                         extra={
                             <Link

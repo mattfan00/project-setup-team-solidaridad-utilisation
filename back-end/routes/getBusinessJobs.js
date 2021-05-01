@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const businessAuth = require("../middleware/businessAuth")
+const mongoose = require("mongoose")
 
 const AllJobs = require("../models/jobDetails");
 
 // Gets the array of jobs that the business has
 router.get("/business/alljobs", businessAuth, async (req, res) => {
-  // Hard-coded as Amazon for now
-  const alljobs = await AllJobs.find({company: req.businessUser.company});
+  console.log(req.businessUser.company)
+  const alljobs = await AllJobs.find({ company: req.businessUser.company });
 
   res.json(alljobs);
 });
@@ -33,7 +34,7 @@ router.post("/jobs/new", businessAuth, async (req, res) => {
   const newJob = await Job.create({
     ...req.body,
     company: req.businessUser.company,
-    status: "open"
+    status: "Open"
   })
 
   res.json(newJob)

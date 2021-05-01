@@ -4,8 +4,8 @@ import 'antd/dist/antd.css';
 import './index.css';
 import { Form, Input, Upload, Button } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
-import { Row, Col } from 'antd'; 
-import axios from 'axios'; 
+import { Row, Col } from 'antd';
+import axios from 'axios';
 
 //layout of the form item
 const layout = {
@@ -30,11 +30,11 @@ const validateMessages = {
 
 const normFile = (e) => {
     console.log('Upload event:', e);
-  
+
     if (Array.isArray(e)) {
       return e;
     }
-  
+
     return e && e.fileList;
   };
 
@@ -42,9 +42,9 @@ const BusinessEditProfile = () => {
   const [fileList, setFileList] = useState([])
   const onFinish = async(values) => {
     console.log(values);
-    
 
-    let formData = new FormData(); 
+
+    let formData = new FormData();
     formData.append("logo", fileList[0].originFileObj)
     formData.append("description", values.user.description)
     formData.append("industry", values.user.industry)
@@ -57,7 +57,7 @@ const BusinessEditProfile = () => {
   }
 
   return (
-    <div class="profile-main">
+    <div className="profile-main">
         <Row>
             <Col span={2}>
                 <Button type="link" href="/business/dashboard" size = "middle" block="true">
@@ -70,7 +70,7 @@ const BusinessEditProfile = () => {
                 <h1>Tell us about your company</h1>
             </Col>
         </Row>
-        
+
         <Form {...layout} name="edit-profile" onFinish={onFinish}>
 
         <Row><Col offset={5}>Description - This info will be on all job postings </Col></Row>
