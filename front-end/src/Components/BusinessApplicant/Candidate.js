@@ -9,11 +9,11 @@ import ExtraQ from './ExtraQ'
 import Details from './Details'
 import {DownOutlined} from '@ant-design/icons'
 import axios from 'axios'
+import moment from "moment"
 
 const {Panel} = Collapse;
 
 const Candidate = (props) => {
-    console.log('start')
     const [status, setStatus] = useState('New')
     const [loading, setLoading] = useState(true)
     const [applicant, setApplicant] = useState()
@@ -26,7 +26,6 @@ const Candidate = (props) => {
         setApplicant(result.data)
         setLoading(false)
     }, []);
-    console.log(applicant)
 
     function handleMenuClick(i) {
         if(i.key == '1'){
@@ -43,7 +42,7 @@ const Candidate = (props) => {
 
     const menu = () =>{
         return(
-            <Menu 
+            <Menu
                 onClick={handleMenuClick}
             >
                 <Menu.Item key='1'>Approve</Menu.Item>
@@ -51,6 +50,10 @@ const Candidate = (props) => {
                 <Menu.Item key='3'>Reject</Menu.Item>
             </Menu>
         );
+    }
+
+    const formatDate = (date) => {
+        return moment(date).format("MMM YYYY")
     }
 
     return (
@@ -80,35 +83,37 @@ const Candidate = (props) => {
                             Details = {applicant.details}
                         />
                     </Panel>
-                    <Panel 
-                        header="Education" 
+                    <Panel
+                        header="Education"
                         key='2'
                     >
-                        {applicant.education && applicant.education.map(education =>
+                        {applicant.education && applicant.education.map((education, i) =>
                             <Education
+                                key={i}
                                 education = {education.school}
                                 level = {education.level}
-                                year = {education.startDate + " " + education.endDate}
+                                year = {formatDate(education.startDate) + " - " + formatDate(education.endDate)}
                                 description = {education.major}
                             />
                         )}
                     </Panel>
-                    <Panel 
-                        header="Work Experience" 
+                    <Panel
+                        header="Work Experience"
                         key='3'
                     >
-                        {applicant.workExperience && applicant.workExperience.map(w =>
-                            <WorkExperience 
-                                company={w.company}
-                                role={w.role}
-                                year={w.year}
+                        {applicant.workExperience && applicant.workExperience.map((w, i) =>
+                            <WorkExperience
+                                key={i}
+                                employer={w.employer}
+                                title={w.title}
+                                year={`${formatDate(w.startDate)} - ${w.currentJob ? "Present" : formatDate(w.endDate)}`}
                                 desc={w.description}
                             />
                         )}
                     </Panel>
 
-                    <Panel 
-                        header="Projects" 
+                    {/* <Panel
+                        header="Projects"
                         key='4'
                     >
                         {applicant.projects && applicant.projects.map(p =>
@@ -118,21 +123,20 @@ const Candidate = (props) => {
                                 year={p.year}
                             />
                         )}
-                    </Panel>   
+                    </Panel> */}
 
-                    <Panel 
-                        header="Responses" 
-                        key='5'
+                    <Panel
+                        header="Responses"
+                        key='4'
                     >
-                        {console.log(applicant.extraQuestions)}
                         <ExtraQ
                             extraQ={applicant.extraQuestions}
                         />
-                    </Panel>                
+                    </Panel>
                 </Collapse>
             </Card>
             ) : ""}
-            
+
         </div>
     )
 }

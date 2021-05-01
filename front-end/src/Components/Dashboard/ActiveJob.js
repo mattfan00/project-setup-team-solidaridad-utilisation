@@ -11,11 +11,6 @@ const ActiveJob = (props) => {
     const id_url_active_job = 'http://localhost:4000/jobs/' + props.job._id
     const new_pathname = '/business/dashboard/job/' + props.job._id
 
-    useEffect(async () => {
-        const result = await axios(id_url_active_job);
-        setJob(result.data)
-      }, []);
-
     return (
         <Card
             type="inner"

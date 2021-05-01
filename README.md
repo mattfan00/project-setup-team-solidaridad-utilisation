@@ -32,6 +32,7 @@ Backend:
 1. Modify the `.env` within `back-end` to look like this:
     ```
     MONGO_URI=...
+    JWT_SECRET=...
     ```
 1. Use `npm run start` to start the back-end Express server using `nodemon`
 

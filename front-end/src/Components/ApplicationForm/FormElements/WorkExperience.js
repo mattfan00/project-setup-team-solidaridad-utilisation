@@ -27,7 +27,7 @@ const WorkExperience = (props) => {
 
   useEffect(() => {
     if (props.jobs) {
-      setJobs(props.jobs)
+      setJobs([...props.jobs, ...jobs])
     }
   }, [props.jobs])
 
@@ -39,7 +39,18 @@ const WorkExperience = (props) => {
 
   // used when you want to bring up the form to update an entry
   const updateJobForm = (index, values) => {
-    const newValues = {...values, index}
+    const newValues = {
+      ...values,
+      index,
+    }
+
+    if (newValues.startDate) {
+      newValues.startDate = moment(newValues.startDate)
+    }
+
+    if (newValues.endDate) {
+      newValues.endDate = moment(newValues.endDate)
+    }
 
     // initialValues contains the initial values to fill the form with when the modal opens
     setInitialValues(newValues)
@@ -56,6 +67,14 @@ const WorkExperience = (props) => {
   }
 
   const addJob = (details) => {
+    if (details.startDate) {
+      details.startDate = moment(details.startDate).format("YYYY-MM")
+    }
+
+    if (details.endDate) {
+      details.endDate = moment(details.endDate).format("YYYY-MM")
+    }
+
     const newJobs = [...jobs, details]
     setJobs(newJobs)
     setShowNewForm(false)
@@ -64,7 +83,15 @@ const WorkExperience = (props) => {
 
   const updateJob = (index, updatedJob) => {
     setShowUpdateForm(false)
-    console.log(index, updatedJob)
+
+    if (updatedJob.startDate) {
+      updatedJob.startDate = moment(updatedJob.startDate).format("YYYY-MM")
+    }
+
+    if (updatedJob.endDate) {
+      updatedJob.endDate = moment(updatedJob.endDate).format("YYYY-MM")
+    }
+
     const newJobs = jobs.map((job, i) => {
       if (i == index) {
         return {...updatedJob}

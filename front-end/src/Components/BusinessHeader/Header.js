@@ -1,29 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles.css'
 import Profile from './ProfileDropdown'
 import logo from '../ApplicantHeader/copply.png'
-import { message, PageHeader, Button } from 'antd'
-import { Link } from 'react-router-dom'
-import { AuthContext } from "../../Context/AuthContext"
+import { PageHeader } from 'antd'
+import { useHistory, Link } from 'react-router-dom'
+import axios from "axios"
 
 const Header = (props) => {
-    const {businessUser, setBusinessUser, setBusinessToken } = useContext(AuthContext);
-    console.log(props.company)
+    const history = useHistory()
 
-    const logout = () => {
-        setBusinessUser(null)
-        setBusinessToken(null)
-        localStorage.removeItem("businessToken")
-        message.info("You have been logged out")
-    }
+    const [company, setCompany] = useState()
 
-    const logoutButton = () => {
-        if (businessUser) {
-            return <Button key="1" onClick={logout}>Logout</Button>
-        } else {
-            return ""
-        }
-    }
+    useEffect(async () => {
+        const result = await axios.get(`/company/${props.company}`)
+        setCompany(result.data)
+    }, [])
 
     return (
         <div className='top'>
@@ -33,12 +24,11 @@ const Header = (props) => {
                     <Link
                     to='/business/dashboard'>
                         <img src={logo} alt="website logo" className="logo" />
-                    </Link>   
+                    </Link>
                 }
-                subTitle={props.company}
+                subTitle={company?.name}
                 extra={[
                     <Profile />,
-                    logoutButton()
                 ]}
             />
         </div>

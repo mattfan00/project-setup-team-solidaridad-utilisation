@@ -22,8 +22,8 @@ const ExtraQuestions = (props) => {
   }
   return (
     <>
-      {props.questions.map(question => (
-      <Col span={24} key={question.id}>
+      {props.questions.map((question, i) => (
+      <Col span={24} key={i}>
         <Form.Item
           label={question.label}
           name={question.label}

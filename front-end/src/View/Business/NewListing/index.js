@@ -1,4 +1,6 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import { AuthContext } from "../../../Context/AuthContext"
+import { useHistory } from "react-router-dom"
 import { Link } from "react-router-dom"
 import Header from '../../../Components/BusinessHeader/Header'
 import { message, Steps, Modal, Result } from "antd"
@@ -17,15 +19,13 @@ const { Step } = Steps;
 const NewListing = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [description, setDescription] = useState({
-    jobTitle: "Software Engineer",
+    jobTitle: "",
     jobDescription: "",
-    jobType: ["full-time"],
-    jobLocation: "NYC",
-    desiredSkills: "Java"
+    jobType: [],
+    jobLocation: "",
+    desiredSkills: ""
   });
-  const [common, setCommon] = useState([
-    "primaryPhone", "workEx", "hispanicLatino", "workAuth"
-  ]);
+  const [common, setCommon] = useState([]);
   const [extra, setExtra] = useState([
     {
       label: "Why do you want to join?",
@@ -33,6 +33,8 @@ const NewListing = () => {
     }
   ]);
   const [createdJob, setCreatedJob] = useState(null)
+  const history = useHistory()
+  const { businessUser } = useContext(AuthContext)
 
   const updateDescription = (newDescription) => {
     setDescription(newDescription);
@@ -59,12 +61,9 @@ const NewListing = () => {
   const check = async () => {
     try {
         let newJob= {
-          company: "amazon",
           jobTitle: description.jobTitle,
           type: description.jobType,
           location: description.jobLocation,
-          status: "Open",
-          applicantCount: 0,
           fields: common,
           description: description.jobDescription,
           skills: description.desiredSkills,
@@ -88,6 +87,7 @@ const NewListing = () => {
     setIsModalVisible(true);
   }
   const handleOk = () => {
+    history.push("/business/dashboard")
     setIsModalVisible(false);
   }
 
@@ -137,7 +137,7 @@ const NewListing = () => {
 
   return (
     <>
-      <Header></Header>
+      <Header company={businessUser.company}></Header>
 
       <Steps className="steps" current={current}>
         {steps.map(item => (
@@ -146,7 +146,11 @@ const NewListing = () => {
       </Steps>
       <div> {steps[current].content}</div>
 
-      <Modal visible = {isModalVisible} onOk={handleOk}>
+      <Modal
+        visible = {isModalVisible}
+        onOk={handleOk}
+        cancelButtonProps={{style: { display: 'none' } }}
+      >
         <Result
           status="success"
           title="Your job is live!"

@@ -8,6 +8,7 @@ const AuthProvider = (props) => {
   const [applicantToken, setApplicantToken] = useState(null)
   const [businessUser, setBusinessUser] = useState(null)
   const [businessToken, setBusinessToken] = useState(null)
+  const [authLoading, setAuthLoading] = useState(true)
 
   useEffect(async () => {
     const localApplicantToken = localStorage.getItem("applicantToken")
@@ -18,12 +19,8 @@ const AuthProvider = (props) => {
       setApplicantToken(localApplicantToken)
 
       try {
-        const result = await axios.get("http://localhost:4000/applicant/user", {
-          headers: {
-            "Authorization": `Bearer ${localApplicantToken}`
-          }
-        })
-        console.log("get user in AuthContext")
+        const result = await axios.get("/applicant/user")
+        console.log("get applicant user in AuthContext")
         setApplicantUser(result.data)
       } catch(err) {}
     }
@@ -32,16 +29,13 @@ const AuthProvider = (props) => {
       setBusinessToken(localBusinessToken)
 
       try {
-        const result = await axios.get("http://localhost:4000/business/user", {
-          headers: {
-            "Authorization": `Bearer ${localBusinessToken}`
-          }
-        })
+        const result = await axios.get("/business/user")
         console.log("get business user in AuthContext")
         setBusinessUser(result.data)
       } catch(err) {}
     }
 
+    setAuthLoading(false)
   }, [])
 
   return (
@@ -55,7 +49,9 @@ const AuthProvider = (props) => {
         businessUser,
         setBusinessUser,
         businessToken,
-        setBusinessToken
+        setBusinessToken,
+
+        authLoading
       }}
     >
       {props.children}

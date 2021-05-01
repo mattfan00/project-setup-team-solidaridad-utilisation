@@ -79,6 +79,9 @@ node_modules/
 jspm_packages/
 **/jspm_packages
 
+# Downloaded images
+images/
+
 # Results of React build script
 build/
 **/build/

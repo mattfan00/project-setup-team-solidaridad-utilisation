@@ -46,7 +46,7 @@ const ApplicationForm = (props) => {
   const { applicantUser } = useContext(AuthContext)
 
   const history = useHistory()
-  const { company, job } = useParams()
+  const { job } = useParams()
 
   // when receive the current user, update the state
   useEffect(() => {
@@ -58,6 +58,10 @@ const ApplicationForm = (props) => {
       // auto fill in fields
       detailsForm.setFieldsValue({...details})
       setJobs(details?.workExperience)
+<<<<<<< HEAD
+=======
+      setEducation(details?.education)
+>>>>>>> a38426c49468451ea7a87f41a587fec17d607305
       message.success("Autofilled applicable fields")
     }
   }, [applicantUser])
@@ -99,7 +103,7 @@ const ApplicationForm = (props) => {
     console.log("Education: ", education)
     console.log("Extra Questions: ", extraQuestions)
 
-    await axios.post(`http://localhost:4000/job/${job}/application/new`,{
+    await axios.post(`/job/${job}/application/new`,{
       firstName: name.firstName,
       lastName: name.lastName,
       details: details,
