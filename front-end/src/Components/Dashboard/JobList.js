@@ -17,35 +17,33 @@ const JobList = (props) => {
      */
     const [sort, setSort] = useState(0) //0 is the base state, render as is
     
-    useEffect(
-        () => {
-            if(sort == 1){
-                const a_z = Jobs.sort((a, b) => a.jobTitle - b.jobTitle)
-                setJobs(a_z)
-            }
-            else if(sort == 2){
-                const z_a = Jobs.sort((a, b) => b.jobTitle - a.jobTitle)
-                setJobs(z_a)
-            }
-        }, 
-        [sort]
-    )
+    const toggleSort = (sortNum) => {
+        console.log(sortNum)
+        if(sortNum == 1){
+            const a_z = [...Jobs].sort((a, b) =>  a.jobTitle > b.jobTitle ? 1 : -1)
+            setJobs(a_z)
+        }
+        else if(sortNum == 2){
+            const z_a = [...Jobs].sort((a, b) => a.jobTitle < b.jobTitle ? 1 : -1)
+            setJobs(z_a)
+        }
+    }
     
     const menu = () =>{
         return (
             <Menu>
                 <Menu.Item 
                     key="1"
-                    onClick = {
-                        setSort(1)
+                    onClick = {() => 
+                        toggleSort(1)
                     }
                 >
                     A-Z
                 </Menu.Item>
                 <Menu.Item 
                     key="2"
-                    onClick = {
-                        setSort(2)
+                    onClick = {() => 
+                        toggleSort(2)
                     }
                 >
                     Z-A
