@@ -57,7 +57,7 @@ const ApplicationForm = (props) => {
       console.log(details)
       // auto fill in fields
       detailsForm.setFieldsValue({...details})
-      setJobs(details.workExperience)
+      setJobs(details?.workExperience)
       message.success("Autofilled applicable fields")
     }
   }, [applicantUser])
@@ -108,7 +108,7 @@ const ApplicationForm = (props) => {
       extraQuestions: extraQuestions
     })
 
-    history.push(`/application/${company}/${job}/success`)
+    history.push(`/application/${job}/success`)
   }
 
   const check = async () => {
