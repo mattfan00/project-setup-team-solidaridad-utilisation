@@ -6,17 +6,13 @@ import axios from 'axios'
 const JobList = (props) => {
 
     const [Jobs, setJobs] = useState([])
-    /*
-    console.log("hello sort")
     
     /**
-     * keys: [0, 1, 2]
-     * 0 - no sort, rendered as pulled from db
+     * toggleSort(key)
+     * keys: [1, 2]
      * 1 - sorted a-z by jobtitle
      * 2 - sorted z-a by jobtitle
      */
-    const [sort, setSort] = useState(0) //0 is the base state, render as is
-    
     const toggleSort = (sortNum) => {
         console.log(sortNum)
         if(sortNum == 1){
@@ -29,6 +25,10 @@ const JobList = (props) => {
         }
     }
     
+    /**
+     * menu
+     * @returns a menu overlay with the options a-z and z-a
+     */
     const menu = () =>{
         return (
             <Menu>
