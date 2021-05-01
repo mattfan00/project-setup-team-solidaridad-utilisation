@@ -44,7 +44,7 @@ const Signup = () => {
 
   const signup = async (fields) => {
     try {
-      const result = await axios.post("http://localhost:4000/business/user/register", fields)
+      const result = await axios.post("/business/user/register", fields)
       setBusinessUser(result.data.user);
       setBusinessToken(result.data.token);
       localStorage.setItem("businessToken", result.data.token)

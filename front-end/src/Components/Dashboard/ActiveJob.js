@@ -8,7 +8,7 @@ const ActiveJob = (props) => {
     const history = useHistory()
     const [job, setJob] = useState()
 
-    const id_url_active_job = 'http://localhost:4000/jobs/' + props.job._id
+    const id_url_active_job = '/jobs/' + props.job._id
     const new_pathname = '/business/dashboard/job/' + props.job._id
 
     return (

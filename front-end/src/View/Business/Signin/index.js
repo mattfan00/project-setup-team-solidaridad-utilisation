@@ -42,7 +42,7 @@ const Signin = () => {
 
   const signin = async (fields ) => {
     try {
-      const result = await axios.post("http://localhost:4000/business/user/login", fields)
+      const result = await axios.post("/business/user/login", fields)
 
       setBusinessUser(result.data.user);
       setBusinessToken(result.data.token);

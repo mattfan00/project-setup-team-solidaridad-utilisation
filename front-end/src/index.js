@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'antd/dist/antd.css';
 import axios from "axios"
 
-axios.defaults.baseURL = "http://localhost:4000"
+axios.defaults.baseURL = process.env.NODE_ENV == "production" ? process.env.REACT_APP_API_URL : "http://localhost:4000"
 
 axios.interceptors.request.use(function (config) {
   const localApplicantToken = localStorage.getItem("applicantToken")

@@ -13,7 +13,7 @@ const JobView = (props) => {
     const { jobID } = useParams()
 
     useEffect(async () => {
-        const result = await axios("http://localhost:4000/jobs/" + jobID)
+        const result = await axios("/jobs/" + jobID)
 
         setStatus(result.data.status)
         setJob(result.data)
@@ -22,7 +22,7 @@ const JobView = (props) => {
 
     function handleMenuClick(i) {
         if(i.key == '1'){
-            axios.put(("http://localhost:4000/jobs/" + jobID), {
+            axios.put(("/jobs/" + jobID), {
                 changeStatus: "Open"
             }).then((res) => {
                 setStatus('Open')
@@ -31,7 +31,7 @@ const JobView = (props) => {
             })
         }
         else if(i.key == '2'){
-            axios.put(("http://localhost:4000/jobs/" + jobID), {
+            axios.put(("/jobs/" + jobID), {
                 changeStatus: "Closed"
             }).then((res) => {
                 setStatus('Closed')
@@ -40,7 +40,7 @@ const JobView = (props) => {
             })
         }
         else{
-            axios.put(("http://localhost:4000/jobs/" + jobID), {
+            axios.put(("/jobs/" + jobID), {
                 changeStatus: "Archived"
             }).then((res) => {
                 setStatus('Archived')

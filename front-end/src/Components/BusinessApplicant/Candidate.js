@@ -21,7 +21,7 @@ const Candidate = (props) => {
     const { applicantID }  = useParams()
 
     useEffect(async () => {
-        const result = await axios(`http://localhost:4000/application/${applicantID}`)
+        const result = await axios(`/application/${applicantID}`)
         console.log(result.data)
         setApplicant(result.data)
         setLoading(false)

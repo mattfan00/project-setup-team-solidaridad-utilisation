@@ -20,7 +20,7 @@ const ApplicantSignUp = () => {
             console.log(validateResult)
 
             // sign up the user
-            const result = await axios.post("http://localhost:4000/applicant/user/register", {
+            const result = await axios.post("/applicant/user/register", {
                 email: validateResult.email,
                 password: validateResult.password,
             })
