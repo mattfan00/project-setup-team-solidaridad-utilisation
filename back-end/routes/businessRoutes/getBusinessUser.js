@@ -33,16 +33,15 @@ router.post("/business/user/register", async (req, res) => {
     return res.status(400).json("Company name already in use")
   }
 
-  const newUser = await BusinessUser.create({
-    ...req.body,
-    password: hashedPassword
-  })
-
   const newBusiness = await Business.create({
     name: company
   })
 
-  console.log(newBusiness)
+  const newUser = await BusinessUser.create({
+    email,
+    password: hashedPassword,
+    company: newBusiness.id
+  })
 
   const newJwt = jwt.sign({
     id: newUser.id,
