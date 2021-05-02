@@ -11,25 +11,30 @@ const testUser = {
 }
 
 
-before(() => {
-  it("should sign in th user", async () => {
-  let res = await chai
-    .request(app)
-    .post('/business/signin')
-    .send(testUser)
-  expect(res.status).to.equal(200)
-  
-})
-
-
 describe("getBusinessJobs" , () => {
-  it("should return status 200", async () => {
+  it("should sign in the user", async () => {
     let res = await chai
       .request(app)
-      .get("/business/alljobs")
-      .send()
+      .post('/business/user/login')
+      .send(testUser)
     expect(res.status).to.equal(200)
   })
+
+  it("should return status 200", async () => {
+    let res = await chai
+    .request(app)
+    .post('/business/user/login')
+    .send(testUser)
+
+    res = await chai
+      .request(app)
+      .get("/business/alljobs")
+      .set("Business-Authorization", `Bearer ${res.body.token}`)
+      .send()
+
+    expect(res.status).to.equal(200)
+  })
+
   it("should updated correctly", async () => {
     // make post request that changes the status of the first job to be closed or something
     // make a get request that gets all of the jobs once again
