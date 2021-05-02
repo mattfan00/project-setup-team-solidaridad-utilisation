@@ -5,6 +5,23 @@ chai.use(chaiHttp)
 
 const app = require("../app")
 
+const testUser = {
+  email: 'test@test.com', 
+  password: 'hello'
+}
+
+
+before(() => {
+  it("should sign in th user", async () => {
+  let res = await chai
+    .request(app)
+    .post('/business/signin')
+    .send(testUser)
+  expect(res.status).to.equal(200)
+  
+})
+
+
 describe("getBusinessJobs" , () => {
   it("should return status 200", async () => {
     let res = await chai
