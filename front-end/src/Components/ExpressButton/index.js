@@ -15,7 +15,7 @@ const ExpressApply = () => {
             <Col span={24}>
                 <Card className="ExpressApply">
 
-                    <Button href={`/application/signin/job/${job}`} className="ExpressButton" type="primary" size="large" block>
+                    <Button href={`/application/signin/${job}`} className="ExpressButton" type="primary" size="large" block>
                         Express Apply
                     </Button>
                 </Card>

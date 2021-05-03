@@ -48,8 +48,8 @@ const App = () => {
             {/* <Route exact path="/business/newlisting/elements" component={NewListing} /> */}
 
             {/* All Applicant routes  */}
-            <Route exact path="/application/signin/job/:job" component={ApplicationSignin} />
-            <Route exact path="/application/signup/job/:job" component={ApplicationSignup} />
+            <Route exact path="/application/signin/:job" component={ApplicationSignin} />
+            <Route exact path="/application/signup/:job" component={ApplicationSignup} />
             <Route exact path="/application/:job/success" component={ApplicationSuccess} />
             <Route exact path="/application/:job" component={Application} />
           </AuthProvider>
