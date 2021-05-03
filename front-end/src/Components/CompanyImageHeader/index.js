@@ -1,9 +1,7 @@
-import { OmitProps } from "antd/lib/transfer/ListBody"
 import React from "react"
-import companyLogo from './CompanyLogo.jpg'
 import './index.css'
 
-const BASE = "http://localhost:4000"
+const BASE = process.env.NODE_ENV == "production" ? process.env.REACT_APP_API_URL : "http://localhost:4000"
 
 const CompanyLogo = (props) => {
     return(

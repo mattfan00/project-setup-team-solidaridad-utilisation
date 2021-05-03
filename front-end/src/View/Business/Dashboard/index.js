@@ -24,7 +24,7 @@ const Dashboard = () => {
 
   useEffect(async () => {
     const result = await axios(
-      'http://localhost:4000/business/alljobs'
+      '/business/alljobs'
     );
 
     setJobs(result.data)

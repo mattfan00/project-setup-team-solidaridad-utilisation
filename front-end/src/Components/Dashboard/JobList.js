@@ -53,7 +53,7 @@ const JobList = (props) => {
     }
     
     useEffect(async () => {
-        const result = await axios('http://localhost:4000/business/alljobs')
+        const result = await axios('/business/alljobs')
         setJobs(result.data)
     }, [])
 
