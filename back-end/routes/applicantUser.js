@@ -28,7 +28,8 @@ router.post("/applicant/user/register", async (req, res) => {
 
   const newUser = await ApplicantUser.create({
     email,
-    password: hashedPassword
+    password: hashedPassword,
+    details: {}
   })
 
 

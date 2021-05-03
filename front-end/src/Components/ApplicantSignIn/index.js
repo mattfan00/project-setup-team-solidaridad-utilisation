@@ -14,25 +14,37 @@ const ApplicantSignIn = () => {
     const [form] = Form.useForm()
     const { job } = useParams()
 
-    const signin = async () => {
+    const validate = async () => {
         try {
             const validateResult = await form.validateFields()
-            console.log(validateResult)
 
+            signin(validateResult)
+        } catch (errorInfo) {
+            console.log('Failed:', errorInfo)
+            message.error("Please fill out all of the required fields")
+        }
+    }
+
+    const signin = async (fields) => {
+        try {
             // sign in the user
             const result = await axios.post("/applicant/user/login", {
-                email: validateResult.email,
-                password: validateResult.password,
+                email: fields.email,
+                password: fields.password,
             })
 
             setApplicantUser(result.data.user)
             setApplicantToken(result.data.token)
             localStorage.setItem("applicantToken", result.data.token)
 
-            history.push(`/application/${job}`)
-        } catch (errorInfo) {
-            console.log('Failed:', errorInfo)
-            message.error("Please fill out all of the required fields")
+            console.log(job)
+            if (job == "landing") {
+                history.push(`/`)
+            } else {
+                history.push(`/application/${job}`)
+            }
+        } catch({ response }) {
+            message.error(response.data)
         }
     }
 
@@ -51,7 +63,7 @@ const ApplicantSignIn = () => {
                 <Card>
                     <div className="Applicant-SignIn-Words">
                         <h3>Express Apply</h3>
-                        <p className="NoAccount">Don't have an account? <Link to={`/application/signup/job/${job}`}>Sign up</Link></p>
+                        <p className="NoAccount">Don't have an account? <Link to={`/application/signup/${job}`}>Sign up</Link></p>
                     </div>
                         <Form
                             {...layout}
@@ -84,13 +96,10 @@ const ApplicantSignIn = () => {
                             >
                                 <Input.Password />
                             </Form.Item>
-                            <Form.Item {...layout} name="remember" valuePropName="checked">
-                                <Checkbox>Remember me</Checkbox>
-                            </Form.Item>
                         </Form>
 
 
-                    <Button type="primary" block onClick={signin}>
+                    <Button type="primary" block onClick={validate}>
                         Continue with Copply
                     </Button>
                 </Card>

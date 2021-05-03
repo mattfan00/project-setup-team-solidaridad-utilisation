@@ -14,24 +14,34 @@ const ApplicantSignUp = () => {
     const { setApplicantUser, setApplicantToken } = useContext(AuthContext)
     const { job } = useParams()
 
-    const signup = async () => {
+    const validate = async () => {
         try {
             const validateResult = await form.validateFields()
-            console.log(validateResult)
 
+            signup(validateResult)
+        } catch (errorInfo) {
+            message.error("Please fill out all of the required fields")
+        }
+    }
+
+    const signup = async (fields) => {
+        try {
             // sign up the user
             const result = await axios.post("/applicant/user/register", {
-                email: validateResult.email,
-                password: validateResult.password,
+                email: fields.email,
+                password: fields.password,
             })
             setApplicantUser(result.data.user)
             setApplicantToken(result.data.token)
             localStorage.setItem("applicantToken", result.data.token)
 
-            history.push(`/application/${job}`)
-        } catch (errorInfo) {
-            console.log('Failed:', errorInfo)
-            message.error("Please fill out all of the required fields")
+            if (job == "landing") {
+                history.push(`/`)
+            } else {
+                history.push(`/application/${job}`)
+            }
+        } catch ({ response }) {
+            message.error(response.data)
         }
     }
 
@@ -50,7 +60,7 @@ const ApplicantSignUp = () => {
                 <Card>
                     <div className="Applicant-SignUp-Words">
                         <h3>Express Apply</h3>
-                        <p className="NoAccount">Already have an account? <Link to={`/application/signup/job/${job}`}>Sign In</Link></p>
+                        <p className="NoAccount">Already have an account? <Link to={`/application/signin/${job}`}>Sign In</Link></p>
                     </div>
                         <Form
                             {...layout}
@@ -107,7 +117,7 @@ const ApplicantSignUp = () => {
                         </Form>
 
 
-                    <Button type="primary" block onClick={signup}>
+                    <Button type="primary" block onClick={validate}>
                         Continue with Copply
                     </Button>
                 </Card>

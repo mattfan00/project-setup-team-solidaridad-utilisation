@@ -12,7 +12,7 @@ const Landing = () => {
           <h2>Making the application process seamless for both parties</h2>
         <p>Are you an applicant or Company?</p>
         <div className="landing-buttons">
-          <Button size="large" href="/application/signup">Applicant</Button>
+          <Button size="large" href="/application/signup/landing">Applicant</Button>
           <Button size="large" href="/business/signup">Company</Button>
         </div>
       </div>
