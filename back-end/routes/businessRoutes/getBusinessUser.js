@@ -12,8 +12,6 @@ const SALT_ROUNDS = 10
 
 // Gets the current business user logged in
 router.get("/business/user", businessAuth, requireBusinessAuth, async (req, res) => {
-  console.log(req.businessUser)
-
   const foundUser = await BusinessUser.findById(req.businessUser.id)
 
   res.json(foundUser)
@@ -56,8 +54,6 @@ router.post("/business/user/register", async (req, res) => {
 
 router.post("/business/user/login", async (req, res) => {
   const { email, password } = req.body
-
-  console.log(email, password)
 
   const existingUser = await BusinessUser.findOne({ email })
   if (!existingUser) {

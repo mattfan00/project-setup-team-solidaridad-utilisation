@@ -54,7 +54,7 @@ const Signin = () => {
   }
 
   const onFinish = (values) => {
-    console.log('Success:', values);
+    // console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo) => {

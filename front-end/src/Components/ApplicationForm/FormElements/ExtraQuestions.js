@@ -17,7 +17,7 @@ const ExtraQuestions = (props) => {
       case "date":
         return <DatePicker></DatePicker>
       case "yesNo":
-        return <Radio.Group><Radio value={1} >Yes</Radio><Radio value={2} >No</Radio></Radio.Group>
+        return <Radio.Group><Radio value="Yes" >Yes</Radio><Radio value="No" >No</Radio></Radio.Group>
     }
   }
   return (

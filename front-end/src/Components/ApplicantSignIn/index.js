@@ -20,7 +20,6 @@ const ApplicantSignIn = () => {
 
             signin(validateResult)
         } catch (errorInfo) {
-            console.log('Failed:', errorInfo)
             message.error("Please fill out all of the required fields")
         }
     }
@@ -37,7 +36,6 @@ const ApplicantSignIn = () => {
             setApplicantToken(result.data.token)
             localStorage.setItem("applicantToken", result.data.token)
 
-            console.log(job)
             if (job == "landing") {
                 history.push(`/`)
             } else {

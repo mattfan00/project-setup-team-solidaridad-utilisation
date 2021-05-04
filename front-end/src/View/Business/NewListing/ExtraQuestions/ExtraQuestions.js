@@ -24,11 +24,13 @@ const ExtraQuestions = ({
   const [questions, setQuestions] = useState(extraO);
 
   const handleClick = e => {
-    setQuestions(questions => [...questions, {
+    const newQuestions = [...questions, {
       label: "",
       type: e.key
-    }]);
-    updateExtra(questions);
+    }]
+
+    setQuestions(newQuestions);
+    updateExtra(newQuestions);
   };
 
   const update = () => {

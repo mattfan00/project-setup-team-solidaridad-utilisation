@@ -28,11 +28,8 @@ const getJobDetails = require("./routes/businessRoutes/getJobDetails")
 const getApplicationDetails = require("./routes/businessRoutes/getApplicationDetails")
 const getCompanyDetails = require("./routes/businessRoutes/getCompanyDetails")
 const getImageFromFile = require("./routes/getImageFromFile")
-const getBusinessProfile = require("./routes/getBusinessProfile")
 const postBusinessProfile = require("./routes/postBusinessProfile")
 
-const postApplicationDetails = require("./routes/postApplicationDetails")
-// const changeJobStatus = require("./routes/businessRoutes/changeJobStatus")
 const getBusinessUser = require("./routes/businessRoutes/getBusinessUser")
 
 const exampleRoute = require("./routes/exampleRoute")
@@ -44,9 +41,7 @@ app.use(getApplicationDetails)
 app.use(getCompanyDetails)
 app.use(getImageFromFile)
 app.use(getBusinessJobs)
-app.use(getBusinessProfile)
 app.use(postBusinessProfile)
-app.use(postApplicationDetails)
 
 app.use(exampleRoute)
 
@@ -58,26 +53,6 @@ app.get("/", (req, res) => {
   res.json({
     message: "hey"
   })
-})
-
-// *** Application ***
-const Application = require("./models/applicant.js")
-
-app.post("/application", async (req, res) => {
-  const newApplication = await Application.create(req.body)
-
-  res.json(newApplication)
-})
-
-
-// *** User (Applicant-side) ***
-const ApplicantUser = require("./models/applicantUserSchema")
-const { reset } = require("nodemon")
-
-app.post("/users/new", async (req, res) => {
-  const newApplicantUser = await ApplicantUser.create(req.body)
-
-  res.json(newApplicantUser)
 })
 
 module.exports = app

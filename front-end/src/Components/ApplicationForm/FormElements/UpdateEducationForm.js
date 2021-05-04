@@ -28,7 +28,6 @@ const UpdateEducationForm = (props) => {
 
     try {
       const values = await form.validateFields()
-      console.log('Success:', values)
 
       props.updateEducation(props.initialValues.index, values)
     } catch (errorInfo) {

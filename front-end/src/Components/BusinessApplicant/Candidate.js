@@ -22,7 +22,6 @@ const Candidate = (props) => {
 
     useEffect(async () => {
         const result = await axios(`/application/${applicantID}`)
-        console.log(result.data)
         setApplicant(result.data)
         setLoading(false)
     }, []);

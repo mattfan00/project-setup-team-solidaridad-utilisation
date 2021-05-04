@@ -31,6 +31,7 @@ import ExtraQuestions  from "./FormElements/ExtraQuestions"
 
 import ConfirmSubmit from "./ConfirmSubmit"
 import axios from "axios"
+import moment from "moment"
 
 const { Title } = Typography
 
@@ -54,7 +55,6 @@ const ApplicationForm = (props) => {
       const { details } = applicantUser
       setUserDetails(details)
 
-      console.log(details)
       // auto fill in fields
       detailsForm.setFieldsValue({...details})
       setJobs(details?.workExperience)
@@ -88,17 +88,17 @@ const ApplicationForm = (props) => {
 
     const { name, ...details } = results[0]
     const extraQuestions = Object.keys(results[1]).map((key) => {
+      let answer = results[1][key]
+
+      if (moment.isMoment(answer)) {
+        answer = moment(answer).format("YYYY-MM-DD")
+      }
+
       return {
         question: key,
-        answer: results[1][key]
+        answer
       }
     })
-    console.log("first name", name.firstName)
-    console.log("last name", name.lastName)
-    console.log("Applicant Details: ", details)
-    console.log("WorkExperience: ", jobs)
-    console.log("Education: ", education)
-    console.log("Extra Questions: ", extraQuestions)
 
     await axios.post(`/job/${job}/application/new`,{
       firstName: name.firstName,
@@ -121,7 +121,6 @@ const ApplicationForm = (props) => {
 
       setConfirm(true)
     } catch (errorInfo) {
-      console.log('Failed:', errorInfo)
       message.error("Please fill out all of the required fields")
     }
   }

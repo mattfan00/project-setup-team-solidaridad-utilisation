@@ -40,7 +40,6 @@ const UpdateJobForm = (props) => {
 
     try {
       const values = await form.validateFields()
-      console.log('Success:', values)
 
       props.updateJob(props.initialValues.index, values)
     } catch (errorInfo) {
