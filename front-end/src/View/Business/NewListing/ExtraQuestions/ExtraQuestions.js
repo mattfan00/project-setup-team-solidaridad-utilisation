@@ -65,9 +65,9 @@ const ExtraQuestions = ({
       <Space direction="vertical" style={{ width:"20%" }}>
         <Card style={{ "margin-bottom":"5%" }}>
           <Menu mode="inline" onClick={handleClick}>
-            <SubMenu title="Layout Elements">
+            {/* <SubMenu title="Layout Elements">
               <Menu.Item key="sections">Sections</Menu.Item>
-            </SubMenu>
+            </SubMenu> */}
             <SubMenu title="Text Elements">
               <Menu.Item key="singleLine">Single line</Menu.Item>
               <Menu.Item key="multiline">Multiline</Menu.Item>
@@ -75,14 +75,14 @@ const ExtraQuestions = ({
             </SubMenu>
             <SubMenu title="Multi Elements">
               <Menu.Item key="yesNo">Yes/No</Menu.Item>
-              <Menu.Item key="dropdown">Dropdown</Menu.Item>
+              {/* <Menu.Item key="dropdown">Dropdown</Menu.Item>
               <Menu.Item key="checkbox">Checkbox</Menu.Item>
-              <Menu.Item key="multipleChoice">Multiple Choice</Menu.Item>
+              <Menu.Item key="multipleChoice">Multiple Choice</Menu.Item> */}
             </SubMenu>
-            <SubMenu title="Media Elements">
+            {/* <SubMenu title="Media Elements">
               <Menu.Item key="attachments">Attachments</Menu.Item>
               <Menu.Item key="image">Image</Menu.Item>
-            </SubMenu>
+            </SubMenu> */}
           </Menu>
         </Card>
       </Space>
