@@ -47,3 +47,6 @@ Refer to: [CONTRIBUTING.md](./CONTRIBUTING.md)
 - Jin Sim ([GitHub](https://github.com/jinsim95))
 - Jonathan Ko ([GitHub](https://github.com/jonako99))
 - Matthew Fan ([GitHub](https://github.com/mattfan00))
+
+## Demo Link
+- http://198.199.86.158:5000/
