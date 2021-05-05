@@ -2,11 +2,18 @@ const express = require("express")
 const router = express.Router()
 const multer = require("multer")
 const Business = require('../models/business')
+const fs = require("fs")
 
 // enable logo uploads saved to disk in a directory named 'public/resumes'
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, "public/images")
+      const dir = "public/images"
+
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true })
+      }
+
+      cb(null, dir)
     },
     filename: function (req, file, cb) {
       cb(
