@@ -1,5 +1,7 @@
 # Project Repository
 
+[![Build Status](https://travis-ci.com/agile-dev-assignments/project-setup-team-solidaridad-utilisation.svg?branch=master)](https://travis-ci.com/agile-dev-assignments/project-setup-team-solidaridad-utilisation)
+
 ## Project Description
 
 Copply is a web application that addresses the inefficiencies in the job application system. Traditionally when a potential applicant visits a company's online job application form, they are required to fill out many details about themselves (such as their name, address, work experience, education, etc.) that they have filled out countless times before. Copply aims to create a more seamless application process, where applicants can have their details auto-filled right when they open the application, reducing the headache they have wrestling with the spotty resume parsers and giving them more time to devote to answering company specific questions.
