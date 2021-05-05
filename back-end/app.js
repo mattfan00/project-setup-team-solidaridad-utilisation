@@ -4,7 +4,7 @@ const cors = require("cors")
 const multer = require("multer")
 const morgan = require("morgan")
 const mongoose = require("mongoose")
-require('dotenv').config()
+require('dotenv').config({ path: "../.env"})
 
 app.use(morgan("dev"))
 app.use(express.static("public"))
