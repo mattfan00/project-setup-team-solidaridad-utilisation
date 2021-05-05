@@ -7,7 +7,6 @@ const AllJobs = require("../models/jobDetails");
 
 // Gets the array of jobs that the business has
 router.get("/business/alljobs", businessAuth, requireBusinessAuth, async (req, res) => {
-  console.log(req.businessUser.company)
   const alljobs = await AllJobs.find({ company: req.businessUser.company });
 
   res.json(alljobs);
@@ -23,7 +22,6 @@ router.post("/business/alljobs", businessAuth, requireBusinessAuth, (req, res) =
   else if (req.body.changeStatus === "Archived") {
       alljobs[req.body.targetID].status = "Archived";
   }
-  // console.log(alljobs)
   res.json(alljobs)
 })
 
@@ -47,9 +45,6 @@ router.get("/jobs/:id", async (req, res) => {
 })
 // jobDetails: Update (the status of the job)
 router.put("/jobs/:id", businessAuth, requireBusinessAuth, async (req, res) => {
-  console.log(req.body.changeStatus)
-  console.log(req.params.id)
-
   await Job.findOneAndUpdate(
     {"_id": req.params.id},
     {status: req.body.changeStatus},

@@ -10,8 +10,6 @@ const SALT_ROUNDS = 10
 
 // Gets the current applicant user logged in
 router.get("/applicant/user", applicantAuth, async (req, res) => {
-  console.log(req.applicantUser)
-
   const foundUser = await ApplicantUser.findById(req.applicantUser.id)
 
   res.json(foundUser)

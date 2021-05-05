@@ -69,6 +69,7 @@ const NewListing = () => {
           skills: description.desiredSkills,
           extraQuestions: extra
         }
+
         newJob = await axios.post("/jobs/new",
           newJob
         )

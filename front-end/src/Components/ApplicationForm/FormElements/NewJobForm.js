@@ -35,7 +35,6 @@ const NewJobForm = (props) => {
 
     try {
       const values = await form.validateFields()
-      console.log('Success:', values)
 
       props.addJob(values)
       setCurrentJob(false)

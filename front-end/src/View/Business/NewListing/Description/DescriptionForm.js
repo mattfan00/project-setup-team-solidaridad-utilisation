@@ -27,7 +27,6 @@ const DescriptionForm = ({
 
     const update = async (e) => {
         try {
-            console.log('Success:', values);
             updateDescription(
                 {
                     jobTitle: values.jobTitle,

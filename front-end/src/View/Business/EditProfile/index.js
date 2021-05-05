@@ -53,8 +53,6 @@ const BusinessEditProfile = () => {
   }, [])
 
   const onFinish = async(values) => {
-    console.log(values);
-
     let formData = new FormData();
     if (fileList.length > 0) {
       formData.append("logo", fileList[0].originFileObj)

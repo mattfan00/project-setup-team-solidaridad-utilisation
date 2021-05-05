@@ -28,7 +28,6 @@ const CommonElements = ({
 
     const update = async () => {
         try {
-            console.log('Success:', values);
             updateCommon(values);
             handleNextButton();
         } catch (errorInfo) {

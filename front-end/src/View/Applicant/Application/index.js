@@ -30,9 +30,6 @@ const Application = () => {
       const resultJob = await axios.get(`/jobs/${job}`)
       const resultCompany = await axios.get(`/company/${resultJob.data.company}`)
 
-      console.log(resultJob.data)
-      console.log(resultCompany.data)
-
       setLoading(false)
 
       setApplication(resultJob.data)

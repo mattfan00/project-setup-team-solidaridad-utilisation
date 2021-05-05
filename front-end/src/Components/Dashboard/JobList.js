@@ -6,7 +6,7 @@ import axios from 'axios'
 const JobList = (props) => {
 
     const [Jobs, setJobs] = useState([])
-    
+
     /**
      * toggleSort(key)
      * keys: [1, 2]
@@ -14,7 +14,6 @@ const JobList = (props) => {
      * 2 - sorted z-a by jobtitle
      */
     const toggleSort = (sortNum) => {
-        console.log(sortNum)
         if(sortNum == 1){
             const a_z = [...Jobs].sort((a, b) =>  a.jobTitle > b.jobTitle ? 1 : -1)
             setJobs(a_z)
@@ -24,7 +23,7 @@ const JobList = (props) => {
             setJobs(z_a)
         }
     }
-    
+
     /**
      * menu
      * @returns a menu overlay with the options a-z and z-a
@@ -32,17 +31,17 @@ const JobList = (props) => {
     const menu = () =>{
         return (
             <Menu>
-                <Menu.Item 
+                <Menu.Item
                     key="1"
-                    onClick = {() => 
+                    onClick = {() =>
                         toggleSort(1)
                     }
                 >
                     A-Z
                 </Menu.Item>
-                <Menu.Item 
+                <Menu.Item
                     key="2"
-                    onClick = {() => 
+                    onClick = {() =>
                         toggleSort(2)
                     }
                 >
@@ -51,7 +50,7 @@ const JobList = (props) => {
             </Menu>
         )
     }
-    
+
     useEffect(async () => {
         const result = await axios('/business/alljobs')
         setJobs(result.data)
